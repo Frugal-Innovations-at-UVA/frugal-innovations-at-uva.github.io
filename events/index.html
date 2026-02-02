@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FISH | Events</title>
+
+    <!-- Root-relative paths so this works from /projects/, /about/, etc. -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
+
+    <!-- Placeholder styling (blue box) -->
+    <style>
+        .placeholder {
+            padding: 110px 0 60px; /* clears fixed header */
+            text-align: center;
+        }
+
+        .placeholder-card {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 32px 26px;
+            border-radius: 18px;
+
+            /* Blue box */
+            background: #08344E;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .placeholder-card h1,
+        .placeholder-card p {
+            color: #fff;
+            opacity: 1;
+            margin: 0;
+        }
+
+        .placeholder-card h1 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Home">
+            <img class="brand-mark" src="/assets/brand/fish-main.png" alt="FISH logo" />
+            <div class="brand-meta brand-meta--inline">
+                <div class="brand-name">FISH</div>
+                <div class="brand-tagline brand-tagline--inline">
+                    Frugal Innovations In<br /> Sustainable Healthcare
+                </div>
+            </div>
+        </a>
+
+        <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+            <span class="sr-only">Menu</span> ☰
+        </button>
+
+        <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+            <a class="nav-link" href="/">Home</a>
+
+            <div class="nav-dropdown">
+                <a class="nav-link" href="/projects/">Projects</a>
+                <div class="dropdown-panel" role="menu" aria-label="Projects submenu">
+                    <a class="dropdown-link" href="/projects/timeline/">Timeline</a>
+                </div>
+            </div>
+
+            <a class="nav-link" href="/collaborations/">Collaborations</a>
+            <a class="nav-link" href="/events/">Events</a>
+            <a class="nav-link" href="/competitions/">Competitions</a>
+            <a class="nav-link" href="/blog/">Blog</a>
+
+            <div class="nav-dropdown nav-dropdown--right">
+                <a class="nav-link" href="/about/">About Us</a>
+                <div class="dropdown-panel" role="menu" aria-label="About Us submenu">
+                    <a class="dropdown-link" href="/about/officers/">Officers</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="placeholder">
+        <div class="container">
+            <div class="placeholder-card">
+                <h1>Events</h1>
+                <p>Event page being built — come back later.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <span>© <span id="year"></span> FISH</span>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="/js/nav.js"></script>
+</body>
+</html>

@@ -1,47 +1,371 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Frugal Innovations in Sustainable Healthcare</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #1e5eff; /* generic blue */
-      color: white;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      text-align: center;
-      padding: 24px;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 800;
-      letter-spacing: 0.2px;
-    }
-    p {
-      margin: 0;
-      font-size: clamp(16px, 2vw, 20px);
-      opacity: 0.9;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 18px;
-      padding: 28px 24px;
-      max-width: 720px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FISH | Home</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/png" href="/assets/brand/fish-main.png">
 </head>
+
 <body>
-  <main class="card">
-    <h1>Frugal Innovations in Sustainable Healthcare</h1>
-    <p>Site being built — come back later.</p>
-  </main>
+<!-- Fixed header (always visible) -->
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Home">
+            <img class="brand-mark" src="assets/brand/fish-main.png" alt="FISH logo" />
+            <div class="brand-meta brand-meta--inline">
+                <div class="brand-name">FISH</div>
+                <div class="brand-tagline brand-tagline--inline">
+                    Frugal Innovations In<br> Sustainable Healthcare
+                </div>
+            </div>
+        </a>
+
+        <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+            <span class="sr-only">Menu</span> ☰
+        </button>
+
+        <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+            <a class="nav-link" href="/">Home</a>
+
+            <div class="nav-dropdown">
+                <a class="nav-link" href="/projects/">Projects</a>
+                <div class="dropdown-panel" role="menu" aria-label="Projects submenu">
+                    <a class="dropdown-link" href="/projects/timeline/">Timeline</a>
+                </div>
+            </div>
+
+            <a class="nav-link" href="/collaborations/">Collaborations</a>
+            <a class="nav-link" href="/events/">Events</a>
+            <a class="nav-link" href="/competitions/">Competitions</a>
+            <a class="nav-link" href="/blog/">Blog</a>
+
+            <div class="nav-dropdown nav-dropdown--right">
+                <a class="nav-link" href="/about/">About Us</a>
+                <div class="dropdown-panel" role="menu" aria-label="About Us submenu">
+                    <a class="dropdown-link" href="/about/officers/">Officers</a>
+                    <!-- <a class="dropdown-link" href="/about/who-we-are/">Who We Are</a> -->
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<main class="page">
+    <!-- First Section -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-left">
+                <h1 class="hero-title">
+                    <span class="accent">F</span>rugal<br>
+                    <span class="accent">I</span>nnovations in<br>
+                    <span class="accent">S</span>ustainable<br>
+                    <span class="accent">H</span>ealthcare
+                </h1>
+
+                <p class="hero-subtitle">Medical Device Research &amp; Development</p>
+
+                <a class="btn primary" href="pages/projects.html">Explore Now</a>
+
+                <!-- Optional decorative PNG later:
+                <img class="hero-decor hero-decor-coral" src="assets/photos/hero-coral.png" alt="" aria-hidden="true">
+                -->
+            </div>
+
+            <div class="hero-right">
+                <img
+                        class="hero-illustration"
+                        src="assets/brand/fish-illustration.png"
+                        alt="Illustrated FISH hero graphic"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- (Below here: same structure as before; keeping placeholders for photos) -->
+
+    <!-- OUR MISSION -->
+    <section class="mission" id="mission">
+        <div class="mission-title-row">
+            <h2 class="mission-title">Our Mission</h2>
+            <!-- <span class="mission-squiggle" aria-hidden="true"></span> -->
+        </div>
+
+        <div class="mission-body">
+            <div class="mission-text">
+                <p>
+                    We partner with physicians, researchers, and healthcare professionals to turn
+                    real-world problems into practical, cost-effective solutions.
+                </p>
+                <p>
+
+                    Our team brings together students from over 10 different majors and minors—ranging from biomedical
+                    engineering to public health to data science, representing both the School of Engineering
+                    and the College of Arts and Sciences at the University of Virginia.
+                </p>
+            </div>
+
+            <div class="mission-art">
+                <!-- Uncomment later if/when you add it:
+                <img src="assets/photos/mission-coral.png" alt="" aria-hidden="true">
+                -->
+                <!-- <div class="mission-art-circle" aria-hidden="true"></div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT DRIVES US (split) -->
+    <section class="split split--right-dark drives" id="drives">
+        <div class="split-side split-left">
+            <div class="split-content drives-left">
+                <h2 class="title-xl">What Drives Us</h2>
+
+                <div class="drives-copy">
+                    <p>
+                        <strong>Patient-centered:</strong> We aim to create maximum value using minimal resources.
+                        Our solutions are designed to be cost-effective, scalable, and long-lasting,
+                        especially in resource-constrained or underserved settings.
+                    </p>
+
+                    <p>
+                        <strong>Frugal/Sustainable:</strong> We aim to create maximum value using minimal resources.
+                        Our solutions are designed to be cost-effective, scalable, and long-lasting,
+                        especially in resource-constrained or underserved settings.
+                    </p>
+
+                    <p>
+                        <strong>Interdisciplinary:</strong> We believe that the best solutions are developed
+                        when a problem is approached together from diverse perspectives.
+                        We gain inspiration from engineering, medicine, public policy, and beyond
+                        to foster creativity and more holistic problem-solving.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-side split-right">
+            <div class="split-content drives-right">
+                <div class="photo-stack">
+                    <div class="photo-frame">
+                        <div class="photo-inner">
+                            <img src="assets/photos/what-drives-us-image-1.heic" alt="Team working" />
+                        </div>
+                    </div>
+
+                    <div class="photo-frame">
+                        <div class="photo-inner">
+                            <img src="assets/photos/what-drives-us-image-2.HEIC" alt="Tabling" />
+                        </div>
+                    </div>
+
+                    <div class="photo-frame">
+                        <div class="photo-inner">
+                            <img src="assets/photos/what-drives-us-image-3.JPG" alt="Group photo" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS (split, left dark) -->
+    <section class="split split--left-dark how" id="how">
+        <div class="split-side split-left">
+            <div class="split-content how-left">
+                <h2 class="title-xl title-xl--light">How It Works</h2>
+
+                <p class="how-paragraph">
+                    We approach problem-solving first through a deep dive on problems faced by patients
+                    and practitioners in our community.
+                    From there, we partner with community experts in a collaborative design process
+                    —researching, brainstorming, and shaping solutions together to ensure that they are
+                    both clinically sound and practically useful in real-world settings.
+                    Once ideas take form, we move into prototyping and testing,
+                    with continuous collaboration with physicians, UVA faculty, and Charlottesville community members
+                    to refine our process. This ongoing partnership ensures that the final solution isn’t just innovative,
+                    but effective, sustainable, and tailored to the client's unique needs.
+                </p>
+            </div>
+        </div>
+
+        <div class="split-side split-right">
+            <div class="split-content how-right">
+                <div class="card-stack">
+                    <article class="phase-card">
+                        <div class="phase-icon" aria-hidden="true"></div>
+                        <div>
+                            <h3 class="phase-title">Phase 1</h3>
+                            <p class="phase-bold">Share your challenge:</p>
+                            <p>Tell us what’s slowing you down or limiting patient outcomes.</p>
+                        </div>
+                    </article>
+
+                    <article class="phase-card">
+                        <div class="phase-icon" aria-hidden="true"></div>
+                        <div>
+                            <h3 class="phase-title">Phase 2</h3>
+                            <p class="phase-bold">Collaborative problem solving:</p>
+                            <p>We research, brainstorm, and design alongside you, ensuring solutions meet clinical and practical needs.</p>
+                        </div>
+                    </article>
+
+                    <article class="phase-card">
+                        <div class="phase-icon" aria-hidden="true"></div>
+                        <div>
+                            <h3 class="phase-title">Phase 3</h3>
+                            <p class="phase-bold">Prototype and Test:</p>
+                            <p>We develop and refine solutions, with opportunities for you to review and provide feedback at every stage.</p>
+                        </div>
+                    </article>
+
+                    <article class="phase-card">
+                        <div class="phase-icon" aria-hidden="true"></div>
+                        <div>
+                            <h3 class="phase-title">Healthcare Analytics</h3>
+                            <p>Leverage data-driven insights with our healthcare analytics solutions to make informed decisions and drive improvements in patient care.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKSHOPS (photo left, dark panel right) -->
+    <section class="split split--right-dark feature" id="workshops">
+        <div class="split-side split-left">
+            <div class="feature-photo-wrap">
+                <div class="feature-photo-box">
+                    <img src="assets/photos/workshops-image.heic" alt="Workshops" />
+                </div>
+            </div>
+        </div>
+
+        <div class="split-side split-right">
+            <div class="split-content feature-panel">
+                <h2 class="title-lg title-lg--light">Workshops</h2>
+                <p class="feature-text">
+                    We are excited to offer workshops designed for students eager to explore the intersections of engineering, medicine,
+                    data science and much more. Join us to gain hands-on experience, learn from industry experts and fellow peers.
+                    Collaborate on innovative projects that shape the future of healthcare. Let's inspire the next generation of medical pioneers together!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUEST SPEAKERS (light text left, photo right) -->
+    <section class="split feature feature--reverse" id="guest-speakers">
+        <div class="split-side split-left">
+            <div class="split-content feature-panel feature-panel--light">
+                <h2 class="title-lg">Guest Speakers</h2>
+                <p class="feature-text feature-text--dark">
+                    Join us for our guest speaker sessions as we host an exciting lineup of guest speakers from various industries, including engineering and medicine.
+                    These experts will share their insights, experiences, and innovations, providing valuable knowledge to our members.
+                    Don't miss the opportunity to engage with professionals who are shaping the future of healthcare technology!
+                </p>
+            </div>
+        </div>
+
+        <div class="split-side split-right split-right--photo">
+            <div class="feature-photo-wrap">
+                <div class="feature-photo-box">
+                    <img src="assets/photos/guest-speakers-image.JPG" alt="Guest Speakers" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITION (photo left, dark panel right) -->
+    <section class="split split--right-dark feature" id="competition">
+        <div class="split-side split-left">
+            <div class="feature-photo-wrap">
+                <div class="feature-photo-box">
+                    <img src="assets/photos/competition-image.JPG" alt="Competition" />
+                </div>
+            </div>
+        </div>
+
+        <div class="split-side split-right">
+            <div class="split-content feature-panel">
+                <h2 class="title-lg title-lg--light">Competition</h2>
+                <p class="feature-text">
+                    Join FISH and be part of an exciting year-long journey to design an innovative medical device that will be showcased at a prestigious competition featuring universities from across the U.S.
+                    We welcome individuals from all backgrounds to collaborate research, design, and implementation of this groundbreaking project.
+                    Together, we’ll combine our diverse skills and ideas to make a meaningful impact in the field of healthcare.
+                    Get ready to unleash your creativity and contribute to something extraordinary!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL EVENTS (light text left, photo right) -->
+    <section class="split feature feature--reverse" id="social-events">
+        <div class="split-side split-left">
+            <div class="split-content feature-panel feature-panel--light">
+                <h2 class="title-lg">Social Events</h2>
+                <p class="feature-text feature-text--dark">
+                    Join us for exciting social events like movie nights, where you can connect with like-minded individuals and make new friends!
+                    Enjoy a fun atmosphere filled with laughter and great conversations.
+                    Don't miss the chance to be part of our vibrant community!
+                </p>
+            </div>
+        </div>
+
+        <div class="split-side split-right split-right--photo">
+            <div class="feature-photo-wrap">
+                <div class="feature-photo-box">
+                    <img src="assets/photos/social-events-image.JPG" alt="Social Events" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN US (full-width band) -->
+    <section class="cta" id="join">
+        <div class="cta-inner">
+            <h2 class="cta-title">Join Us!</h2>
+            <p class="cta-subtitle">Frugal Innovations In Sustainable Healthcare</p>
+            <p class="cta-desc">Discover the innovative features of our medical technology solutions and get involved</p>
+            <a class="btn cta-btn" href="#contact">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- CONTACT (simple footer bar; no form) -->
+    <section class="contact-section" id="contact">
+        <div class="contact-strip">
+            <div class="contact-strip-left">
+                <p class="contact-line">
+                    <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+                </p>
+                <p class="contact-line">Charlottesville, VA, 22904</p>
+            </div>
+
+            <div class="contact-strip-right" aria-label="Social links">
+                <a class="social-icon"
+                   href="https://groupme.com/join_group/109354949/YaK5K88R"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Join our :contentReference[oaicite:0]{index=0}">
+                    <img src="assets/icons/groupme-icon-1.png" alt="" />
+                </a>
+
+                <a class="social-icon"
+                   href="https://www.instagram.com/fish_atuva"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Visit our :contentReference[oaicite:1]{index=1}">
+                    <img src="assets/icons/instagram-icon.png" alt="" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <span>© <span id="year"></span> FISH</span>
+    </div>
+</footer>
+
+<script src="js/nav.js"></script>
 </body>
 </html>
