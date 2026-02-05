@@ -680,14 +680,31 @@ strong{ font-weight: 800; }
 /* =========================================================
    Footer
    ========================================================= */
-.site-footer{ padding: 24px 0 34px; }
+.site-footer{padding: 28px 0 34px; }
 
 .footer-inner{
-    display: flex;
-    justify-content: center;
-    color: var(--muted2);
-    font-weight: 650;
+    display: grid;
+    gap: 10px;                     /* tighter spacing between lines */
+    justify-items: center;
+    text-align: center;
+    padding: 0 var(--pad);         /* small side padding */
 }
+
+.footer-copy{
+    color: rgba(0,0,0,1);
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.footer-disclaimer{
+    margin: 0;
+    max-width: 2000px;
+    color: rgba(0,0,0,1);
+    font-size: 14px;               /* readable but not huge */
+    line-height: 1.65;
+}
+
 
 /* =========================================================
    Responsive
