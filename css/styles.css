@@ -705,6 +705,131 @@ strong{ font-weight: 800; }
     line-height: 1.65;
 }
 
+/* =========================================================
+   About Officers / Team (Wix About Us replication)
+   ========================================================= */
+
+.about-officers{
+    /* .page already clears the fixed header */
+    padding: clamp(32px, 4vw, 70px) 0 clamp(70px, 7vw, 110px);
+}
+
+/* "Meet The Team" heading + underline */
+.about-officers__section-title{
+    text-align: center;
+    margin: 0 0 clamp(34px, 4.5vw, 56px);
+    font-size: clamp(64px, 3.2vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    position: relative;
+}
+
+.about-officers__section-title::after{
+    content: "";
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 14px auto 0;
+    border-radius: 999px;
+    background: var(--text);
+}
+
+/* Two-column grid like Wix */
+.team-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(54px, 7vw, 120px);
+    row-gap: clamp(54px, 6vw, 100px);
+    justify-items: center;
+    align-items: start;
+}
+
+.team-card{
+    width: min(440px, 100%);
+    text-align: left;
+}
+
+.team-card__img{
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* square crops */
+    object-fit: cover;
+    display: block;
+    background: rgba(8,52,78,0.06);
+}
+
+.team-card__name{
+    margin: 14px 0 0;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--text);
+}
+
+.team-card__role{
+    margin: 8px 0 4px;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+}
+
+.team-card__meta{
+    margin: 6px 0 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.team-card__pronouns-year{
+    white-space: nowrap;
+}
+
+.team-card__details{
+    margin-top: 10px;
+    display: grid;
+    gap: 6px;
+}
+
+.team-card__detail{
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.team-card__label{
+    font-weight: 800;
+    color: rgba(8, 52, 78, 0.88);
+}
+
+/* If you use <article class="team-card team-card--center"> for an odd last card */
+.team-card--center{
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+/* ===== Responsive behavior ===== */
+
+/* Keep 2 columns for a while, but tighten spacing */
+@media (max-width: 980px){
+    .team-grid{
+        column-gap: 40px;
+        row-gap: 56px;
+    }
+}
+
+/* Stack to 1 column on smaller screens */
+@media (max-width: 860px){
+    .team-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .team-card--center{
+        grid-column: auto;
+    }
+}
 
 /* =========================================================
    Responsive
