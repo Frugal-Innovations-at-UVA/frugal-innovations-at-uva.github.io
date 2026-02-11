@@ -10,35 +10,6 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
 
-    <!-- Placeholder styling (blue box) -->
-    <style>
-        .placeholder {
-            padding: 110px 0 60px; /* clears fixed header */
-            text-align: center;
-        }
-
-        .placeholder-card {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 32px 26px;
-            border-radius: 18px;
-
-            /* Blue box */
-            background: #08344E;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .placeholder-card h1,
-        .placeholder-card p {
-            color: #fff;
-            opacity: 1;
-            margin: 0;
-        }
-
-        .placeholder-card h1 {
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 
@@ -61,13 +32,15 @@
 
         <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
             <a class="nav-link" href="/">Home</a>
-
+            <a class="nav-link" href="/projects/">Projects</a>
+            <!---
             <div class="nav-dropdown">
                 <a class="nav-link" href="/projects/">Projects</a>
                 <div class="dropdown-panel" role="menu" aria-label="Projects submenu">
                     <a class="dropdown-link" href="/projects/timeline/">Timeline</a>
                 </div>
             </div>
+            --->
 
             <a class="nav-link" href="/collaborations/">Collaborations</a>
             <a class="nav-link" href="/events/">Events</a>
@@ -84,16 +57,133 @@
     </div>
 </header>
 
-<main class="page">
-    <section class="placeholder">
-        <div class="container">
-            <div class="placeholder-card">
-                <h1>Projects</h1>
-                <p>Project page being built — come back later.</p>
+<main class="page projects-page">
+
+    <!-- HERO -->
+    <section class="projects-hero">
+        <div class="container projects-hero__inner">
+            <!-- Optional: add your fish icon/row here if you have one -->
+            <!-- <img class="projects-hero__icon" src="/assets/brand/fish-row.png" alt="" aria-hidden="true" /> -->
+
+            <h1 class="title-xl projects-hero__title">Projects</h1>
+            <p class="projects-hero__sub">
+                Here are some of the medical problems we are focusing on at the moment.<br />
+                We will add more here as we research them!
+            </p>
+        </div>
+    </section>
+
+    <!-- PROJECT 1 -->
+    <section class="split proj-row" id="parkinsons">
+        <div class="split-side split-left proj-text">
+            <div class="split-content proj-copy">
+                <h2 class="title-xl proj-title">Parkinson's<br />Disease Tremors</h2>
+
+                <p class="proj-paragraph">
+                    The progression of Parkinson’s Disease, a slow-onset neurodegenerative disease, often leads to strong
+                    hand tremors that make everyday tasks difficult or impossible to complete. Current solutions are often
+                    expensive and invasive, and so we hope to create a device to help patients with a specific daily task
+                    in order to improve quality of life and confidence.
+                </p>
+            </div>
+        </div>
+
+        <div class="split-side split-right proj-media">
+            <img src="/assets/projects/parkinsons.png" alt="Hands resting on lap" />
+        </div>
+    </section>
+
+    <!-- PROJECT 2 (reverse) -->
+    <section class="split proj-row proj-row--reverse" id="cautery-knife">
+        <div class="split-side split-left proj-text">
+            <div class="split-content proj-copy">
+                <h2 class="title-xl proj-title">Cautery Knife</h2>
+
+                <p class="proj-paragraph">
+                    Electrocautery devices, while essential for cutting tissue during surgery, produce surgical smoke
+                    (diathermy plume) that contains toxic, carcinogenic, and infectious airborne particles. Inhaling smoke
+                    from cauterizing just 1 gram of tissue is equivalent to smoking six unfiltered cigarettes.
+                    To better serve both patients and providers, we hope to create an integrated, user-friendly cautery knife
+                    that actively minimizes smoke generation and removes it at the source.
+                </p>
+            </div>
+        </div>
+
+        <div class="split-side split-right proj-media">
+            <img src="/assets/projects/cautery_knife.png" alt="Operating room scene" />
+        </div>
+    </section>
+
+    <!-- PROJECT 3 -->
+    <section class="split proj-row" id="eyedropper">
+        <div class="split-side split-left proj-text">
+            <div class="split-content proj-copy">
+                <h2 class="title-xl proj-title">Eyedropper</h2>
+
+                <p class="proj-paragraph">
+                    Patients cannot reliably and easily administer necessary eye medications on their own due to the
+                    difficulty of using current eye drop applicator bottles. Even supposedly accessible packaging is
+                    difficult to use, in some cases even more difficult than normal packaging due to the dexterity and
+                    grip strength needed to apply them. Moreover, inaccurate application can waste up to half the bottle.
+                    We hope to create a device to attach to eye medicine bottles which will help patients confidently and
+                    accurately apply their medicine directly to the eyes.
+                </p>
+            </div>
+        </div>
+
+        <div class="split-side split-right proj-media">
+            <img src="/assets/projects/eyedropper.png" alt="Glasses and eyedrop bottle" />
+        </div>
+    </section>
+
+    <!-- TIMELINE (embedded on Projects page) -->
+    <section class="projects-timeline" id="timeline">
+        <div class="container projects-timeline__inner">
+            <!-- optional flourish icons; add later if you have assets -->
+            <!-- <img class="timeline-flourish timeline-flourish--left" src="/assets/brand/timeline-flourish-left.png" alt="" aria-hidden="true"> -->
+
+            <h2 class="projects-timeline__title">Timeline</h2>
+
+            <div class="timeline-frame">
+                <img
+                        class="timeline-img"
+                        src="/assets/projects/timeline.png"
+                        alt="FISH project timeline: Recruitment, Initial Ideation, Narrowing Down, Consolidation, Research, Development, Testing, Submission."
+                />
+            </div>
+
+            <!-- optional small caption like Wix -->
+            <!-- <p class="projects-timeline__note">Our typical project lifecycle from recruiting through submission.</p> -->
+        </div>
+    </section>
+
+    <!-- CONTACT (simple footer bar; no form) -->
+    <section class="contact-section" id="contact">
+        <div class="contact-strip">
+            <div class="contact-strip-left">
+                <p class="contact-line">
+                    <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+                </p>
+                <p class="contact-line">Charlottesville, VA, 22904</p>
+            </div>
+
+            <div class="contact-strip-right" aria-label="Social links">
+                <a class="social-icon"
+                   href="https://groupme.com/join_group/109354949/YaK5K88R"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Join our :contentReference[oaicite:0]{index=0}">
+                    <img src="/assets/icons/groupme-icon-1.png" alt="" />
+                </a>
+
+                <a class="social-icon"
+                   href="https://www.instagram.com/fish_atuva"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Visit our :contentReference[oaicite:1]{index=1}">
+                    <img src="/assets/icons/instagram-icon.png" alt="" />
+                </a>
             </div>
         </div>
     </section>
-</main>
 
 <footer class="site-footer">
     <div class="container footer-inner">

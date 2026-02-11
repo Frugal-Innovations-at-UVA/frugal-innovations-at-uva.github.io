@@ -706,6 +706,158 @@ strong{ font-weight: 800; }
 }
 
 /* =========================================================
+   Projects page — force 50/50 full-bleed rows (override .split)
+   Paste at the VERY BOTTOM of styles.css
+   ========================================================= */
+
+.projects-hero{
+    padding: clamp(36px, 5vw, 70px) 0 clamp(18px, 3vw, 34px);
+    text-align: center;
+}
+.projects-hero__inner{ max-width: 980px; }
+.projects-hero__title{ margin: 0; }
+.projects-hero__sub{
+    margin: 10px auto 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Force these sections to be GRID even if .split sets flex */
+.projects-page section.split.proj-row{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "text media";
+    gap: 0 !important;
+    margin: 0;
+    padding: 0;
+    min-height: clamp(520px, 64vh, 720px);
+    align-items: stretch; /* important */
+}
+
+/* Reverse (image left, text right) */
+.projects-page section.split.proj-row.proj-row--reverse{
+    grid-template-areas: "media text";
+}
+
+/* Make the halves fill the row height */
+.projects-page section.split.proj-row > .split-side{
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: inherit;
+    align-self: stretch;
+}
+
+/* Text half */
+.projects-page .proj-text{
+    grid-area: text;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+}
+
+.projects-page .proj-copy{
+    width: min(640px, 100%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.projects-page .proj-title{
+    margin: 0;
+    line-height: 1.12;
+    font-size: 70px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.projects-page .proj-paragraph{
+    margin: 18px auto 0;
+    max-width: 460px;
+    text-align: left;
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 18px;
+}
+
+/* Image half — full bleed ALWAYS */
+.projects-page .proj-media{
+    grid-area: media;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    min-height: inherit;      /* key */
+    height: 100%;             /* key */
+    align-self: stretch;       /* key */
+}
+
+/* Absolutely fill the cell */
+.projects-page .proj-media > img{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+/* Mobile stack */
+@media (max-width: 900px){
+    .projects-page section.split.proj-row{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+      "media"
+      "text";
+        min-height: auto;
+    }
+
+    .projects-page .proj-media{
+        height: clamp(280px, 42vh, 420px);
+        min-height: 0;
+    }
+}
+
+/* =========================================================
+   Timeline section (embedded)
+   ========================================================= */
+
+.projects-timeline{
+    background: var(--bg);
+    padding: clamp(44px, 6vw, 90px) 0 clamp(44px, 6vw, 90px);
+    text-align: center;
+}
+
+.projects-timeline__inner{
+    max-width: 1100px;
+}
+
+.projects-timeline__title{
+    margin: 0 0 clamp(18px, 3vw, 34px);
+    color: var(--text);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    font-size: clamp(44px, 6vw, 78px);
+    line-height: 1.05;
+}
+
+/* frame similar to screenshot: thin border + subtle shadow */
+.timeline-frame{
+    width: min(980px, 100%);
+    margin: 0 auto;
+    background: #fff;
+    border: 3px solid var(--text);
+    border-radius: 6px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.12);
+    overflow: hidden;
+}
+
+/* responsive image */
+.timeline-img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* =========================================================
    About Officers / Team (Wix About Us replication)
    ========================================================= */
 
