@@ -4,42 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FISH | Collaboration</title>
+    <title>FISH | Collaborations</title>
 
     <!-- Root-relative paths so this works from /projects/, /about/, etc. -->
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
-
-    <!-- Placeholder styling (blue box) -->
-    <style>
-        .placeholder {
-            padding: 110px 0 60px; /* clears fixed header */
-            text-align: center;
-        }
-
-        .placeholder-card {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 32px 26px;
-            border-radius: 18px;
-
-            /* Blue box */
-            background: #08344E;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .placeholder-card h1,
-        .placeholder-card p {
-            color: #fff;
-            opacity: 1;
-            margin: 0;
-        }
-
-        .placeholder-card h1 {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -61,7 +30,6 @@
 
         <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
             <a class="nav-link" href="/">Home</a>
-
             <a class="nav-link" href="/projects/">Projects</a>
             <!---
             <div class="nav-dropdown">
@@ -71,8 +39,7 @@
                 </div>
             </div>
             --->
-
-            <a class="nav-link" href="/collaborations/">Collaborations</a>
+            <a class="nav-link" href="/collaborations/" aria-current="page">Collaborations</a>
             <a class="nav-link" href="/events/">Events</a>
             <a class="nav-link" href="/competitions/">Competitions</a>
             <a class="nav-link" href="/blog/">Blog</a>
@@ -87,16 +54,124 @@
     </div>
 </header>
 
-<main class="page">
-    <section class="placeholder">
-        <div class="container">
-            <div class="placeholder-card">
-                <h1>Collaborations</h1>
-                <p>Collaboration page being built — come back later.</p>
+<main class="page collaborations-page">
+
+    <!-- HERO -->
+    <section class="collabs-hero">
+        <div class="container collabs-hero__inner">
+            <div class="collabs-hero__card">
+                <h1 class="collabs-hero__title">Our Community Partners</h1>
+                <p class="collabs-hero__lead">
+                    We strive to work with a diverse group of community members who are involved in alleviating healthcare
+                    problems in the community or who are impacted by them. We thank our community partners for all the work
+                    and effort they have put in to support and continually inspire us!
+                </p>
             </div>
         </div>
     </section>
-</main>
+
+    <!-- PARTNERS -->
+    <section class="collabs-partners" aria-label="Community partners">
+        <div class="container">
+            <div class="partners">
+
+                <article class="partner">
+                    <div class="partner__media">
+                        <!-- Replace file name/path as needed -->
+                        <img class="partner__img" src="/assets/collaborations/coulter.jpg" alt="Coulter Center logo" />
+                    </div>
+                    <div class="partner__body">
+                        <h2 class="partner__title">Coulter Center</h2>
+                        <p class="partner__text">
+                            Our mentors, Kristin Bush and David Chen, work with the Coulter Center to help UVA Health professionals
+                            bring their device ideas to fruition!
+                        </p>
+                    </div>
+                </article>
+
+                <article class="partner partner--reverse">
+                    <div class="partner__media">
+                        <img class="partner__img" src="/assets/collaborations/parents_program.jpg" alt="UVA Parents Program logo" />
+                    </div>
+                    <div class="partner__body">
+                        <h2 class="partner__title">Parents Program</h2>
+                        <p class="partner__text">
+                            The Parents Program have been helping us fund our club&apos;s activities and early device development.
+                            Their support has allowed us to explore real-world healthcare needs and create meaningful, hands-on solutions.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="partner">
+                    <div class="partner__media">
+                        <img class="partner__img" src="/assets/collaborations/uva_bme.jpg" alt="UVA Biomedical Engineering logo" />
+                    </div>
+                    <div class="partner__body">
+                        <h2 class="partner__title">UVA BME Department</h2>
+                        <p class="partner__text">
+                            We have received a lot of support from faculty in the UVA BME department including Dr. Shannon Barker,
+                            Dr. Shayni Peirce-Cottler, and Dr. Mami Taniuchi.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="partner partner--reverse">
+                    <div class="partner__media">
+                        <img class="partner__img" src="/assets/collaborations/uva_ortho.jpg" alt="UVA Department of Orthopaedic Surgery logo" />
+                    </div>
+                    <div class="partner__body">
+                        <h2 class="partner__title">UVA Department of Orthopaedic Surgery</h2>
+                        <p class="partner__text">
+                            Collaborations with Dr. Shawn Russell, director of the Motion Analysis and Motor Performance Laboratory
+                            regarding human movement problems.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="partner">
+                    <div class="partner__media">
+                        <!-- If this one is a photo, you can add class partner__img--cover in CSS (optional) -->
+                        <img class="partner__img" src="/assets/collaborations/fried_center.jpg" alt="Fried Center" />
+                    </div>
+                    <div class="partner__body">
+                        <h2 class="partner__title">Fried Center</h2>
+                        <p class="partner__text">
+                            Physical Therapists at the Fried Center are helping us find problems that we can help solve!
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+<!-- CONTACT (simple footer bar; no form) -->
+<section class="contact-section" id="contact">
+    <div class="contact-strip">
+        <div class="contact-strip-left">
+            <p class="contact-line">
+                <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+            </p>
+            <p class="contact-line">Charlottesville, VA, 22904</p>
+        </div>
+
+        <div class="contact-strip-right" aria-label="Social links">
+            <a class="social-icon"
+               href="https://groupme.com/join_group/109354949/YaK5K88R"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Join our :contentReference[oaicite:0]{index=0}">
+                <img src="/assets/icons/groupme-icon-1.png" alt="" />
+            </a>
+
+            <a class="social-icon"
+               href="https://www.instagram.com/fish_atuva"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Visit our :contentReference[oaicite:1]{index=1}">
+                <img src="/assets/icons/instagram-icon.png" alt="" />
+            </a>
+        </div>
+    </div>
+</section>
 
 <footer class="site-footer">
     <div class="container footer-inner">
