@@ -800,7 +800,7 @@ strong{ font-weight: 800; }
     display: block;
 }
 
-/* Mobile stack */
+
 @media (max-width: 900px){
     .projects-page section.split.proj-row{
         grid-template-columns: 1fr;
@@ -810,11 +810,19 @@ strong{ font-weight: 800; }
         min-height: auto;
     }
 
+    /* Override the desktop reverse layout on mobile */
+    .projects-page section.split.proj-row.proj-row--reverse{
+        grid-template-areas:
+      "media"
+      "text";
+    }
+
     .projects-page .proj-media{
         height: clamp(280px, 42vh, 420px);
         min-height: 0;
     }
 }
+
 
 /* =========================================================
    Timeline section (embedded)
