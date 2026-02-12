@@ -10,36 +10,6 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
 
-    <!-- Placeholder styling (blue box) -->
-    <style>
-        .placeholder {
-            padding: 110px 0 60px; /* clears fixed header */
-            text-align: center;
-        }
-
-        .placeholder-card {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 32px 26px;
-            border-radius: 18px;
-
-            /* Blue box */
-            background: #08344E;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .placeholder-card h1,
-        .placeholder-card p {
-            color: #fff;
-            opacity: 1;
-            margin: 0;
-        }
-
-        .placeholder-card h1 {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -87,16 +57,134 @@
     </div>
 </header>
 
-<main class="page">
-    <section class="placeholder">
-        <div class="container">
-            <div class="placeholder-card">
-                <h1>Competitions</h1>
-                <p>Competition page being built — come back later.</p>
+<main class="page competitions-page">
+
+    <!-- HERO -->
+    <section class="competitions-hero" aria-labelledby="comp-hero-title">
+        <div class="container competitions-hero__inner">
+            <div class="competitions-hero__card">
+                <h1 id="comp-hero-title">Submitting our work!</h1>
+
+                <p>
+                    We end each year by submitting our Research and Development work into several healthcare innovation
+                    competitions and conferences. This requires extensive effort in preparing slide decks, financial figures,
+                    and a fully tested device.
+                </p>
             </div>
         </div>
     </section>
-</main>
+
+    <!-- POTENTIAL COMPETITIONS -->
+    <section class="competitions-list" aria-labelledby="potential-title">
+        <div class="container competitions-list__inner">
+            <h2 id="potential-title">Potential Competitions</h2>
+
+            <div class="competitions-list__text">
+                <p>These are some of the competitions we aim to submit to!</p>
+                <p>We are excited for the opportunity to prepare for and apply to these.</p>
+                <p>
+                    If you know of any other competitions you would be interested in us applying to, please let us know in the
+                    contact section below.
+                </p>
+            </div>
+
+            <div class="competitions-grid">
+                <!-- 1 -->
+                <article class="competition-card">
+                    <img class="competition-card__logo"
+                         src="/assets/competitions/JohnsHopkins.png"
+                         alt="JHU logo" />
+
+                    <h3 class="competition-card__title">
+                        Johns Hopkins Healthcare<br />
+                        Design Competition
+                    </h3>
+
+                    <p class="competition-card__desc">
+                        Healthcare design competition with three tracks focused on different areas. Finalists are announced each March.
+                    </p>
+
+                    <a class="competition-card__link"
+                       href="https://cbid.bme.jhu.edu/news-events/design-competition/"
+                       target="_blank" rel="noopener noreferrer">
+                        More Info
+                    </a>
+                </article>
+
+                <!-- 2 -->
+                <article class="competition-card">
+                    <img class="competition-card__logo"
+                         src="/assets/competitions/BMES-Logo_Text.png"
+                         alt="BMES logo" />
+
+                    <h3 class="competition-card__title">
+                        BMES / Medtronic Student<br />
+                        Design Challenge
+                    </h3>
+
+                    <p class="competition-card__desc">
+                        Four tracks with four finalist teams per track. Deadline each June.
+                    </p>
+
+                    <a class="competition-card__link"
+                       href="https://www.bmes.org/2025/student-design-competition"
+                       target="_blank" rel="noopener noreferrer">
+                        More Info
+                    </a>
+                </article>
+
+                <!-- 3 -->
+                <article class="competition-card">
+                    <img class="competition-card__logo"
+                         src="/assets/competitions/resna-seal.png"
+                         alt="RESNA logo" />
+
+                    <h3 class="competition-card__title">
+                        RESNA Student Design<br />
+                        Challenge
+                    </h3>
+
+                    <p class="competition-card__desc">
+                        Annual competition with a focus on assistive technology and accessibility. Submissions due in February.
+                    </p>
+
+                    <a class="competition-card__link"
+                       href="https://www.resna.org/Events/RESNA-2026-Conference-Information/2026-Student-Design-Challenge"
+                       target="_blank" rel="noopener noreferrer">
+                        More Info
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT (simple footer bar; no form) -->
+    <section class="contact-section" id="contact">
+        <div class="contact-strip">
+            <div class="contact-strip-left">
+                <p class="contact-line">
+                    <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+                </p>
+                <p class="contact-line">Charlottesville, VA, 22904</p>
+            </div>
+
+            <div class="contact-strip-right" aria-label="Social links">
+                <a class="social-icon"
+                   href="https://groupme.com/join_group/109354949/YaK5K88R"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Join our :contentReference[oaicite:0]{index=0}">
+                    <img src="/assets/icons/groupme-icon-1.png" alt="" />
+                </a>
+
+                <a class="social-icon"
+                   href="https://www.instagram.com/fish_atuva"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Visit our :contentReference[oaicite:1]{index=1}">
+                    <img src="/assets/icons/instagram-icon.png" alt="" />
+                </a>
+            </div>
+        </div>
+    </section>
 
 <footer class="site-footer">
     <div class="container footer-inner">
@@ -113,5 +201,6 @@
 </script>
 
 <script src="/js/nav.js"></script>
+</main>
 </body>
 </html>

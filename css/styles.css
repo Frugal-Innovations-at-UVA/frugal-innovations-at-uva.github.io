@@ -968,6 +968,156 @@ strong{ font-weight: 800; }
     }
 }
 
+/* =========================================================
+   Competitions Page
+   ========================================================= */
+
+.competitions-page .competitions-hero{
+    background: #9bbbd0;
+    padding: clamp(100px, 10vw, 160px) 0 clamp(50px, 8vw, 120px);
+}
+
+.competitions-page .competitions-hero__inner{
+    display: flex;
+    justify-content: center;
+}
+
+.competitions-page .competitions-hero__card{
+    width: min(980px, 100%);
+    background: var(--bg);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.14);
+    padding: clamp(44px, 5vw, 90px) clamp(28px, 4vw, 80px);
+    text-align: center;
+    border-radius: 14px;
+}
+
+.competitions-page .competitions-hero__card h1{
+    margin: 0 0 14px;
+    font-size: clamp(32px, 3.6vw, 54px);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+
+.competitions-page .competitions-hero__card p{
+    margin: 0 auto;
+    max-width: 62ch;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 18px;
+}
+
+/* -------------------------
+   POTENTIAL COMPETITIONS
+   ------------------------- */
+.competitions-page .competitions-list{
+    background: var(--bg);
+    padding: clamp(54px, 6vw, 86px) 0 clamp(70px, 7vw, 110px);
+}
+
+.competitions-page .competitions-list__inner{
+    text-align: center;
+}
+
+.competitions-page .competitions-list h2{
+    margin: 0;
+    font-size: clamp(50px, 3vw, 46px);
+    font-weight: 500;
+    color: var(--text);
+}
+
+.competitions-page .competitions-list__text{
+    margin: 14px auto 0;
+    max-width: 70ch;
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: 18px;
+}
+
+.competitions-page .competitions-list__text p{
+    margin: 8px 0 0;
+}
+
+/* Grid of competition cards */
+.competitions-page .competitions-grid{
+    margin-top: clamp(34px, 4vw, 54px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(22px, 5vw, 78px);
+    align-items: start;
+}
+
+/* Card */
+.competitions-page .competition-card{
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
+
+.competitions-page .competition-card__logo{
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 14px;
+}
+
+.competitions-page .competition-card__title{
+    margin: 20px 0 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.35;
+}
+
+.competitions-page .competition-card__desc{
+    margin: 20px 0 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 34ch;
+}
+
+.competitions-page .competition-card__link{
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.competitions-page .competition-card__link:hover{
+    color: var(--accent);
+}
+
+/* -------------------------
+   Responsive
+   ------------------------- */
+@media (max-width: 900px){
+    .competitions-page .competitions-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 34px;
+    }
+
+    .competitions-page .competition-card__desc{
+        max-width: 46ch;
+    }
+}
+
+@media (max-width: 640px){
+    .competitions-page .competitions-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .competitions-page .competitions-hero__card{
+        padding: 30px 22px;
+    }
+
+    .competitions-page .competition-card__desc{
+        max-width: 52ch;
+    }
+}
+
 
 /* =========================================================
    About Officers / Team (Wix About Us replication)
