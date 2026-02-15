@@ -50,7 +50,7 @@ Branch naming convention:
 - Examples:
     - `fede/fix-navbar-spacing`
     - `grace/update-sponsor-logos`
-    - `alex/add-project-page-2026`
+    - `cooper/add-project-page-2026`
 
 Full step-by-step instructions (including VS Code + IntelliJ cloning and common Git commands) are in:
 **`CONTRIBUTING.md`**
