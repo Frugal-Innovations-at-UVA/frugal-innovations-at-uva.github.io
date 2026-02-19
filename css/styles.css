@@ -977,6 +977,204 @@ strong{ font-weight: 800; }
 }
 
 /* =========================================================
+   Events Page — Dark vertical card + ONE light image frame
+   ========================================================= */
+
+.events-hero{
+    background: var(--panel);
+    color: #fff;
+    padding: clamp(42px, 6vw, 78px) 0;
+    text-align: center;
+}
+.events-hero__inner{ max-width: 920px; }
+.events-hero__title{
+    margin: 0;
+    font-size: 56px;
+    letter-spacing: 0.2px;
+}
+.events-hero__sub{
+    margin: 14px auto 0;
+    max-width: 760px;
+    line-height: 1.65;
+    opacity: 0.92;
+    font-size: 18px;
+}
+.events-hero__cta{
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+/* =========================================================
+   Events Page — fixed-height card + overlay details
+   ========================================================= */
+
+.events-section{
+    padding: clamp(28px, 4vw, 54px) 0 clamp(36px, 5vw, 70px);
+}
+.events-section__title{
+    margin: 0 0 18px;
+    text-align: center;
+    font-size: 44px;
+    color: var(--text);
+}
+
+/* Grid */
+.events-grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 2.4vw, 28px);
+    align-items: start;
+}
+@media (max-width: 980px){
+    .events-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px){
+    .events-grid{ grid-template-columns: 1fr; }
+}
+
+/* Card (dark orange rectangle behind everything) */
+.event-card{
+    --pad: 22px;
+    --pad-bottom: 20px;
+
+    position: relative;
+    background: rgba(127, 182, 204, 0.5);
+    border-radius: 18px;
+    padding: var(--pad) var(--pad) var(--pad-bottom);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+}
+
+/* Front defines the height */
+.event-front{
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+/* ONE image frame */
+.event-image{
+    width: min(100%, 320px);
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    background: rgba(127, 182, 204, 0.5);
+    padding: 14px;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+}
+
+/* The actual crop box (clips the image) */
+.event-image__viewport{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;      /* <-- THIS is the real crop */
+    background: #fff;      /* optional “mat” behind images */
+}
+
+/* Image fills the crop box */
+.event-image__viewport img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;     /* <-- forces fill + crop */
+    object-position: 50% 20%;
+}
+
+/* Text */
+.event-title{
+    margin: 6px 0 0;
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 800;
+}
+.event-meta{
+    margin: 0;
+    color: rgba(8, 52, 78, 0.78);
+    font-size: 18px;
+    line-height: 1.35;
+    max-width: 92%;
+}
+
+/* Button */
+.event-btn{
+    margin-top: 8px;
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 800;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* DETAILS overlay: covers the same space as the front */
+.event-details{
+    position: absolute;
+    left: var(--pad);
+    right: var(--pad);
+    top: var(--pad);
+    bottom: var(--pad-bottom);
+
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    /* if details text is longer than the card height, it scrolls */
+    overflow: auto;
+}
+
+/* open state: show details overlay, hide front visually (but keep its size) */
+.event-card.is-open .event-details{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.event-card.is-open .event-front{
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Close button inside the card */
+.event-close{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid rgba(8,52,78,0.16);
+    background: rgba(255,255,255,0.40);
+    color: rgba(8,52,78,0.78);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Details paragraph */
+.event-desc{
+    margin: 10px auto 0;
+    max-width: 44ch;
+    color: rgba(8,52,78,0.86);
+    line-height: 1.6;
+    font-size: 22px;
+}
+
+
+/* =========================================================
    Competitions Page
    ========================================================= */
 
