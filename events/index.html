@@ -3,43 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>FISH | Events</title>
 
-    <!-- Root-relative paths so this works from /projects/, /about/, etc. -->
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
-
-    <!-- Placeholder styling (blue box) -->
-    <style>
-        .placeholder {
-            padding: 110px 0 60px; /* clears fixed header */
-            text-align: center;
-        }
-
-        .placeholder-card {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 32px 26px;
-            border-radius: 18px;
-
-            /* Blue box */
-            background: #08344E;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .placeholder-card h1,
-        .placeholder-card p {
-            color: #fff;
-            opacity: 1;
-            margin: 0;
-        }
-
-        .placeholder-card h1 {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -61,17 +28,7 @@
 
         <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
             <a class="nav-link" href="/">Home</a>
-
             <a class="nav-link" href="/projects/">Projects</a>
-            <!---
-            <div class="nav-dropdown">
-                <a class="nav-link" href="/projects/">Projects</a>
-                <div class="dropdown-panel" role="menu" aria-label="Projects submenu">
-                    <a class="dropdown-link" href="/projects/timeline/">Timeline</a>
-                </div>
-            </div>
-            --->
-
             <a class="nav-link" href="/collaborations/">Collaborations</a>
             <a class="nav-link" href="/events/">Events</a>
             <a class="nav-link" href="/competitions/">Competitions</a>
@@ -88,15 +45,231 @@
 </header>
 
 <main class="page">
-    <section class="placeholder">
+    <!-- HERO -->
+    <section class="events-hero">
+        <div class="container events-hero__inner">
+            <h1 class="events-hero__title">Our learning philosophy…</h1>
+            <p class="events-hero__sub">
+                We strongly believe in sharing knowledge within our community. Through guest lectures,
+                workshops, and other events we help students learn about the intersections between medicine
+                and engineering. What’s more is we believe that each of you has something to teach us as well!
+                <b>With our support, you can plan your own workshops and events!</b>
+            </p>
+
+            <a class="events-hero__cta"
+               href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=x4A0ewc3c0iLd-IWczplrGIkJyvBcaZKqE6xLlggJBtUNEFMNFVQVzcyWU9HRU5ZQUJIOTNFVFo0USQlQCN0PWcu&route=shorturl"
+               target="_blank" rel="noopener noreferrer">
+                Start Planning Events Now!</a>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="events-section">
         <div class="container">
-            <div class="placeholder-card">
-                <h1>Events</h1>
-                <p>Event page being built — come back later.</p>
+            <h2 class="events-section__title">Events</h2>
+
+            <div class="events-grid">
+                <!-- =========================================================
+                     ADD NEW EVENTS UNDER THIS COMMENT
+                     - data-slug MUST be unique (no renumbering)
+                     - Update: data-slug, image src/alt, title, meta, description
+                     ========================================================= -->
+
+                <article class="event-card" data-event data-slug="jaws-watch-party">
+                    <!-- FRONT (defines the card height) -->
+                    <div class="event-front" data-event-front>
+                        <div class="event-image">
+                            <div class="event-image__viewport">
+                                <img src="/assets/events/jaws-watch-party.png" alt="Jaws Watch Party poster" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <h3 class="event-title">Jaws Watch Party!</h3>
+                        <p class="event-meta">October 28 | 6:30pm</p>
+                        <p class="event-meta">Olsson Hall | Room 120</p>
+
+                        <button class="event-btn" type="button" data-event-open aria-expanded="false">
+                            More info
+                        </button>
+                    </div>
+
+                    <!-- DETAILS (overlays on top of the front; height stays the same) -->
+                    <div class="event-details" data-event-details aria-hidden="true">
+                        <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
+
+                        <h3 class="event-title">Jaws Watch Party!</h3>
+
+                        <p class="event-desc">
+                            Fall into the Halloween spirit with our JAWS watch party! Snacks provided.
+                        </p>
+
+                        <p class="event-meta">October 28<br>6:30pm - 8:30pm<br>Olsson Hall<br>Room 120</p>
+
+
+                    </div>
+                </article>
+
+                <article class="event-card" data-event data-slug="fall-bake-sale">
+                    <div class="event-front" data-event-front>
+                        <div class="event-image">
+                            <div class="event-image__viewport">
+                                <img src="/assets/events/fall-bake-sale.png" alt="Fall Bake Sale flyer" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <h3 class="event-title">Fall Bake Sale!!</h3>
+                        <p class="event-meta">October 18 | 3:00pm</p>
+                        <p class="event-meta">Outside of Rice Hall</p>
+
+                        <button class="event-btn" type="button" data-event-open aria-expanded="false">
+                            More info
+                        </button>
+                    </div>
+
+                    <div class="event-details" data-event-details aria-hidden="true">
+                        <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
+
+                        <h3 class="event-title">Fall Bake Sale!!</h3>
+
+                        <p class="event-desc">
+                            Help us raise funds to purchase equipment and tools during our development process.
+                            Come say hi and grab something sweet!
+                        </p>
+
+                        <p class="event-meta">October 18<br>3:00pm - 6:00pm<br>Outside of Rice Hall</p>
+
+                    </div>
+                </article>
+
+                <article class="event-card" data-event data-slug="fall-research-meeting-1">
+                    <div class="event-front" data-event-front>
+                        <div class="event-image">
+                            <div class="event-image__viewport">
+                                <img src="/assets/events/fall-research-meeting-1.png" alt="Research Meeting graphic" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <h3 class="event-title">Research Meeting 1</h3>
+                        <p class="event-meta">September 23 | 5:30pm</p>
+                        <p class="event-meta">Mechanical Engr Building | Room 205</p>
+
+                        <button class="event-btn" type="button" data-event-open aria-expanded="false">
+                            More info
+                        </button>
+                    </div>
+
+                    <div class="event-details" data-event-details aria-hidden="true">
+                        <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
+
+                        <h3 class="event-title">Research Meeting 1</h3>
+
+                        <p class="event-desc">
+                            Intro meeting for current teams: goals for the semester, R&amp;D expectations,
+                            and what “on track” looks like for problem statement + constraints.
+                        </p>
+
+                        <p class="event-meta">September 23<br>5:30pm - 7:30pm<br>Mechanical Engineering Building<br>Room 205</p>
+
+                    </div>
+                </article>
+
+                <article class="event-card" data-event data-slug="fusion-workshop">
+                    <div class="event-front" data-event-front>
+                        <div class="event-image">
+                            <div class="event-image__viewport">
+                                <img src="/assets/events/fusion-workshop.png" alt="Fusion Workshop graphic" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <h3 class="event-title">Fusion Workshop</h3>
+                        <p class="event-meta">September 22 | 4:00pm</p>
+                        <p class="event-meta">Student Health & Wellness | Room 208</p>
+
+                        <button class="event-btn" type="button" data-event-open aria-expanded="false">
+                            More info
+                        </button>
+                    </div>
+
+                    <div class="event-details" data-event-details aria-hidden="true">
+                        <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
+
+                        <h3 class="event-title">Fusion Workshop</h3>
+
+                        <p class="event-desc">
+                            Hands-on intro to Fusion 360 for rapid prototyping: sketches, constraints, extrudes,
+                            and exporting STLs for printing.
+                        </p>
+
+                        <p class="event-meta">September 22<br>4:00pm - 5:00pm<br>Student Health & Wellness<br>Room 208</p>
+
+
+                    </div>
+                </article>
+
+                <article class="event-card" data-event data-slug="september-gbm">
+                    <div class="event-front" data-event-front>
+                        <div class="event-image">
+                            <div class="event-image__viewport">
+                                <img src="/assets/events/september-gbm.png" alt="September GBM flyer" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <h3 class="event-title">September GBM</h3>
+                        <p class="event-meta">September 16 | 7:30pm</p>
+                        <p class="event-meta">New Cabell Hall | Room 168</p>
+
+                        <button class="event-btn" type="button" data-event-open aria-expanded="false">
+                            More info
+                        </button>
+                    </div>
+
+                    <div class="event-details" data-event-details aria-hidden="true">
+                        <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
+
+                        <h3 class="event-title">September GBM</h3>
+
+                        <p class="event-desc">
+                            First GBM of the semester: meet the teams, learn how we work, and how to get involved.
+                        </p>
+
+                        <p class="event-meta">September 22<br>7:30pm - 8:30pm<br>Old Cabell Hall<br>Room 168</p>
+
+
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
 </main>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="contact-strip">
+        <div class="contact-strip-left">
+            <p class="contact-line">
+                <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+            </p>
+            <p class="contact-line">Charlottesville, VA, 22904</p>
+        </div>
+
+        <div class="contact-strip-right" aria-label="Social links">
+            <a class="social-icon"
+               href="https://groupme.com/join_group/109354949/YaK5K88R"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Join our GroupMe">
+                <img src="/assets/icons/groupme-icon-1.png" alt="" />
+            </a>
+
+            <a class="social-icon"
+               href="https://www.instagram.com/fish_atuva"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Visit our Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="" />
+            </a>
+        </div>
+    </div>
+</section>
 
 <footer class="site-footer">
     <div class="container footer-inner">
@@ -112,6 +285,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
+<script src="/js/events.js"></script>
 <script src="/js/nav.js"></script>
 </body>
 </html>
