@@ -165,6 +165,8 @@ If the details content is longer than the card height, it will scroll inside the
 - Give every event a unique slug.
 
 ### The image looks wrong or too small
-- The layout uses `object-fit: contain` (no cropping).
+- The layout uses `object-fit: cover` (crops).
+- The image defaults to showing the top and cropping the bottom.
+- Consider manually trimming the image if you need to see the bottom of the poster
 - If it still looks off, your image likely has lots of transparent/empty padding—trim the file.
 
