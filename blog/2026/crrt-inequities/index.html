@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>FISH | Blog</title>
 
     <link rel="stylesheet" href="/css/styles.css" />
@@ -17,7 +16,7 @@
             <img class="brand-mark" src="/assets/brand/fish-main.png" alt="FISH logo" />
             <div class="brand-meta brand-meta--inline">
                 <div class="brand-name">FISH</div>
-                <div class="brand-tagline brand-tagline--inline">
+                <div class="brand-tagline brand-meta--inline">
                     Frugal Innovations In<br /> Sustainable Healthcare
                 </div>
             </div>
@@ -46,36 +45,20 @@
 </header>
 
 <main class="page">
-    <section class="blog-hero">
-        <div class="container blog-hero__inner">
-            <h1 class="blog-hero__title">Blog</h1>
-            <p class="blog-hero__sub">
-                Updates, recaps, and write-ups from Frugal Innovations in Sustainable Healthcare.
-            </p>
-            <a class="blog-hero__cta"
-               href="https://forms.cloud.microsoft/r/HvrYTCVUd3"
-               target="_blank" rel="noopener noreferrer">
-                Make a Post
-            </a>
+    <section class="blog-post-hero" data-blog-hero>
+        <div class="container blog-post-hero__inner">
+            <a class="blog-back" href="/blog/">← All posts</a>
+            <h1 class="blog-post-title" data-blog-title>Loading…</h1>
+            <p class="blog-post-meta" data-blog-meta></p>
         </div>
+        <div class="blog-post-hero__overlay" aria-hidden="true"></div>
     </section>
 
-    <section class="blog-index">
-        <div class="container">
-            <div class="blog-index__top">
-                <h2 class="blog-index__heading">All Posts</h2>
-            </div>
-
-            <div class="blog-grid" data-blog-grid></div>
-
-            <div class="blog-empty" data-blog-empty hidden>
-                <div class="blog-empty__card">
-                    <h3>No posts yet</h3>
-                    <p>Once you add entries to <code>/blog/posts.json</code>, they’ll show up here.</p>
-                </div>
-            </div>
+    <article class="blog-post">
+        <div class="blog-post-body" data-blog-body>
+            <p>Loading…</p>
         </div>
-    </section>
+    </article>
 </main>
 
 <!-- CONTACT (simple footer bar; no form) -->
@@ -121,6 +104,10 @@
 </script>
 
 <script src="/js/nav.js"></script>
-<script src="/js/blog-index.js"></script>
+
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script src="/js/blog-post.js"></script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Medical Device Inequities in Continuous Renal Replacement Therapy",
+    "author": "Niharika Chandna + Physiology II group (Fall 2026)",
+    "date": "2026-01-26",
+    "year": "2026",
+    "slug": "crrt-inequities",
+    "url": "/blog/2026/crrt-inequities/",
+    "md": "/blog/posts/2026/crrt-inequities.md",
+    "cover": "/assets/brand/fish-illustration.png"
+  },
+  {
+    "title": "Gender Inequities in Hip & Knee Replacements",
+    "author": "Niharika Chandna + Engineering Women’s Health Group (Spring 2026)",
+    "date": "2026-01-26",
+    "year": "2026",
+    "slug": "hip-knee-inequities",
+    "url": "/blog/2026/hip-knee-inequities/",
+    "md": "/blog/posts/2026/hip-knee-inequities.md",
+    "cover": "/assets/blog/2026/hip-knee-inequities.jpg"
+  },
+  {
+    "title": "FISH Semester Recap: A Season of Growth and Big Ideas",
+    "author": "frugalinnovations",
+    "date": "2025-11-16",
+    "year": "2025",
+    "slug": "semester-recap-growth-big-ideas",
+    "url": "/blog/2025/semester-recap-growth-big-ideas/",
+    "md": "/blog/posts/2025/semester-recap-growth-big-ideas.md",
+    "cover": "/assets/blog/2025/semester-recap-2.jpg"
+  },
+  {
+    "title": "Welcome to FISH!",
+    "author": "frugalinnovations",
+    "date": "2025-09-16",
+    "year": "2025",
+    "slug": "welcome-to-fish",
+    "url": "/blog/2025/welcome-to-fish/",
+    "md": "/blog/posts/2025/welcome-to-fish.md",
+    "cover": "/assets/brand/fish-illustration.png"
+  }
+]
