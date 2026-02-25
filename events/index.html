@@ -68,12 +68,56 @@
         <div class="container">
             <h2 class="events-section__title">Events</h2>
 
+            <!-- Calendar embed (above event cards) -->
+            <div class="events-calendar" aria-label="FISH Events Calendar">
+                <iframe
+                        class="events-calendar__iframe"
+                        title="FISH Events Calendar"
+                        src="https://calendar.google.com/calendar/embed?src=290b3320470eac07e3b29e73b09220b7eae803a9dbe8e94c7bc6486452423de2%40group.calendar.google.com&ctz=America%2FNew_York"
+                        loading="lazy"
+                        frameborder="0"
+                        scrolling="no">
+                </iframe>
+            </div>
+
             <div class="events-grid">
                 <!-- =========================================================
                      ADD NEW EVENTS UNDER THIS COMMENT
                      - data-slug MUST be unique (no renumbering)
                      - Update: data-slug, image src/alt, title, meta, description
                      ========================================================= -->
+
+                <article class="event-card" data-event data-slug="onshape-workshop">
+                    <div class="event-front" data-event-front>
+                        <div class="event-image">
+                            <div class="event-image__viewport">
+                                <img src="/assets/events/onshape-workshop.png" alt="OnShape" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <h3 class="event-title">OnShape Workshop</h3>
+                        <p class="event-meta">March 12 | 6:00pm</p>
+                        <p class="event-meta">Clark Hall | Room 101</p>
+
+                        <button class="event-btn" type="button" data-event-open aria-expanded="false">
+                            More info
+                        </button>
+                    </div>
+
+                    <div class="event-details" data-event-details aria-hidden="true">
+                        <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
+
+                        <h3 class="event-title">OnShape Workshop</h3>
+
+                        <p class="event-desc">
+                            Hands-on intro to OnShape for rapid prototyping: sketches, constraints, extrudes,
+                            and exporting STLs for printing.
+                        </p>
+
+                        <p class="event-meta">March 12<br>6:00pm - 7:30pm<br>Clark Hall<br>Room 101</p>
+
+                    </div>
+                </article>
 
                 <article class="event-card" data-event data-slug="jaws-watch-party">
                     <!-- FRONT (defines the card height) -->

@@ -32,17 +32,17 @@ Paste the new event `<article>` **inside** that `.events-grid` (usually at the t
 
 Copy this entire block and paste it as a new card inside `.events-grid`:
 
-    <article class="event-card" data-event data-slug="fall-bake-sale">
+    <article class="event-card" data-event data-slug="jaws-watch-party">
         <div class="event-front" data-event-front>
             <div class="event-image">
                 <div class="event-image__viewport">
-                    <img src="/assets/events/fall-bake-sale.png" alt="Fall Bake Sale flyer" loading="lazy" />
+                    <img src="/assets/events/jaws-watch-party.png" alt="Jaws Watch Party poster" loading="lazy" />
                 </div>
             </div>
 
-            <h3 class="event-title">Fall Bake Sale!!</h3>
-            <p class="event-meta">October 18 | 3:00pm</p>
-            <p class="event-meta">Outside of Rice Hall</p>
+            <h3 class="event-title">Jaws Watch Party!</h3>
+            <p class="event-meta">October 28 | 6:30pm</p>
+            <p class="event-meta">Olsson Hall | Room 120</p>
 
             <button class="event-btn" type="button" data-event-open aria-expanded="false">
                 More info
@@ -52,14 +52,14 @@ Copy this entire block and paste it as a new card inside `.events-grid`:
         <div class="event-details" data-event-details aria-hidden="true">
             <button class="event-close" type="button" data-event-close aria-label="Close">×</button>
 
-            <h3 class="event-title">Fall Bake Sale!!</h3>
+            <h3 class="event-title">Jaws Watch Party!</h3>
 
             <p class="event-desc">
-                Help us raise funds to purchase equipment and tools during our development process.
-                Come say hi and grab something sweet!
+                Fall into the Halloween spirit with our JAWS watch party! Snacks provided.
             </p>
 
-            <p class="event-meta">October 18<br>3:00pm - 6:00pm<br>Outside of Rice Hall</p>
+            <p class="event-meta">October 28<br>6:30pm - 8:30pm<br>Olsson Hall<br>Room 120</p>
+
 
         </div>
     </article>
