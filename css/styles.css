@@ -953,8 +953,9 @@ strong{ font-weight: 800; }
 
 .makeathon-hero{
     background:
-            linear-gradient(rgba(8, 52, 78, 0.88), rgba(8, 52, 78, 0.88)),
-            url("/assets/photos/make-a-thon/makeathon-hero.jpg") center / cover no-repeat;
+            var(--panel);
+            /* linear-gradient(rgba(8, 52, 78, 0.88), rgba(8, 52, 78, 0.88)),
+            url("/assets/make-a-thon/makeathon-main.jpg") center / cover no-repeat; */
     color: #fff;
     text-align: center;
     padding: clamp(84px, 11vw, 146px) 0;
@@ -1217,7 +1218,8 @@ strong{ font-weight: 800; }
 }
 
 .makeathon-subhero--sponsor{
-    background: linear-gradient(180deg, var(--panel) 0%, #0d4668 100%);
+    /* background: linear-gradient(180deg, var(--panel) 0%, #0d4668 100%); */
+    background: var(--panel);
 }
 
 .makeathon-subhero__inner{
@@ -2853,7 +2855,7 @@ strong{ font-weight: 800; }
     .split-side{ padding: 56px var(--pad); }
 }
 
-@media (max-width: 860px){
+@media (max-width: 1360px){
     .nav-toggle{ display: inline-flex; }
 
     .site-nav{
