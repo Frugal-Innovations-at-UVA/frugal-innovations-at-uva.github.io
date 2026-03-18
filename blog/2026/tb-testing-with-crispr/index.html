@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog | FISH at UVA</title>
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
+</head>
+
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Home">
+            <img class="brand-mark" src="/assets/brand/fish-main.png" alt="FISH logo" />
+            <div class="brand-meta brand-meta--inline">
+                <div class="brand-name">FISH</div>
+                <div class="brand-tagline brand-meta--inline">
+                    Frugal Innovations In<br /> Sustainable Healthcare
+                </div>
+            </div>
+        </a>
+
+        <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+            <span class="sr-only">Menu</span> ☰
+        </button>
+
+        <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/projects/">Projects</a>
+
+            <div class="nav-dropdown">
+                <a class="nav-link" href="/make-a-thon/">Medical Device Make-A-Thon</a>
+                <div class="dropdown-panel" role="menu" aria-label="Projects submenu">
+                    <a class="dropdown-link" href="/make-a-thon/sponsors/">Sponsors</a>
+                    <a class="dropdown-link" href="/make-a-thon/students/">Students</a>
+                </div>
+            </div>
+
+            <a class="nav-link" href="/collaborations/">Collaborations</a>
+            <a class="nav-link" href="/events/">Events</a>
+            <a class="nav-link" href="/competitions/">Competitions</a>
+            <a class="nav-link" href="/blog/">Blog</a>
+
+            <div class="nav-dropdown nav-dropdown--right">
+                <a class="nav-link" href="/about/">About Us</a>
+                <div class="dropdown-panel" role="menu" aria-label="About Us submenu">
+                    <a class="dropdown-link" href="/about/officers/">Officers</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="blog-post-hero" data-blog-hero>
+        <div class="container blog-post-hero__inner">
+            <a class="blog-back" href="/blog/">← All posts</a>
+            <h1 class="blog-post-title" data-blog-title>Loading…</h1>
+            <p class="blog-post-meta" data-blog-meta></p>
+        </div>
+        <div class="blog-post-hero__overlay" aria-hidden="true"></div>
+    </section>
+
+    <article class="blog-post">
+        <div class="blog-post-body" data-blog-body>
+            <p>Loading…</p>
+        </div>
+    </article>
+</main>
+
+<!-- CONTACT (simple footer bar; no form) -->
+<section class="contact-section" id="contact">
+    <div class="contact-strip">
+        <div class="contact-strip-left">
+            <p class="contact-line">
+                <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+            </p>
+            <p class="contact-line">Charlottesville, VA, 22904</p>
+        </div>
+
+        <div class="contact-strip-right" aria-label="Social links">
+            <a class="social-icon"
+               href="https://groupme.com/join_group/109354949/YaK5K88R"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Join our :contentReference[oaicite:0]{index=0}">
+                <img src="/assets/icons/groupme-icon-1.png" alt="" />
+            </a>
+
+            <a class="social-icon"
+               href="https://www.instagram.com/fish_atuva"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Visit our :contentReference[oaicite:1]{index=1}">
+                <img src="/assets/icons/instagram-icon.png" alt="" />
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <span class="footer-copy">© <span id="year"></span> FISH</span>
+
+        <p class="footer-disclaimer">
+            Although this organization has members who are University of Virginia students and may have University employees associated or engaged in its activities and affairs, the organization is not a part of or an agency of the University. It is a separate and independent organization, which is responsible for and manages its own activities and affairs. The University does not direct, supervise or control the organization and is not responsible for the organization’s contracts, acts or omissions.
+        </p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="/js/nav.js"></script>
+
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script src="/js/blog-post.js"></script>
+</body>
+</html>
