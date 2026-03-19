@@ -3,7 +3,7 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://frugal-innovations.com/</loc>
-        <lastmod>2026-03-16</lastmod>
+        <lastmod>2026-03-19</lastmod>
     </url>
     <url>
         <loc>https://frugal-innovations.com/projects/</loc>
@@ -11,7 +11,7 @@
     </url>
     <url>
         <loc>https://frugal-innovations.com/make-a-thon/</loc>
-        <lastmod>2026-03-16</lastmod>
+        <lastmod>2026-03-19</lastmod>
     </url>
     <url>
         <loc>https://frugal-innovations.com/make-a-thon/sponsors/</loc>
@@ -35,6 +35,18 @@
     </url>
     <url>
         <loc>https://frugal-innovations.com/blog/</loc>
+        <lastmod>2026-03-18</lastmod>
+    </url>
+    <url>
+        <loc>https://frugal-innovations.com/blog/2026/tb-testing-with-crispr/</loc>
+        <lastmod>2026-03-18</lastmod>
+    </url>
+    <url>
+        <loc>https://frugal-innovations.com/blog/2026/hip-knee-inequities/</loc>
+        <lastmod>2026-03-16</lastmod>
+    </url>
+    <url>
+        <loc>https://frugal-innovations.com/blog/2026/crrt-inequities/</loc>
         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
@@ -43,14 +55,6 @@
     </url>
     <url>
         <loc>https://frugal-innovations.com/blog/2025/semester-recap-growth-big-ideas/</loc>
-        <lastmod>2026-03-16</lastmod>
-    </url>
-    <url>
-        <loc>https://frugal-innovations.com/blog/2026/hip-knee-inequities/</loc>
-        <lastmod>2026-03-16</lastmod>
-    </url>
-    <url>
-        <loc>https://frugal-innovations.com/blog/2026/crrt-inequities/</loc>
         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
