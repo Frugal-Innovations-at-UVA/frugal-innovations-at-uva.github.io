@@ -3,14 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>Projects | FISH at UVA</title>
-
-    <!-- Root-relative paths so this works from /projects/, /about/, etc. -->
+    <meta
+            name="description"
+            content="Explore FISH at UVA's internal healthcare innovation projects, from research and ideation to potential competition submissions."
+    />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
-
-    </style>
 </head>
 
 <body>
@@ -35,7 +34,7 @@
             <a class="nav-link" href="/projects/">Projects</a>
             <div class="nav-dropdown">
                 <a class="nav-link" href="/make-a-thon/">Medical Device Make-A-Thon</a>
-                <div class="dropdown-panel" role="menu" aria-label="Projects submenu">
+                <div class="dropdown-panel" role="menu" aria-label="Medical Device Make-A-Thon submenu">
                     <a class="dropdown-link" href="/make-a-thon/sponsors/">Sponsors</a>
                     <a class="dropdown-link" href="/make-a-thon/students/">Students</a>
                 </div>
@@ -56,132 +55,181 @@
 </header>
 
 <main class="page projects-page">
-
-    <!-- HERO -->
     <section class="projects-hero">
         <div class="container projects-hero__inner">
-            <!-- Optional: add your fish icon/row here if you have one -->
-            <!-- <img class="projects-hero__icon" src="/assets/brand/fish-row.png" alt="" aria-hidden="true" /> -->
-
-            <h1 class="title-xl projects-hero__title">Projects</h1>
+            <p class="projects-eyebrow projects-eyebrow--light">Projects</p>
+            <h1 class="projects-hero__title">From an Idea to a Product</h1>
             <p class="projects-hero__sub">
-                Here are some of the medical problems we are focusing on at the moment.<br />
-                We will add more here as we research them!
+                These are some of the healthcare challenges our teams are currently exploring through
+                internal FISH projects. As ideas develop, some may continue into competitions,
+                showcases, and future opportunities.
             </p>
+
+            <div class="projects-hero__actions">
+                <a class="projects-btn-accent" href="#current-projects">View Current Projects</a>
+                <a class="projects-btn-outline" href="/competitions/">See Competitions</a>
+            </div>
         </div>
     </section>
 
-    <!-- PROJECT 1 -->
-    <section class="split proj-row" id="parkinsons">
-        <div class="split-side split-left proj-text">
-            <div class="split-content proj-copy">
-                <h2 class="title-xl proj-title">Parkinson's<br />Disease Tremors</h2>
+    <section class="projects-intro">
+        <div class="container projects-intro__grid">
+            <div class="projects-intro__copy">
+                <p class="projects-eyebrow">What This Page Shows</p>
+                <h2 class="projects-section-title">The ideas we are actively building around</h2>
+                <p>
+                    FISH projects begin as internal team efforts centered on real healthcare needs.
+                    Members research the problem, explore constraints, and work toward practical,
+                    frugal solutions that could create meaningful impact.
+                </p>
+                <p>
+                    Some projects stay as internal development experiences, while others may grow into
+                    competition submissions, pitches, or longer-term design work as they mature.
+                </p>
+            </div>
 
-                <p class="proj-paragraph">
-                    The progression of Parkinson’s Disease, a slow-onset neurodegenerative disease, often leads to strong
-                    hand tremors that make everyday tasks difficult or impossible to complete. Current solutions are often
-                    expensive and invasive, and so we hope to create a device to help patients with a specific daily task
-                    in order to improve quality of life and confidence.
+            <div class="projects-intro__card">
+                <h3>How projects move forward</h3>
+                <p>
+                    Teams typically move from problem understanding and ideation into narrowing down,
+                    design work, testing, and refinement. That process helps us decide which ideas are
+                    best suited for further development and possible external submission.
                 </p>
             </div>
         </div>
-
-        <div class="split-side split-right proj-media">
-            <img src="/assets/projects/parkinsons.png" alt="Hands resting on lap" />
-        </div>
     </section>
 
-    <!-- PROJECT 2 (reverse) -->
-    <section class="split proj-row proj-row--reverse" id="cautery-knife">
-        <div class="split-side split-left proj-text">
-            <div class="split-content proj-copy">
-                <h2 class="title-xl proj-title">Cautery Knife</h2>
-
-                <p class="proj-paragraph">
-                    Electrocautery devices, while essential for cutting tissue during surgery, produce surgical smoke
-                    (diathermy plume) that contains toxic, carcinogenic, and infectious airborne particles. Inhaling smoke
-                    from cauterizing just 1 gram of tissue is equivalent to smoking six unfiltered cigarettes.
-                    To better serve both patients and providers, we hope to create an integrated, user-friendly cautery knife
-                    that actively minimizes smoke generation and removes it at the source.
+    <section class="projects-feature" id="current-projects">
+        <div class="container projects-feature__grid">
+            <div class="projects-feature__copy">
+                <p class="projects-eyebrow">Project 01</p>
+                <h2 class="projects-feature__title">Parkinson’s Disease Tremors Device</h2>
+                <p>
+                    The progression of Parkinson’s Disease, a slow-onset neurodegenerative disease,
+                    often leads to strong hand tremors that make everyday tasks difficult or impossible
+                    to complete. Current solutions are often expensive and invasive, and so we hope to
+                    create a device to help patients with a specific daily task in order to improve
+                    quality of life and confidence.
                 </p>
             </div>
-        </div>
 
-        <div class="split-side split-right proj-media">
-            <img src="/assets/projects/cautery_knife.png" alt="Operating room scene" />
-        </div>
-    </section>
-
-    <!-- PROJECT 3 -->
-    <section class="split proj-row" id="eyedropper">
-        <div class="split-side split-left proj-text">
-            <div class="split-content proj-copy">
-                <h2 class="title-xl proj-title">Eyedropper</h2>
-
-                <p class="proj-paragraph">
-                    Patients cannot reliably and easily administer necessary eye medications on their own due to the
-                    difficulty of using current eye drop applicator bottles. Even supposedly accessible packaging is
-                    difficult to use, in some cases even more difficult than normal packaging due to the dexterity and
-                    grip strength needed to apply them. Moreover, inaccurate application can waste up to half the bottle.
-                    We hope to create a device to attach to eye medicine bottles which will help patients confidently and
-                    accurately apply their medicine directly to the eyes.
-                </p>
+            <div class="projects-feature__media">
+                <img src="/assets/projects/parkinsons.png" alt="Hands resting on lap" />
             </div>
         </div>
+    </section>
 
-        <div class="split-side split-right proj-media">
-            <img src="/assets/projects/eyedropper.png" alt="Glasses and eyedrop bottle" />
+    <section class="projects-feature projects-feature--tint projects-feature--reverse" id="cautery-knife">
+        <div class="container projects-feature__grid">
+            <div class="projects-feature__copy">
+                <p class="projects-eyebrow">Project 02</p>
+                <h2 class="projects-feature__title">Cautery Knife</h2>
+                <p>
+                    Electrocautery devices, while essential for cutting tissue during surgery, produce
+                    surgical smoke (diathermy plume) that contains toxic, carcinogenic, and infectious
+                    airborne particles. Inhaling smoke from cauterizing just 1 gram of tissue is
+                    equivalent to smoking six unfiltered cigarettes. To better serve both patients and
+                    providers, we hope to create an integrated, user-friendly cautery knife that
+                    actively minimizes smoke generation and removes it at the source.
+                </p>
+            </div>
+
+            <div class="projects-feature__media">
+                <img src="/assets/projects/cautery_knife.png" alt="Operating room scene" />
+            </div>
         </div>
     </section>
 
-    <!-- TIMELINE (embedded on Projects page) -->
+    <section class="projects-feature" id="eyedropper">
+        <div class="container projects-feature__grid">
+            <div class="projects-feature__copy">
+                <p class="projects-eyebrow">Project 03</p>
+                <h2 class="projects-feature__title">Eyedropper Device</h2>
+                <p>
+                    Patients cannot reliably and easily administer necessary eye medications on their
+                    own due to the difficulty of using current eye drop applicator bottles. Even
+                    supposedly accessible packaging is difficult to use, in some cases even more
+                    difficult than normal packaging due to the dexterity and grip strength needed to
+                    apply them. Moreover, inaccurate application can waste up to half the bottle. We
+                    hope to create a device to attach to eye medicine bottles which will help patients
+                    confidently and accurately apply their medicine directly to the eyes.
+                </p>
+            </div>
+
+            <div class="projects-feature__media">
+                <img src="/assets/projects/eyedropper.png" alt="Glasses and eyedrop bottle" />
+            </div>
+        </div>
+    </section>
+
     <section class="projects-timeline" id="timeline">
-        <div class="container projects-timeline__inner">
-            <!-- optional flourish icons; add later if you have assets -->
-            <!-- <img class="timeline-flourish timeline-flourish--left" src="/assets/brand/timeline-flourish-left.png" alt="" aria-hidden="true"> -->
+        <div class="container projects-timeline__grid">
+            <div class="projects-timeline__copy">
+                <p class="projects-eyebrow projects-eyebrow--light">Project Flow</p>
+                <h2 class="projects-section-title projects-section-title--light">
+                    From internal idea to possible competition submission
+                </h2>
+                <p>
+                    Our projects usually move through a shared process: recruitment, ideation,
+                    narrowing down, consolidation, research, development, testing, and submission.
+                    This helps teams build momentum while keeping each project grounded in real need
+                    and practical progress.
+                </p>
+            </div>
 
-            <h2 class="projects-timeline__title">Timeline</h2>
-
-            <div class="timeline-frame">
+            <div class="projects-timeline__frame">
                 <img
-                        class="timeline-img"
+                        class="projects-timeline__img"
                         src="/assets/projects/timeline.png"
                         alt="FISH project timeline: Recruitment, Initial Ideation, Narrowing Down, Consolidation, Research, Development, Testing, Submission."
                 />
             </div>
-
-            <!-- optional small caption like Wix -->
-            <!-- <p class="projects-timeline__note">Our typical project lifecycle from recruiting through submission.</p> -->
         </div>
     </section>
 
-    <!-- CONTACT (simple footer bar; no form) -->
-    <section class="contact-section" id="contact">
-        <div class="contact-strip">
-            <div class="contact-strip-left">
-                <p class="contact-line">
-                    <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
-                </p>
-                <p class="contact-line">Charlottesville, VA, 22904</p>
-            </div>
-
-            <div class="contact-strip-right" aria-label="Social links">
-                <a class="social-icon"
-                   href="https://groupme.com/join_group/109354949/YaK5K88R"
-                   target="_blank" rel="noopener noreferrer"
-                   aria-label="Join our :contentReference[oaicite:0]{index=0}">
-                    <img src="/assets/icons/groupme-icon-1.png" alt="" />
-                </a>
-
-                <a class="social-icon"
-                   href="https://www.instagram.com/fish_atuva"
-                   target="_blank" rel="noopener noreferrer"
-                   aria-label="Visit our :contentReference[oaicite:1]{index=1}">
-                    <img src="/assets/icons/instagram-icon.png" alt="" />
-                </a>
+    <section class="projects-cta">
+        <div class="container projects-cta__inner">
+            <h2 class="projects-cta__title">Interested in where these ideas could go next?</h2>
+            <div class="projects-cta__actions">
+                <a class="btn primary" href="/competitions/">View Competitions</a>
+                <a class="projects-btn-outline" href="mailto:frugalinnovations@virginia.edu">Contact Us</a>
             </div>
         </div>
     </section>
+</main>
+
+<section class="contact-section" id="contact">
+    <div class="contact-strip">
+        <div class="contact-strip-left">
+            <p class="contact-line">
+                <a class="contact-link" href="mailto:frugalinnovations@virginia.edu">frugalinnovations@virginia.edu</a>
+            </p>
+            <p class="contact-line">Charlottesville, VA, 22904</p>
+        </div>
+
+        <div class="contact-strip-right" aria-label="Social links">
+            <a
+                    class="social-icon"
+                    href="https://groupme.com/join_group/109354949/YaK5K88R"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Join our GroupMe"
+            >
+                <img src="/assets/icons/groupme-icon-1.png" alt="" />
+            </a>
+
+            <a
+                    class="social-icon"
+                    href="https://www.instagram.com/fish_atuva"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit our Instagram"
+            >
+                <img src="/assets/icons/instagram-icon.png" alt="" />
+            </a>
+        </div>
+    </div>
+</section>
 
 <footer class="site-footer">
     <div class="container footer-inner">
@@ -196,7 +244,6 @@
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-
 <script src="/js/nav.js"></script>
 </body>
 </html>
