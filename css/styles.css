@@ -744,7 +744,7 @@ strong{ font-weight: 800; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 22px;
+    padding: 12px 24px;
     border-radius: 999px;
     font-weight: 750;
     transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
