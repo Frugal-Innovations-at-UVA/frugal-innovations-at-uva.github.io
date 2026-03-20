@@ -2153,57 +2153,90 @@ strong{ font-weight: 800; }
    Paste at the VERY BOTTOM of styles.css
    ========================================================= */
 
-/* --- Blog hero (matches Events vibe) --- */
-.blog-hero{
-    background: var(--panel);
-    color: #fff;
-    padding: clamp(42px, 6vw, 78px) 0;
-    text-align: center;
-}
-.blog-hero__inner{ max-width: 920px; }
-.blog-hero__title{
-    margin: 0 0 10px;
-    font-size: clamp(34px, 4vw, 54px);
-    line-height: 1.05;
-}
-.blog-hero__sub{
-    margin: 0 auto;
-    max-width: 820px;
-    opacity: 0.92;
-    line-height: 1.6;
+/* --- Blog hero --- */
+.blog-eyebrow{
+    margin: 0 0 12px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
-/* Blog hero CTA button */
-.blog-hero__cta{
+.blog-eyebrow--light{
+    color: rgba(255,255,255,0.76);
+}
+
+.blog-btn-accent,
+.blog-btn-outline{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 18px;
-
-    padding: 12px 18px;
+    padding: 12px 22px;
     border-radius: 999px;
+    font-weight: 750;
+    text-decoration: none;
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
 
+.blog-btn-accent:hover,
+.blog-btn-outline:hover{
+    transform: translateY(-1px);
+}
+
+.blog-btn-accent{
     background: var(--accent);
     color: #fff;
+    border: 1px solid var(--accent);
+    box-shadow: none;
+}
+
+.blog-btn-outline{
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.82);
+}
+
+.blog-hero{
+    background: var(--panel);
+    color: #fff;
+    text-align: center;
+    padding: clamp(52px, 7vw, 88px) 0;
+}
+
+.blog-hero__inner{
+    max-width: 900px;
+}
+
+.blog-hero__title{
+    margin: 0;
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: 1.02;
     font-weight: 800;
-    text-decoration: none;
-    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
-
-    transition: transform 160ms ease, filter 160ms ease;
+    letter-spacing: -0.02em;
 }
 
-.blog-hero__cta:hover{
-    transform: translateY(-1px);
-    filter: brightness(0.98);
+.blog-hero__sub{
+    margin: 16px auto 0;
+    max-width: 760px;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.88);
 }
 
-.blog-hero__cta:active{
-    transform: translateY(0px);
+.blog-hero__actions{
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 28px;
 }
 
-.blog-hero__cta:focus-visible{
-    outline: 3px solid rgba(255,255,255,0.7);
-    outline-offset: 3px;
+@media (max-width: 700px){
+    .blog-hero__actions{
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
 /* --- Index layout --- */
