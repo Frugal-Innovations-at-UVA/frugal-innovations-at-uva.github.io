@@ -3275,7 +3275,7 @@ strong{ font-weight: 800; }
 
 .team-grid{
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 420px));
+    grid-template-columns: repeat(2, minmax(0, 500px));
     gap: 28px;
     justify-content: center;
     align-items: stretch;
