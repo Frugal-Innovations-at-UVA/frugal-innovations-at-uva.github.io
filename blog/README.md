@@ -114,7 +114,7 @@ Create `/blog/<year>/<slug>/index.html` with:
                 <div class="brand-meta brand-meta--inline">
                     <div class="brand-name">FISH</div>
                     <div class="brand-tagline brand-meta--inline">
-                        Frugal Innovations In<br /> Sustainable Healthcare
+                        Frugal Innovations In Sustainable Healthcare
                     </div>
                 </div>
             </a>
@@ -133,15 +133,15 @@ Create `/blog/<year>/<slug>/index.html` with:
                         <a class="dropdown-link" href="/make-a-thon/students/">Students</a>
                     </div>
                 </div>
-                <a class="nav-link" href="/collaborations/">Collaborations</a>
                 <a class="nav-link" href="/events/">Events</a>
                 <a class="nav-link" href="/competitions/">Competitions</a>
                 <a class="nav-link" href="/blog/">Blog</a>
-    
+                <a class="nav-link" href="/donate/">Donate</a>
                 <div class="nav-dropdown nav-dropdown--right">
                     <a class="nav-link" href="/about/">About Us</a>
                     <div class="dropdown-panel" role="menu" aria-label="About Us submenu">
                         <a class="dropdown-link" href="/about/officers/">Officers</a>
+                        <a class="dropdown-link" href="/about/collaborations/">Collaborations</a>
                     </div>
                 </div>
             </nav>
@@ -179,14 +179,14 @@ Create `/blog/<year>/<slug>/index.html` with:
                 <a class="social-icon"
                    href="https://groupme.com/join_group/109354949/YaK5K88R"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Join our :contentReference[oaicite:0]{index=0}">
+                   aria-label="Join our GroupMe">
                     <img src="/assets/icons/groupme-icon-1.png" alt="" />
                 </a>
     
                 <a class="social-icon"
                    href="https://www.instagram.com/fish_atuva"
                    target="_blank" rel="noopener noreferrer"
-                   aria-label="Visit our :contentReference[oaicite:1]{index=1}">
+                   aria-label="Visit our Instagram">
                     <img src="/assets/icons/instagram-icon.png" alt="" />
                 </a>
             </div>

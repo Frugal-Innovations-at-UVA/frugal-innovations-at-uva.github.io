@@ -157,6 +157,7 @@ strong{ font-weight: 800; }
 .brand-tagline--inline{
     margin-top: 0;
     line-height: 1.1;
+    max-width: 170px;
 }
 
 /* Nav */
@@ -735,6 +736,8 @@ strong{ font-weight: 800; }
     line-height: 1.08;
     font-weight: 800;
     letter-spacing: -0.02em;
+    max-width: 1000px;
+    padding: clamp(16px, 6vw, 16px) 0;
 }
 
 .projects-section-title--light{
@@ -817,9 +820,9 @@ strong{ font-weight: 800; }
 
 .projects-intro__grid{
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1.60fr 0.95fr;
     gap: clamp(28px, 4vw, 56px);
-    align-items: start;
+    align-items: center; /* was: start */
 }
 
 .projects-intro__copy p{
@@ -833,6 +836,9 @@ strong{ font-weight: 800; }
 }
 
 .projects-intro__card{
+    max-width: 560px;
+    width: 100%;
+    justify-self: end;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 18px;
