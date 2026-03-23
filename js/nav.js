@@ -49,3 +49,23 @@ document.querySelectorAll(".nav-dropdown > .nav-link").forEach((link) => {
 // Footer year
 const y = document.getElementById("year");
 if (y) y.textContent = String(new Date().getFullYear());
+
+// promo banner
+const promoBanner = document.getElementById("promo-banner");
+const promoBannerClose = document.getElementById("promo-banner-close");
+
+if (promoBanner) {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.body.classList.add("has-promo");
+        });
+    });
+}
+
+promoBannerClose?.addEventListener("click", () => {
+    document.body.classList.remove("has-promo");
+
+    setTimeout(() => {
+        promoBanner?.remove();
+    }, 260);
+});
