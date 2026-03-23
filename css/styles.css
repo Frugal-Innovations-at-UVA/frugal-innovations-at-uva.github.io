@@ -57,7 +57,9 @@ strong{ font-weight: 800; }
     margin: 0 auto;
 }
 
-.page{ padding-top: var(--header-h); }
+.page{
+    padding-top: calc(var(--header-h) + var(--promo-h, 0px));
+}
 
 .sr-only{
     position: absolute;
@@ -231,6 +233,188 @@ strong{ font-weight: 800; }
     border-radius: 12px;
     padding: 8px 10px;
     font-size: 18px;
+}
+
+/* =========================================================
+   Promo banner
+   ========================================================= */
+
+:root{
+    --promo-h: 0px;
+    --promo-min-h: 52px;
+    --promo-close-size: 34px;
+    --promo-close-offset: 10px;
+}
+
+/* Adds space under fixed header only when banner exists */
+body.has-promo{
+    --promo-h: var(--promo-min-h);
+}
+
+/* Banner shell */
+.promo-banner{
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+    background: var(--accent);
+    color: #fff;
+    border-top: 1px solid rgba(255,255,255,0.12);
+
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 260ms ease, opacity 260ms ease;
+}
+
+/* Visible state */
+body.has-promo .promo-banner{
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Inner layout */
+.promo-banner-inner{
+    min-height: var(--promo-min-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    /* leaves room for the close button on the far right */
+    padding-right: calc(var(--promo-close-size) + 20px);
+}
+
+/* Text */
+.promo-banner-text{
+    margin: 0;
+    min-width: 0;
+    flex: 1;
+
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 650;
+    color: rgba(255,255,255,0.96);
+}
+
+/* Right-side action group */
+.promo-banner-actions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+/* Links / buttons */
+.promo-banner-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--panel);
+
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+
+    transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.promo-banner-link:hover{
+    transform: translateY(-1px);
+    opacity: 0.96;
+}
+
+/* Close button pinned to far right */
+.promo-banner-close{
+    position: absolute;
+    top: 50%;
+    right: var(--promo-close-offset);
+    transform: translateY(-50%);
+
+    width: var(--promo-close-size);
+    height: var(--promo-close-size);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.9;
+
+    transition: background 120ms ease, opacity 120ms ease, transform 120ms ease;
+}
+
+.promo-banner-close:hover{
+    background: rgba(255,255,255,0.14);
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+.promo-banner-close:focus-visible{
+    outline: 2px solid rgba(255,255,255,0.9);
+    outline-offset: 2px;
+}
+
+/* Mobile */
+@media (max-width: 700px){
+    :root{
+        --promo-h: 96px;
+    }
+
+    body.has-promo{
+        --promo-h: 96px;
+    }
+
+    .promo-banner-inner{
+        min-height: 96px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: calc(var(--promo-close-size) + 18px);
+    }
+
+    .promo-banner-text{
+        padding-right: 8px;
+    }
+
+    .promo-banner-actions{
+        gap: 8px;
+    }
+
+    .promo-banner-link{
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+
+    .promo-banner-close{
+        top: 12px;
+        right: var(--promo-close-offset);
+        transform: none;
+    }
+
+    .promo-banner-close:hover{
+        transform: none;
+    }
 }
 
 /* =========================================================
