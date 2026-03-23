@@ -2,6 +2,8 @@
    Frugal Innovations
    ========================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 /* ---------- Design tokens ---------- */
 :root{
     /* Brand / Wix colors */
@@ -10,7 +12,8 @@
     --accent: #E65925;
 
     /* Typography */
-    --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    /* --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif; */
+    --font: "Roboto", sans-serif;
 
     /* Supporting colors */
     --text: #08344E;
@@ -74,7 +77,7 @@ strong{ font-weight: 800; }
 /* ---------- Shared typography helpers ---------- */
 .title-xl{
     margin: 0 0 34px;
-    font-size: clamp(54px, 5.3vw, 84px);
+    font-size: clamp(50px, 5.3vw, 76px);
     letter-spacing: -0.02em;
     font-weight: 800;
     color: var(--text);
@@ -90,7 +93,10 @@ strong{ font-weight: 800; }
 }
 .title-lg--light{ color: #fff; }
 
-.accent{ color: var(--accent); font-weight: 650; }
+.accent{
+    color: var(--accent);
+    font-weight: 650;
+}
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -441,7 +447,7 @@ body.has-promo .promo-banner{
 
 .hero-title{
     margin: 0 0 16px;
-    font-size: clamp(58px, 5.2vw, 86px);
+    font-size: clamp(58px, 5.2vw, 80px);
     line-height: 0.98;
     letter-spacing: -0.01em;
     font-weight: 500;
@@ -750,7 +756,7 @@ body.has-promo .promo-banner{
    Join Us band
    ========================================================= */
 .cta{
-    background: var(--panel);
+    background: var(--accent);
     padding: clamp(40px, 9vw, 70px) var(--pad);
     text-align: center;
     color: #fff;
@@ -2606,7 +2612,7 @@ body.has-promo .promo-banner{
 }
 
 .competitions-hero__inner{
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 .competitions-hero__title{
@@ -3206,7 +3212,7 @@ body.has-promo .promo-banner{
 }
 
 .aboutpage-hero__title{
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     font-size: clamp(42px, 6vw, 84px);
     line-height: 1.02;
