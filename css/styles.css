@@ -2067,13 +2067,14 @@ body.has-promo .promo-banner{
     display: grid;
     grid-template-columns: minmax(0, 1fr) 220px;
     column-gap: 1.5rem;
-    row-gap: 0.9rem;
+    row-gap: 0.5rem;
     align-items: start;
 }
 
 .donate-detail-panel--zelle .donate-card-kicker,
 .donate-detail-panel--zelle .donate-card-title {
     grid-column: 1 / -1;
+    margin: 0;
 }
 
 .donate-card-text--zelle {
