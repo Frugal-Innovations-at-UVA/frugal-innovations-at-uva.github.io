@@ -2454,8 +2454,8 @@ body.has-promo .promo-banner{
     padding: clamp(28px, 4vw, 54px) 0 clamp(36px, 5vw, 70px);
 }
 .events-section__title{
-    margin: 0 0 18px;
-    text-align: center;
+    margin: 20px 0 18px;
+    text-align: left;
     font-size: 44px;
     color: var(--text);
 }
@@ -2469,6 +2469,13 @@ body.has-promo .promo-banner{
     border-radius: 18px;
     overflow: hidden;          /* rounds the iframe corners */
     background: #fff;
+}
+
+.events-calendar__title{
+    margin: 20px 0 18px;
+    text-align: center;
+    font-size: 44px;
+    color: var(--text);
 }
 
 .events-calendar__iframe{
