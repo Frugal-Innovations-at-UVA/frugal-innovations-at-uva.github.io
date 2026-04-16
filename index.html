@@ -126,28 +126,26 @@
 
 <main class="page">
     <!-- First Section -->
-    <section class="hero">
-        <div class="container hero-inner">
-            <div class="hero-left">
-                <h1 class="hero-title">
+    <section class="mainpage-hero">
+        <div class="mainpage-hero__inner">
+            <div class="mainpage-hero__content">
+                <h1 class="mainpage-hero__title">
                     <span class="accent">F</span>rugal<br>
                     <span class="accent">I</span>nnovations in<br>
                     <span class="accent">S</span>ustainable<br>
                     <span class="accent">H</span>ealthcare
                 </h1>
 
-                <p class="hero-subtitle">FISH at UVA — a student-led medical device club at the University of Virginia focused on frugal, sustainable healthcare innovation.</p>
+                <p class="mainpage-hero__subtitle">
+                    FISH at UVA is a student-led organization focused on frugal, sustainable healthcare innovation through interdisciplinary collaboration, hands-on design, and community-rooted problem solving.
+                </p>
 
-                <a class="btn primary" href="/projects/">Explore Now</a>
-
-                <!-- Optional decorative PNG later:
-                <img class="hero-decor hero-decor-coral" src="assets/photos/hero-coral.png" alt="" aria-hidden="true">
-                -->
+                <a class="btn primary" href="/projects/">Explore Projects</a>
             </div>
 
-            <div class="hero-right">
+            <div class="mainpage-hero__media">
                 <img
-                        class="hero-illustration"
+                        class="mainpage-hero__image"
                         src="assets/brand/fish-illustration.png"
                         alt="Illustrated FISH hero graphic"
                 />
@@ -155,252 +153,214 @@
         </div>
     </section>
 
-    <!-- (Below here: same structure as before; keeping placeholders for photos) -->
+    <section class="mainpage-intro" id="mission">
+        <div class="container">
+            <div class="mainpage-intro__top">
+                <div class="mainpage-section-heading">
+                    <p class="mainpage-section-heading__eyebrow">Our Mission</p>
+                    <h2 class="mainpage-section-heading__title">
+                        Designing practical healthcare solutions with sustainability, accessibility, and real-world use in mind.
+                    </h2>
+                </div>
 
-    <!-- OUR MISSION -->
-    <section class="mission" id="mission">
-        <div class="mission-title-row">
-            <h2 class="mission-title">Our Mission</h2>
-            <!-- <span class="mission-squiggle" aria-hidden="true"></span> -->
-        </div>
-
-        <div class="mission-body">
-            <div class="mission-text">
-                <p>
-                    We partner with physicians, researchers, and healthcare professionals to turn
-                    real-world problems into practical, cost-effective solutions.
-                </p>
-                <p>
-
-                    Our team brings together students from over 10 different majors and minors—ranging from biomedical
-                    engineering to public health to data science, representing both the School of Engineering
-                    and the College of Arts and Sciences at the University of Virginia.
-                </p>
-            </div>
-
-            <div class="mission-art">
-                <!-- Uncomment later if/when you add it:
-                <img src="assets/photos/mission-coral.png" alt="" aria-hidden="true">
-                -->
-                <!-- <div class="mission-art-circle" aria-hidden="true"></div> -->
-            </div>
-        </div>
-    </section>
-
-    <!-- WHAT DRIVES US (split) -->
-    <section class="split split--right-dark drives" id="drives">
-        <div class="split-side split-left">
-            <div class="split-content drives-left">
-                <h2 class="title-xl">What Drives Us</h2>
-
-                <div class="drives-copy">
+                <div class="mainpage-intro__copy">
                     <p>
-                        <strong>Patient-centered:</strong> We aim to create maximum value using minimal resources.
-                        Our solutions are designed to be cost-effective, scalable, and long-lasting,
-                        especially in resource-constrained or underserved settings.
+                        We partner with physicians, researchers, and healthcare professionals to turn real-world problems into practical, cost-effective solutions.
                     </p>
-
                     <p>
-                        <strong>Frugal/Sustainable:</strong> We aim to create maximum value using minimal resources.
-                        Our solutions are designed to be cost-effective, scalable, and long-lasting,
-                        especially in resource-constrained or underserved settings.
-                    </p>
-
-                    <p>
-                        <strong>Interdisciplinary:</strong> We believe that the best solutions are developed
-                        when a problem is approached together from diverse perspectives.
-                        We gain inspiration from engineering, medicine, public policy, and beyond
-                        to foster creativity and more holistic problem-solving.
+                        Our team brings together students from engineering, public health, data science, and the College of Arts and Sciences to approach healthcare challenges from multiple perspectives.
                     </p>
                 </div>
             </div>
-        </div>
 
-        <div class="split-side split-right">
-            <div class="split-content drives-right">
-                <div class="photo-stack">
-                    <div class="photo-frame">
-                        <div class="photo-inner">
-                            <img src="assets/home/what-drives-us-image-1.jpg" alt="Team working" />
-                        </div>
+            <div class="mainpage-intro__stats">
+                <article class="mainpage-stat-card">
+                    <p class="mainpage-stat-card__label">Interdisciplinary</p>
+                    <h3 class="mainpage-stat-card__title">15+ majors and minors</h3>
+                    <p class="mainpage-stat-card__text">
+                        FISH brings together students with different academic backgrounds to build stronger, more thoughtful solutions.
+                    </p>
+                </article>
+
+                <article class="mainpage-stat-card">
+                    <p class="mainpage-stat-card__label">Community-rooted</p>
+                    <h3 class="mainpage-stat-card__title">Real challenges</h3>
+                    <p class="mainpage-stat-card__text">
+                        Projects begin with problems faced by patients, practitioners, and partners in the healthcare community.
+                    </p>
+                </article>
+
+                <article class="mainpage-stat-card">
+                    <p class="mainpage-stat-card__label">Hands-on</p>
+                    <h3 class="mainpage-stat-card__title">Design to prototype</h3>
+                    <p class="mainpage-stat-card__text">
+                        Members move beyond ideas into research, prototyping, testing, and iterative improvement.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="mainpage-values" id="drives">
+        <div class="container">
+            <div class="mainpage-section-heading mainpage-section-heading--center">
+                <p class="mainpage-section-heading__eyebrow">What Drives Us</p>
+                <h2 class="mainpage-section-heading__title">
+                    A shared approach to innovation.
+                </h2>
+            </div>
+
+            <div class="mainpage-values__grid">
+                <article class="mainpage-value-card">
+                    <h3 class="mainpage-value-card__title">Patient-centered</h3>
+                    <p class="mainpage-value-card__text">
+                        We focus on problems that matter to real people and design with usability, context, and impact in mind.
+                    </p>
+                </article>
+
+                <article class="mainpage-value-card">
+                    <h3 class="mainpage-value-card__title">Frugal &amp; sustainable</h3>
+                    <p class="mainpage-value-card__text">
+                        We aim to create maximum value with minimal resources, building solutions that are practical, scalable, and durable.
+                    </p>
+                </article>
+
+                <article class="mainpage-value-card">
+                    <h3 class="mainpage-value-card__title">Interdisciplinary</h3>
+                    <p class="mainpage-value-card__text">
+                        The best ideas come from different perspectives. We combine engineering, medicine, public health, and more to solve problems holistically.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="mainpage-process" id="how">
+        <div class="container mainpage-process__grid">
+            <div class="mainpage-process__intro">
+                <p class="mainpage-section-heading__eyebrow mainpage-section-heading__eyebrow--light">How It Works</p>
+                <h2 class="mainpage-process__title">From challenge to solution.</h2>
+                <p class="mainpage-process__text">
+                    We start by understanding real pain points in healthcare settings, then move through collaborative research, brainstorming, prototyping, and testing. Throughout the process, we work closely with physicians, faculty, and community partners to make sure the final result is not only innovative, but useful and sustainable in practice.
+                </p>
+            </div>
+
+            <div class="mainpage-process__steps">
+                <article class="mainpage-step-card">
+                    <p class="mainpage-step-card__number">01</p>
+                    <h3 class="mainpage-step-card__title">Share the challenge</h3>
+                    <p class="mainpage-step-card__text">
+                        We begin with a real problem or unmet need in healthcare.
+                    </p>
+                </article>
+
+                <article class="mainpage-step-card">
+                    <p class="mainpage-step-card__number">02</p>
+                    <h3 class="mainpage-step-card__title">Research and define</h3>
+                    <p class="mainpage-step-card__text">
+                        We learn from users, partners, and context before shaping a direction.
+                    </p>
+                </article>
+
+                <article class="mainpage-step-card">
+                    <p class="mainpage-step-card__number">03</p>
+                    <h3 class="mainpage-step-card__title">Prototype and test</h3>
+                    <p class="mainpage-step-card__text">
+                        Ideas become tangible through design work, feedback, and iteration.
+                    </p>
+                </article>
+
+                <article class="mainpage-step-card">
+                    <p class="mainpage-step-card__number">04</p>
+                    <h3 class="mainpage-step-card__title">Refine collaboratively</h3>
+                    <p class="mainpage-step-card__text">
+                        We keep improving with input from the people the solution is meant to serve.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="mainpage-highlights" id="highlights">
+        <div class="container">
+            <div class="mainpage-section-heading mainpage-section-heading--center">
+                <p class="mainpage-section-heading__eyebrow">Beyond Projects</p>
+                <h2 class="mainpage-section-heading__title">
+                    A club built around learning, building, and community.
+                </h2>
+            </div>
+
+            <div class="mainpage-highlights__grid">
+                <article class="mainpage-highlight-card">
+                    <div class="mainpage-highlight-card__media">
+                        <img src="assets/home/workshops-image.jpg" alt="Students participating in a workshop" />
                     </div>
-
-                    <div class="photo-frame">
-                        <div class="photo-inner">
-                            <img src="assets/home/what-drives-us-image-2.jpg" alt="Tabling" />
-                        </div>
+                    <div class="mainpage-highlight-card__body">
+                        <h3 class="mainpage-highlight-card__title">Workshops</h3>
+                        <p class="mainpage-highlight-card__text">
+                            Hands-on sessions help members build skills across design, engineering, medicine, and healthcare innovation.
+                        </p>
+                        <a class="mainpage-card-link" href="/events/">See events</a>
                     </div>
+                </article>
 
-                    <div class="photo-frame">
-                        <div class="photo-inner">
-                            <img src="assets/home/what-drives-us-image-3.jpg" alt="Group photo" />
-                        </div>
+                <article class="mainpage-highlight-card">
+                    <div class="mainpage-highlight-card__media">
+                        <img src="assets/home/guest-speakers-image.jpg" alt="Guest speaker event" />
                     </div>
-                </div>
+                    <div class="mainpage-highlight-card__body">
+                        <h3 class="mainpage-highlight-card__title">Guest Speakers</h3>
+                        <p class="mainpage-highlight-card__text">
+                            Professionals across medicine, engineering, and entrepreneurship share insight into real careers and real problems.
+                        </p>
+                        <a class="mainpage-card-link" href="/events/">View speaker events</a>
+                    </div>
+                </article>
+
+                <article class="mainpage-highlight-card">
+                    <div class="mainpage-highlight-card__media">
+                        <img src="assets/home/competition-image.jpg" alt="Students working on a competition project" />
+                    </div>
+                    <div class="mainpage-highlight-card__body">
+                        <h3 class="mainpage-highlight-card__title">Competitions</h3>
+                        <p class="mainpage-highlight-card__text">
+                            Members collaborate on ambitious design challenges and represent FISH in competitions beyond UVA.
+                        </p>
+                        <a class="mainpage-card-link" href="/competitions/">Explore competitions</a>
+                    </div>
+                </article>
+
+                <article class="mainpage-highlight-card">
+                    <div class="mainpage-highlight-card__media">
+                        <img src="assets/home/social-events-image.jpg" alt="FISH members at a social event" />
+                    </div>
+                    <div class="mainpage-highlight-card__body">
+                        <h3 class="mainpage-highlight-card__title">Community</h3>
+                        <p class="mainpage-highlight-card__text">
+                            FISH is also a place to meet collaborators, build friendships, and grow alongside people who care about meaningful innovation.
+                        </p>
+                        <a class="mainpage-card-link" href="/about/">Learn about the team</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS (split, left dark) -->
-    <section class="split split--left-dark how" id="how">
-        <div class="split-side split-left">
-            <div class="split-content how-left">
-                <h2 class="title-xl title-xl--light">How It Works</h2>
+    <section class="mainpage-cta" id="join">
+        <div class="container mainpage-cta__inner">
+            <p class="mainpage-cta__eyebrow">Get Involved</p>
+            <h2 class="mainpage-cta__title">Build with us.</h2>
+            <p class="mainpage-cta__text">
+                Whether you are interested in medicine, engineering, research, prototyping, outreach, or design, there is a place for you in FISH.
+            </p>
 
-                <p class="how-paragraph">
-                    We approach problem-solving first through a deep dive on problems faced by patients
-                    and practitioners in our community.
-                    From there, we partner with community experts in a collaborative design process
-                    — researching, brainstorming, and shaping solutions together to ensure that they are
-                    both clinically sound and practically useful in real-world settings.
-                    Once ideas take form, we move into prototyping and testing,
-                    with continuous collaboration with physicians, UVA faculty, and Charlottesville community members
-                    to refine our process. This ongoing partnership ensures that the final solution isn’t just innovative,
-                    but effective, sustainable, and tailored to the client's unique needs.
-                </p>
-            </div>
-        </div>
-
-        <div class="split-side split-right">
-            <div class="split-content how-right">
-                <div class="card-stack">
-                    <article class="phase-card">
-                        <div class="phase-icon" aria-hidden="true"></div>
-                        <div>
-                            <h3 class="phase-title">Phase 1</h3>
-                            <p class="phase-bold">Share your challenge:</p>
-                            <p>Tell us what’s slowing you down or limiting patient outcomes.</p>
-                        </div>
-                    </article>
-
-                    <article class="phase-card">
-                        <div class="phase-icon" aria-hidden="true"></div>
-                        <div>
-                            <h3 class="phase-title">Phase 2</h3>
-                            <p class="phase-bold">Collaborative problem solving:</p>
-                            <p>We research, brainstorm, and design alongside you, ensuring solutions meet clinical and practical needs.</p>
-                        </div>
-                    </article>
-
-                    <article class="phase-card">
-                        <div class="phase-icon" aria-hidden="true"></div>
-                        <div>
-                            <h3 class="phase-title">Phase 3</h3>
-                            <p class="phase-bold">Prototype and Test:</p>
-                            <p>We develop and refine solutions, with opportunities for you to review and provide feedback at every stage.</p>
-                        </div>
-                    </article>
-
-                    <article class="phase-card">
-                        <div class="phase-icon" aria-hidden="true"></div>
-                        <div>
-                            <h3 class="phase-title">Healthcare Analytics</h3>
-                            <p>Leverage data-driven insights with our healthcare analytics solutions to make informed decisions and drive improvements in patient care.</p>
-                        </div>
-                    </article>
-                </div>
+            <div class="mainpage-cta__actions">
+                <a class="mainpage-btn mainpage-btn--light" href="/projects/">Explore Projects</a>
+                <a class="mainpage-btn mainpage-btn--outline" href="#contact">Contact Us</a>
             </div>
         </div>
     </section>
 
-    <!-- WORKSHOPS (photo left, dark panel right) -->
-    <section class="split split--right-dark feature" id="workshops">
-        <div class="split-side split-left">
-            <div class="feature-photo-wrap">
-                <div class="feature-photo-box">
-                    <img src="assets/home/workshops-image.jpg" alt="Workshops" />
-                </div>
-            </div>
-        </div>
-
-        <div class="split-side split-right">
-            <div class="split-content feature-panel">
-                <h2 class="title-lg title-lg--light">Workshops</h2>
-                <p class="feature-text">
-                    We are excited to offer workshops designed for students eager to explore the intersections of engineering, medicine,
-                    data science and much more. Join us to gain hands-on experience, learn from industry experts and fellow peers.
-                    Collaborate on innovative projects that shape the future of healthcare. Let's inspire the next generation of medical pioneers together!
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- GUEST SPEAKERS (light text left, photo right) -->
-    <section class="split feature feature--reverse" id="guest-speakers">
-        <div class="split-side split-left">
-            <div class="split-content feature-panel feature-panel--light">
-                <h2 class="title-lg">Guest Speakers</h2>
-                <p class="feature-text feature-text--dark">
-                    Join us for our guest speaker sessions as we host an exciting lineup of guest speakers from various industries, including engineering and medicine.
-                    These experts will share their insights, experiences, and innovations, providing valuable knowledge to our members.
-                    Don't miss the opportunity to engage with professionals who are shaping the future of healthcare technology!
-                </p>
-            </div>
-        </div>
-
-        <div class="split-side split-right split-right--photo">
-            <div class="feature-photo-wrap">
-                <div class="feature-photo-box">
-                    <img src="assets/home/guest-speakers-image.jpg" alt="Guest Speakers" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPETITION (photo left, dark panel right) -->
-    <section class="split split--right-dark feature" id="competition">
-        <div class="split-side split-left">
-            <div class="feature-photo-wrap">
-                <div class="feature-photo-box">
-                    <img src="assets/home/competition-image.jpg" alt="Competition" />
-                </div>
-            </div>
-        </div>
-
-        <div class="split-side split-right">
-            <div class="split-content feature-panel">
-                <h2 class="title-lg title-lg--light">Competition</h2>
-                <p class="feature-text">
-                    Join FISH and be part of an exciting year-long journey to design an innovative medical device that will be showcased at a prestigious competition featuring universities from across the U.S.
-                    We welcome individuals from all backgrounds to collaborate research, design, and implementation of this groundbreaking project.
-                    Together, we’ll combine our diverse skills and ideas to make a meaningful impact in the field of healthcare.
-                    Get ready to unleash your creativity and contribute to something extraordinary!
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL EVENTS (light text left, photo right) -->
-    <section class="split feature feature--reverse" id="social-events">
-        <div class="split-side split-left">
-            <div class="split-content feature-panel feature-panel--light">
-                <h2 class="title-lg">Social Events</h2>
-                <p class="feature-text feature-text--dark">
-                    Join us for exciting social events like movie nights, where you can connect with like-minded individuals and make new friends!
-                    Enjoy a fun atmosphere filled with laughter and great conversations.
-                    Don't miss the chance to be part of our vibrant community!
-                </p>
-            </div>
-        </div>
-
-        <div class="split-side split-right split-right--photo">
-            <div class="feature-photo-wrap">
-                <div class="feature-photo-box">
-                    <img src="assets/home/social-events-image.jpg" alt="Social Events" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- JOIN US (full-width band) -->
-    <section class="cta" id="join">
-        <div class="cta-inner">
-            <h2 class="cta-title">Join Us!</h2>
-            <p class="cta-subtitle">Frugal Innovations In Sustainable Healthcare</p>
-            <p class="cta-desc">Discover the innovative features of our medical technology solutions and get involved</p>
-            <a class="btn cta-btn" href="#contact">Contact Us</a>
-        </div>
-    </section>
 
     <!-- CONTACT (simple footer bar; no form) -->
     <section class="contact-section" id="contact">
