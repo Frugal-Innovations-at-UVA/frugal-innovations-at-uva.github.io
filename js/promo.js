@@ -1,5 +1,4 @@
-// /js/promo.js
-(function () {
+function initPromoBanner() {
     const banner = document.getElementById("promo-banner");
     const textEl = document.getElementById("promo-text");
     const actionsEl = document.getElementById("promo-actions");
@@ -8,7 +7,14 @@
     const nextBtn = document.getElementById("promo-next");
     const closeBtn = document.getElementById("promo-banner-close");
 
-    if (!banner || !textEl || !actionsEl || !dotsEl || !prevBtn || !nextBtn || !closeBtn) return;
+    if (!banner || !textEl || !actionsEl || !dotsEl || !prevBtn || !nextBtn || !closeBtn) {
+        return;
+    }
+
+    if (banner.dataset.initialized === "true") {
+        return;
+    }
+    banner.dataset.initialized = "true";
 
     const announcements = [
         {
@@ -117,6 +123,16 @@
         startAutoRotate();
     }
 
+    function syncPromoHeight() {
+        if (!document.body.classList.contains("has-promo")) {
+            document.body.style.setProperty("--promo-h", "0px");
+            return;
+        }
+
+        const height = Math.ceil(banner.offsetHeight);
+        document.body.style.setProperty("--promo-h", `${height}px`);
+    }
+
     prevBtn.addEventListener("click", () => {
         goToPrev();
         restartAutoRotate();
@@ -145,16 +161,4 @@
 
     window.addEventListener("resize", syncPromoHeight);
     window.addEventListener("orientationchange", syncPromoHeight);
-
-    function syncPromoHeight() {
-        if (!banner) return;
-
-        if (!document.body.classList.contains("has-promo")) {
-            document.body.style.setProperty("--promo-h", "0px");
-            return;
-        }
-
-        const height = Math.ceil(banner.offsetHeight);
-        document.body.style.setProperty("--promo-h", `${height}px`);
-    }
-})();
+}
