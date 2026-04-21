@@ -18,23 +18,6 @@ function initPromoBanner() {
 
     const announcements = [
         {
-            text: "Sign up for Dinner Series with Dr. Shannon Barker!",
-            links: [
-                { label: "Event Details", href: "/events/#new-events" },
-                {
-                    label: "Apply",
-                    href: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=x4A0ewc3c0iLd-IWczplrJbVbQU68PFPvOilFwfzg5hURU1EV1BXUDdSU0VOVDZYQ1M0WjlNWU1YWi4u&utm_source=ig&utm_medium=social&utm_content=link_in_bio"
-                }
-            ]
-        },
-        {
-            text: "Order a FISH sweatshirt or graduation cord before April 18th!",
-            links: [
-                { label: "Sweatshirt Form", href: "https://forms.gle/jRtoNDCHgABGQBR9A" },
-                { label: "Grad Cord Form", href: "https://forms.gle/sxRcnDu7NX1LynoD8" }
-            ]
-        },
-        {
             text: "RSVP to FISH Showcase!",
             links: [
                 { label: "More Details", href: "/events/#new-events" },
