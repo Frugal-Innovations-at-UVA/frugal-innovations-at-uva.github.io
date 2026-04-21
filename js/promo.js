@@ -28,12 +28,26 @@ function initPromoBanner() {
 
     if (!announcements.length) return;
 
+    const hasMultipleAnnouncements = announcements.length > 1;
+
     let currentIndex = 0;
     let intervalId = null;
     const ROTATE_MS = 5000;
 
+    if (!hasMultipleAnnouncements) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        dotsEl.style.display = "none";
+    } else {
+        prevBtn.style.display = "";
+        nextBtn.style.display = "";
+        dotsEl.style.display = "";
+    }
+
     function renderDots() {
         dotsEl.innerHTML = "";
+
+        if (!hasMultipleAnnouncements) return;
 
         announcements.forEach((announcement, index) => {
             const dot = document.createElement("button");
@@ -81,17 +95,20 @@ function initPromoBanner() {
     }
 
     function goToNext() {
+        if (!hasMultipleAnnouncements) return;
         currentIndex = (currentIndex + 1) % announcements.length;
         renderAnnouncement();
     }
 
     function goToPrev() {
+        if (!hasMultipleAnnouncements) return;
         currentIndex = (currentIndex - 1 + announcements.length) % announcements.length;
         renderAnnouncement();
     }
 
     function startAutoRotate() {
         stopAutoRotate();
+        if (!hasMultipleAnnouncements) return;
         intervalId = window.setInterval(goToNext, ROTATE_MS);
     }
 
