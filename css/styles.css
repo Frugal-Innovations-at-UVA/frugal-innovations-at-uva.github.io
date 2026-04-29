@@ -2625,6 +2625,13 @@ body.has-promo .promo-banner{
     color: var(--text);
 }
 
+.events-section__subtitle{
+    margin: 20px 50px 18px;
+    text-align: left;
+    font-size: 24px;
+    color: var(--text);
+}
+
 /* =========================================================
     Google Calendar embed
    ========================================================= */
