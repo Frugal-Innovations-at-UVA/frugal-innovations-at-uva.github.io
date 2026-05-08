@@ -17,6 +17,7 @@ function initPromoBanner() {
     banner.dataset.initialized = "true";
 
     const announcements = [
+        /* fill in with new events later
         {
             text: "RSVP to FISH Showcase!",
             links: [
@@ -24,6 +25,7 @@ function initPromoBanner() {
                 { label: "RSVP", href: "https://www.eventbrite.com/e/fish-showcase-tickets-1986843013939" }
             ]
         }
+        */
     ];
 
     if (!announcements.length) return;
