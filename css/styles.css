@@ -20,6 +20,25 @@
     --muted: rgba(8, 52, 78, 0.78);
     --muted2: rgba(8, 52, 78, 0.65);
     --border: rgba(8, 52, 78, 0.14);
+    --surface: #ffffff;
+    --hover-tint: rgba(8, 52, 78, 0.05);
+
+    /* Font weights */
+    --fw-body: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extrabold: 800;
+
+    /* Border radii */
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --radius-pill: 999px;
+
+    /* Transitions */
+    --duration: 120ms;
 
     /* Layout */
     --header-h: 92px;
@@ -52,7 +71,7 @@ a{ color: inherit; text-decoration: none; }
 img{ display: block; max-width: 100%; height: auto; }
 
 p{ margin: 0; line-height: 1.65; }
-strong{ font-weight: 800; }
+strong{ font-weight: var(--fw-extrabold); }
 
 /* ---------- Layout helpers ---------- */
 .container{
@@ -79,7 +98,7 @@ strong{ font-weight: 800; }
     margin: 0 0 34px;
     font-size: clamp(50px, 5.3vw, 76px);
     letter-spacing: -0.02em;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 .title-xl--light{ color: #fff; }
@@ -88,14 +107,14 @@ strong{ font-weight: 800; }
     margin: 0 0 18px;
     font-size: clamp(34px, 3.1vw, 44px);
     letter-spacing: -0.01em;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 .title-lg--light{ color: #fff; }
 
 .accent{
     color: var(--accent);
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
 }
 
 /* ---------- Buttons ---------- */
@@ -105,12 +124,12 @@ strong{ font-weight: 800; }
     justify-content: center;
     padding: 12px 22px;
     border-radius: 999px;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     border: 1px solid transparent;
 }
 .btn.primary{
     background: var(--panel);
-    color: #fff;
+    color: var(--surface);
 }
 
 .btn:hover{
@@ -152,7 +171,7 @@ strong{ font-weight: 800; }
 
 .brand-name{
     font-size: 46px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.02em;
 }
 
@@ -177,7 +196,7 @@ strong{ font-weight: 800; }
 
 .nav-link{
     padding: 10px 4px;
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
     color: var(--muted);
 }
 
@@ -219,10 +238,10 @@ strong{ font-weight: 800; }
     display: block;
     padding: 10px 10px;
     border-radius: 10px;
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
     color: var(--muted);
 }
-.dropdown-link:hover{ background: rgba(8,52,78,0.05); }
+.dropdown-link:hover{ background: var(--hover-tint); }
 
 .nav-dropdown.open .dropdown-panel{ display: block; }
 
@@ -304,7 +323,7 @@ body.has-promo .promo-banner{
 
     font-size: 15px;
     line-height: 1.35;
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
     color: rgba(255,255,255,0.96);
 }
 
@@ -325,12 +344,12 @@ body.has-promo .promo-banner{
     flex-shrink: 0;
 
     padding: 8px 14px;
-    border-radius: 999px;
-    background: #fff;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
     color: var(--panel);
 
     font-size: 14px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     white-space: nowrap;
 
     transition: transform 120ms ease, opacity 120ms ease;
@@ -532,7 +551,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -546,7 +565,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -558,7 +577,7 @@ body.has-promo .promo-banner{
     padding: 12px 22px;
     border-radius: 999px;
     border: 1px solid transparent;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
@@ -567,9 +586,9 @@ body.has-promo .promo-banner{
 }
 
 .mainpage-btn--light{
-    background: #fff;
+    background: var(--surface);
     color: var(--panel);
-    border-color: #fff;
+    border-color: var(--surface);
 }
 
 .mainpage-btn--outline{
@@ -612,13 +631,13 @@ body.has-promo .promo-banner{
     font-size: clamp(58px, 5.2vw, 80px);
     line-height: 0.98;
     letter-spacing: -0.01em;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
 }
 
 .mainpage-hero__subtitle{
     margin: 0 0 18px;
     color: var(--muted);
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
     line-height: 1.7;
     max-width: 56ch;
 }
@@ -672,7 +691,7 @@ body.has-promo .promo-banner{
 }
 
 .mainpage-stat-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 22px;
     padding: 26px 24px;
@@ -683,7 +702,7 @@ body.has-promo .promo-banner{
     margin: 0 0 10px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -693,7 +712,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: 24px;
     line-height: 1.15;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .mainpage-stat-card__text{
@@ -717,7 +736,7 @@ body.has-promo .promo-banner{
 }
 
 .mainpage-value-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-top: 4px solid var(--accent);
     border-radius: 22px;
@@ -730,7 +749,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: 26px;
     line-height: 1.15;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .mainpage-value-card__text{
@@ -758,7 +777,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
     color: #fff;
 }
@@ -788,7 +807,7 @@ body.has-promo .promo-banner{
     margin: 0 0 14px;
     color: rgba(255,255,255,0.62);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
@@ -798,7 +817,7 @@ body.has-promo .promo-banner{
     color: #fff;
     font-size: 24px;
     line-height: 1.15;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .mainpage-step-card__text{
@@ -821,7 +840,7 @@ body.has-promo .promo-banner{
 }
 
 .mainpage-highlight-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 24px;
     overflow: hidden;
@@ -856,7 +875,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: 28px;
     line-height: 1.12;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .mainpage-highlight-card__text{
@@ -868,7 +887,7 @@ body.has-promo .promo-banner{
 .mainpage-card-link{
     margin-top: auto;
     color: var(--accent);
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -890,7 +909,7 @@ body.has-promo .promo-banner{
     margin: 0 0 10px;
     color: rgba(255,255,255,0.82);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -899,7 +918,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(36px, 4vw, 62px);
     line-height: 1.02;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -987,7 +1006,7 @@ body.has-promo .promo-banner{
 
 .contact-line{
     color: rgba(8,52,78,0.82);
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
 }
 
 .contact-link:hover{
@@ -1045,8 +1064,8 @@ body.has-promo .promo-banner{
 }
 
 .footer-copy{
-    color: rgba(0,0,0,1);
-    font-weight: 800;
+    color: #000;
+    font-weight: var(--fw-extrabold);
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -1054,7 +1073,7 @@ body.has-promo .promo-banner{
 .footer-disclaimer{
     margin: 0;
     max-width: 2000px;
-    color: rgba(0,0,0,1);
+    color: #000;
     font-size: 14px;               /* readable but not huge */
     line-height: 1.65;
 }
@@ -1071,7 +1090,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -1085,7 +1104,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: clamp(28px, 4vw, 48px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
     max-width: 1000px;
     padding: clamp(16px, 6vw, 16px) 0;
@@ -1102,7 +1121,7 @@ body.has-promo .promo-banner{
     justify-content: center;
     padding: 12px 24px;
     border-radius: 999px;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
 }
 
@@ -1143,7 +1162,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(44px, 6vw, 84px);
     line-height: 1.02;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -1190,7 +1209,7 @@ body.has-promo .promo-banner{
     max-width: 560px;
     width: 100%;
     justify-self: end;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px 26px;
@@ -1201,7 +1220,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--text);
     font-size: 28px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     line-height: 1.2;
 }
 
@@ -1242,7 +1261,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -1285,7 +1304,7 @@ body.has-promo .promo-banner{
 }
 
 .projects-timeline__frame{
-    background: #fff;
+    background: var(--surface);
     border: 3px solid var(--text);
     border-radius: 10px;
     box-shadow: 0 16px 40px rgba(0,0,0,0.14);
@@ -1311,7 +1330,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -1376,7 +1395,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -1407,7 +1426,7 @@ body.has-promo .promo-banner{
     justify-content: center;
     padding: 12px 22px;
     border-radius: 999px;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
 }
 
@@ -1421,9 +1440,9 @@ body.has-promo .promo-banner{
 }
 
 .makeathon-btn-light{
-    background: #fff;
+    background: var(--surface);
     color: var(--panel);
-    border: 1px solid #fff;
+    border: 1px solid var(--surface);
 }
 
 .makeathon-btn-accent{
@@ -1458,7 +1477,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(42px, 6vw, 84px);
     line-height: 1.02;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -1489,7 +1508,7 @@ body.has-promo .promo-banner{
     flex-wrap: wrap;
     gap: 18px;
     padding: 18px 0;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     text-align: center;
 }
 
@@ -1536,14 +1555,14 @@ body.has-promo .promo-banner{
     border-left: 4px solid var(--accent);
     border-radius: 0 14px 14px 0;
     color: var(--text);
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     line-height: 1.6;
 }
 
 /* ---------- Shared card ---------- */
 
 .makeathon-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 24px 22px;
@@ -1553,7 +1572,7 @@ body.has-promo .promo-banner{
 .makeathon-card h3{
     margin: 0 0 12px;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 
@@ -1592,7 +1611,7 @@ body.has-promo .promo-banner{
 }
 
 .makeathon-audience__card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px 26px;
@@ -1615,7 +1634,7 @@ body.has-promo .promo-banner{
 
 .makeathon-audience__card a{
     color: var(--accent);
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 /* ---------- Timeline + inline split ---------- */
@@ -1685,7 +1704,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -1719,7 +1738,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(38px, 5vw, 70px);
     line-height: 1.05;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -1768,7 +1787,7 @@ body.has-promo .promo-banner{
     margin: 0 0 8px;
     color: #fff;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .makeathon-feature-item p{
@@ -1826,7 +1845,7 @@ body.has-promo .promo-banner{
     margin: 0;
     color: #fff;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .makeathon-sponsor-list__item p{
@@ -1884,7 +1903,7 @@ body.has-promo .promo-banner{
 .makeathon-partner__name{
     margin: auto 0 0;           /* pushes the name to the same bottom position */
     font-size: 18px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: #fff;
 }
 
@@ -1958,7 +1977,7 @@ body.has-promo .promo-banner{
 .donate-hero {
     background: var(--panel);
     color: #fff;
-    padding: 7rem 0 6rem;
+    padding: clamp(84px, 11vw, 112px) 0 clamp(70px, 9vw, 96px);
 }
 
 .donate-hero__inner {
@@ -1969,9 +1988,9 @@ body.has-promo .promo-banner{
 
 .donate-kicker,
 .donate-section-kicker {
-    margin: 0 0 0.9rem;
-    font-size: 0.72rem;
-    font-weight: 800;
+    margin: 0 0 14px;
+    font-size: 12px;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
@@ -1984,17 +2003,17 @@ body.has-promo .promo-banner{
 
 .donate-hero__title {
     margin: 0;
-    font-size: clamp(2.5rem, 5.4vw, 4.9rem);
+    font-size: clamp(40px, 5.4vw, 78px);
     line-height: 0.98;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.03em;
 }
 
 .donate-hero__text {
     max-width: 700px;
-    margin: 1.15rem auto 0;
+    margin: 18px auto 0;
     color: rgba(255, 255, 255, 0.82);
-    font-size: 1.05rem;
+    font-size: 17px;
     line-height: 1.8;
 }
 
@@ -2002,13 +2021,13 @@ body.has-promo .promo-banner{
 .donate-cta__actions {
     display: flex;
     justify-content: center;
-    gap: 0.85rem;
+    gap: 14px;
     flex-wrap: wrap;
-    margin-top: 1.8rem;
+    margin-top: 28px;
 }
 
 .donate-section {
-    padding: 5.5rem 0;
+    padding: clamp(64px, 8vw, 88px) 0;
 }
 
 .donate-section--light {
@@ -2026,9 +2045,9 @@ body.has-promo .promo-banner{
 .donate-section-title {
     margin: 0;
     color: var(--text);
-    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-size: clamp(32px, 4vw, 52px);
     line-height: 1.03;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.03em;
     max-width: 24ch;
 }
@@ -2038,7 +2057,7 @@ body.has-promo .promo-banner{
 }
 
 .donate-section-text {
-    margin: 1rem 0 0;
+    margin: 16px 0 0;
     color: var(--muted);
     line-height: 1.8;
     max-width: 64ch;
@@ -2050,13 +2069,13 @@ body.has-promo .promo-banner{
 
 .donate-support-grid {
     display: grid;
-    gap: 1.4rem;
-    margin-top: 2rem;
+    gap: 22px;
+    margin-top: 32px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .donate-card {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
     box-shadow: 0 12px 28px rgba(8, 52, 78, 0.08);
@@ -2067,33 +2086,33 @@ body.has-promo .promo-banner{
 .donate-card--collab {
     display: flex;
     flex-direction: column;
-    padding: 1.6rem;
+    padding: 26px;
 }
 
 .donate-card-kicker {
-    margin: 0 0 0.5rem;
+    margin: 0 0 8px;
     color: var(--accent);
-    font-size: 0.72rem;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .donate-card-title {
-    margin: 0 0 0.5rem;
+    margin: 0 0 8px;
     color: var(--text);
-    font-size: 1.7rem;
+    font-size: 27px;
     line-height: 1.05;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
 .donate-card-title--small {
-    font-size: 1.32rem;
+    font-size: 21px;
 }
 
 .donate-card-text {
-    margin: 0.9rem 0 1rem;
+    margin: 14px 0 16px;
     color: var(--muted);
     line-height: 1.75;
 }
@@ -2104,18 +2123,18 @@ body.has-promo .promo-banner{
     justify-content: center;
     min-height: 46px;
     margin-top: auto;
-    padding: 0.82rem 1.2rem;
+    padding: 13px 19px;
     border: 1px solid transparent;
-    border-radius: 999px;
-    font-size: 0.96rem;
-    font-weight: 700;
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    font-weight: var(--fw-bold);
     text-decoration: none;
     transition:
-            background-color 0.2s ease,
-            color 0.2s ease,
-            border-color 0.2s ease,
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
+            background-color var(--duration) ease,
+            color var(--duration) ease,
+            border-color var(--duration) ease,
+            transform var(--duration) ease,
+            box-shadow var(--duration) ease;
 }
 
 .donate-btn:hover {
@@ -2124,7 +2143,7 @@ body.has-promo .promo-banner{
 
 .donate-btn--full {
     width: 100%;
-    margin-top: 1.2rem;
+    margin-top: 19px;
 }
 
 .donate-btn--accent {
@@ -2156,39 +2175,39 @@ body.has-promo .promo-banner{
 }
 
 .donate-card--collab .donate-btn {
-    margin-top: 1rem;
+    margin-top: 16px;
 }
 
 .donate-methods-layout {
     display: grid;
-    gap: 1.4rem;
-    margin-top: 2rem;
+    gap: 22px;
+    margin-top: 32px;
     grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.3fr);
     align-items: start;
 }
 
 .donate-methods-list {
     display: grid;
-    gap: 1rem;
+    gap: 16px;
     align-content: start;
 }
 
 .donate-method-tab {
     width: 100%;
-    padding: 1.35rem 1.4rem;
+    padding: 22px;
     border: 1px solid var(--border);
     border-radius: 20px;
-    background: #fff;
+    background: var(--surface);
     box-shadow: 0 12px 28px rgba(8, 52, 78, 0.08);
     text-align: left;
     cursor: pointer;
     font: inherit;
     color: inherit;
     transition:
-            transform 0.2s ease,
-            border-color 0.2s ease,
-            box-shadow 0.2s ease,
-            background-color 0.2s ease;
+            transform var(--duration) ease,
+            border-color var(--duration) ease,
+            box-shadow var(--duration) ease,
+            background-color var(--duration) ease;
 }
 
 .donate-method-tab:hover {
@@ -2204,17 +2223,17 @@ body.has-promo .promo-banner{
 
 .donate-method-tab__title {
     display: block;
-    margin: 0.5rem 0 0;
+    margin: 8px 0 0;
     color: var(--text);
-    font-size: 1.55rem;
+    font-size: 25px;
     line-height: 1.05;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
 .donate-method-tab__text {
     display: block;
-    margin-top: 0.75rem;
+    margin-top: 12px;
     color: var(--muted);
     line-height: 1.65;
 }
@@ -2231,8 +2250,8 @@ body.has-promo .promo-banner{
 .donate-detail-panel--zelle {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 220px;
-    column-gap: 1.5rem;
-    row-gap: 0.5rem;
+    column-gap: 24px;
+    row-gap: 8px;
     align-items: start;
 }
 
@@ -2245,13 +2264,13 @@ body.has-promo .promo-banner{
 .donate-card-text--zelle {
     grid-column: 1 / 2;
     max-width: 48ch;
-    margin: 0 0 0.1rem;
+    margin: 0 0 2px;
 }
 
 .donate-zelle-copy {
     grid-column: 1 / 2;
     display: grid;
-    gap: 0.5rem;
+    gap: 8px;
     align-content: start;
 }
 
@@ -2263,18 +2282,18 @@ body.has-promo .promo-banner{
 }
 
 .donate-zelle-label {
-    margin: 0 0 0.12rem;
+    margin: 0 0 2px;
     color: var(--text);
-    font-size: 0.98rem;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: var(--fw-bold);
     line-height: 1.2;
 }
 
 .donate-zelle-value {
     margin: 0;
     color: var(--text);
-    font-size: 1.12rem;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: var(--fw-medium);
     line-height: 1.35;
     max-width: 34ch;
 }
@@ -2293,20 +2312,20 @@ body.has-promo .promo-banner{
     object-fit: contain;
     border: 1px solid var(--border);
     border-radius: 18px;
-    background: #fff;
-    padding: 0.35rem;
+    background: var(--surface);
+    padding: 6px;
 }
 
 .donate-collab {
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.8fr);
-    gap: 1.6rem;
+    gap: 26px;
     align-items: center;
 }
 
 .donate-cta {
     background: var(--accent);
-    padding: 4.75rem 0;
+    padding: clamp(54px, 7vw, 76px) 0;
 }
 
 .donate-cta__inner {
@@ -2315,10 +2334,10 @@ body.has-promo .promo-banner{
 
 .donate-cta__title {
     margin: 0;
-    color: #fff;
-    font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+    color: var(--surface);
+    font-size: clamp(35px, 4.4vw, 61px);
     line-height: 1;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.03em;
 }
 
@@ -2353,17 +2372,17 @@ body.has-promo .promo-banner{
 
 @media (max-width: 640px) {
     .donate-hero {
-        padding: 5.5rem 0 4.75rem;
+        padding: 88px 0 76px;
     }
 
     .donate-section {
-        padding: 4.25rem 0;
+        padding: 68px 0;
     }
 
     .donate-card--option,
     .donate-card--support,
     .donate-card--collab {
-        padding: 1.25rem;
+        padding: 20px;
     }
 
     .donate-hero__actions,
@@ -2389,7 +2408,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -2419,7 +2438,7 @@ body.has-promo .promo-banner{
 .collabs-hero__title{
     margin: 0;
     color: #fff;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
     font-size: clamp(42px, 6vw, 84px);
     line-height: 1.02;
@@ -2443,7 +2462,7 @@ body.has-promo .promo-banner{
     background: var(--accent);
     color: #fff;
     border: 1px solid var(--accent);
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     text-decoration: none;
     transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
 }
@@ -2480,7 +2499,7 @@ body.has-promo .promo-banner{
     gap: clamp(22px, 4vw, 44px);
     align-items: center;
     padding: 28px;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
     box-shadow: 0 12px 28px rgba(0,0,0,0.08);
@@ -2512,7 +2531,7 @@ body.has-promo .promo-banner{
 .partner__title{
     margin: 0 0 12px;
     color: var(--text);
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     font-size: clamp(28px, 3vw, 40px);
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -2568,7 +2587,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -2604,7 +2623,7 @@ body.has-promo .promo-banner{
     background: var(--accent);
     color: #fff;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: 0.2px;
 }
 .events-hero__cta:hover{
@@ -2633,7 +2652,7 @@ body.has-promo .promo-banner{
     border: 1px solid var(--border);
     border-radius: 18px;
     overflow: hidden;          /* rounds the iframe corners */
-    background: #fff;
+    background: var(--surface);
 }
 
 .events-calendar__title{
@@ -2708,9 +2727,9 @@ body.has-promo .promo-banner{
 .event-image__viewport{
     width: 100%;
     aspect-ratio: 4 / 5;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
-    background: #fff;
+    background: var(--surface);
 }
 
 .event-image__viewport img {
@@ -2726,7 +2745,7 @@ body.has-promo .promo-banner{
     margin: 6px 0 0;
     color: var(--text);
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     min-height: 2.6em; /* keeps 1-line and 2-line titles more consistent */
     display: flex;
     align-items: center;
@@ -2746,7 +2765,7 @@ body.has-promo .promo-banner{
     border: 0;
     background: var(--accent);
     color: #fff;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     padding: 12px 22px;
     border-radius: 999px;
     cursor: pointer;
@@ -2826,7 +2845,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -2840,7 +2859,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -2851,7 +2870,7 @@ body.has-promo .promo-banner{
     justify-content: center;
     padding: 12px 22px;
     border-radius: 999px;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
 }
 
@@ -2892,7 +2911,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(44px, 6vw, 80px);
     line-height: 1.02;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -2936,7 +2955,7 @@ body.has-promo .promo-banner{
 }
 
 .competitions-intro__card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px 26px;
@@ -2947,7 +2966,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--text);
     font-size: 28px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     line-height: 1.2;
 }
 
@@ -2978,7 +2997,7 @@ body.has-promo .promo-banner{
 
 /* keep the cards, just polish them a little */
 .competition-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px 24px;
@@ -2999,7 +3018,7 @@ body.has-promo .promo-banner{
 .competition-card__title{
     margin: 18px 0 0;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
     line-height: 1.35;
 }
@@ -3021,7 +3040,7 @@ body.has-promo .promo-banner{
     border-radius: 999px;
     border: 1px solid var(--border);
     color: var(--text);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     text-decoration: none;
     transition: transform 120ms ease, border-color 120ms ease, color 120ms ease;
 }
@@ -3063,7 +3082,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -3079,7 +3098,7 @@ body.has-promo .promo-banner{
     justify-content: center;
     padding: 12px 22px;
     border-radius: 999px;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     text-decoration: none;
     transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
 }
@@ -3120,7 +3139,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(44px, 6vw, 84px);
     line-height: 1.02;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -3180,7 +3199,7 @@ body.has-promo .promo-banner{
     text-decoration: none;
     color: inherit;
 
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: 0 10px 26px rgba(0,0,0,0.10);
     transition: transform 160ms ease, box-shadow 160ms ease;
@@ -3213,7 +3232,7 @@ body.has-promo .promo-banner{
     place-items: center;
 }
 .blog-card__placeholderMark{
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: rgba(8, 52, 78, 0.55);
@@ -3234,7 +3253,7 @@ body.has-promo .promo-banner{
 .blog-card__meta{
     font-size: 13px;
     color: var(--muted2);
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
 }
 .blog-card__title{
     margin: 0;
@@ -3262,7 +3281,7 @@ body.has-promo .promo-banner{
 }
 .blog-card__cta{
     margin-top: auto;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     color: var(--accent);
 }
 
@@ -3271,7 +3290,7 @@ body.has-promo .promo-banner{
     margin-top: 12px;
     border-radius: 18px;
     border: 1px solid var(--border);
-    background: #fff;
+    background: var(--surface);
     padding: 18px 18px;
     box-shadow: 0 10px 26px rgba(0,0,0,0.08);
 }
@@ -3281,7 +3300,7 @@ body.has-promo .promo-banner{
     display: inline-block;
     color: rgba(255,255,255,0.92);
     text-decoration: none;
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
     margin-bottom: 10px;
 }
 .blog-back:hover{ text-decoration: underline; }
@@ -3314,7 +3333,7 @@ body.has-promo .promo-banner{
 .blog-post-meta{
     margin: 0;
     opacity: 0.92;
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
 }
 
 .blog-post{
@@ -3435,7 +3454,7 @@ body.has-promo .promo-banner{
 .aboutpage-section__label{
     margin: 0 0 12px;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
@@ -3450,7 +3469,7 @@ body.has-promo .promo-banner{
     font-size: clamp(34px, 4vw, 54px);
     line-height: 1.05;
     letter-spacing: -0.02em;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 
@@ -3478,7 +3497,7 @@ body.has-promo .promo-banner{
 .aboutpage-hero__eyebrow{
     margin: 0 0 14px;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.76);
@@ -3490,7 +3509,7 @@ body.has-promo .promo-banner{
     font-size: clamp(42px, 6vw, 84px);
     line-height: 1.02;
     letter-spacing: -0.02em;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
 }
 
 .aboutpage-hero__text{
@@ -3517,7 +3536,7 @@ body.has-promo .promo-banner{
     padding: 12px 22px;
     border-radius: 999px;
     border: 1px solid transparent;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
@@ -3566,7 +3585,7 @@ body.has-promo .promo-banner{
 }
 
 .aboutpage-mini-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 22px;
     padding: 22px;
@@ -3576,7 +3595,7 @@ body.has-promo .promo-banner{
 .aboutpage-mini-card__title{
     margin: 0 0 10px;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 
@@ -3596,7 +3615,7 @@ body.has-promo .promo-banner{
 }
 
 .aboutpage-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 28px;
@@ -3611,7 +3630,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     font-size: 24px;
     line-height: 1.15;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 
@@ -3623,7 +3642,7 @@ body.has-promo .promo-banner{
 .aboutpage-card__link{
     margin-top: auto;
     padding-top: 20px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -3666,7 +3685,7 @@ body.has-promo .promo-banner{
 .aboutpage-principle__title{
     margin: 0 0 8px;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: #fff;
 }
 
@@ -3707,7 +3726,7 @@ body.has-promo .promo-banner{
     background: var(--panel);
     color: #fff;
     border: 1px solid var(--panel);
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
 }
 
@@ -3718,7 +3737,7 @@ body.has-promo .promo-banner{
 /* Collaborations CTA */
 
 .aboutpage-collab{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 28px;
     padding: clamp(28px, 4vw, 44px);
@@ -3751,7 +3770,7 @@ body.has-promo .promo-banner{
     background: var(--panel);
     color: #fff;
     border: 1px solid var(--panel);
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
 }
 
@@ -3795,7 +3814,7 @@ body.has-promo .promo-banner{
 }
 
 .aboutpage-timeline__content{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 22px;
     padding: 24px;
@@ -3805,7 +3824,7 @@ body.has-promo .promo-banner{
 .aboutpage-timeline__eyebrow{
     margin: 0 0 8px;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
@@ -3814,7 +3833,7 @@ body.has-promo .promo-banner{
 .aboutpage-timeline__title{
     margin: 0 0 10px;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 
@@ -3871,7 +3890,7 @@ body.has-promo .promo-banner{
 .aboutpage-founders__meta-label{
     margin: 0 0 6px;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
@@ -3927,7 +3946,7 @@ body.has-promo .promo-banner{
     padding: 12px 22px;
     border-radius: 999px;
     border: 1px solid transparent;
-    font-weight: 750;
+    font-weight: var(--fw-bold);
     transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
@@ -4006,7 +4025,7 @@ body.has-promo .promo-banner{
     margin: 0 0 0px;
     color: var(--accent);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
@@ -4020,7 +4039,7 @@ body.has-promo .promo-banner{
     color: var(--text);
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -4041,7 +4060,7 @@ body.has-promo .promo-banner{
     margin: 0;
     font-size: clamp(44px, 6vw, 84px);
     line-height: 1.02;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
 }
 
@@ -4059,16 +4078,12 @@ body.has-promo .promo-banner{
     padding: clamp(48px, 6vw, 80px) 0 0; /* less top space */
 }
 
-.about-officers-intro{
-    padding: clamp(48px, 6vw, 80px) 0 0; /* less top space */
-}
-
 .about-officers-intro-title{
     margin: 0;
     color: var(--text);
     font-size: clamp(34px, 4vw, 58px);
     line-height: 1.08;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.02em;
     max-width: 1000px;
     padding: clamp(16px, 6vw, 16px) 0;
@@ -4099,7 +4114,7 @@ body.has-promo .promo-banner{
     max-width: 560px;
     width: 100%;
     justify-self: end;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px 26px;
@@ -4110,7 +4125,7 @@ body.has-promo .promo-banner{
     margin: 0 0 12px;
     color: var(--text);
     font-size: 28px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     line-height: 1.2;
 }
 
@@ -4142,7 +4157,7 @@ body.has-promo .promo-banner{
 }
 
 .team-card{
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
     overflow: hidden;
@@ -4171,7 +4186,7 @@ body.has-promo .promo-banner{
 .team-card__name{
     margin: 0;
     font-size: clamp(24px, 2.5vw, 30px);
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.01em;
     color: var(--text);
     line-height: 1.1;
@@ -4180,7 +4195,7 @@ body.has-promo .promo-banner{
 .team-card__role{
     margin: 10px 0 0;
     font-size: 16px;
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
@@ -4191,7 +4206,7 @@ body.has-promo .promo-banner{
     color: var(--muted);
     font-size: 14px;
     line-height: 1.5;
-    font-weight: 650;
+    font-weight: var(--fw-semibold);
 }
 
 .team-card__details{
@@ -4208,7 +4223,7 @@ body.has-promo .promo-banner{
 }
 
 .team-card__label{
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     color: var(--text);
 }
 
