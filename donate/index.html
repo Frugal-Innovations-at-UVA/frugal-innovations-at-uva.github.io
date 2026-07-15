@@ -49,16 +49,13 @@
                             class="donate-method-tab is-active"
                             type="button"
                             role="tab"
-                            id="donate-tab-paypal"
+                            id="donate-tab-uvafund"
                             aria-selected="true"
-                            aria-controls="donate-panel-paypal"
-                            data-donate-tab="paypal"
+                            aria-controls="donate-panel-uvafund"
+                            data-donate-tab="uvafund"
                     >
-                        <span class="donate-card-kicker">Direct online giving</span>
-                        <span class="donate-method-tab__title">PayPal</span>
-                        <span class="donate-method-tab__text">
-                        Donate online with a quick, flexible payment through PayPal.
-                    </span>
+                        <span class="donate-card-kicker">University-backed giving</span>
+                        <span class="donate-method-tab__title">UVA Fund</span>
                     </button>
 
                     <button
@@ -72,35 +69,45 @@
                     >
                         <span class="donate-card-kicker">Bank transfer giving</span>
                         <span class="donate-method-tab__title">Zelle</span>
-                        <span class="donate-method-tab__text">
-                        Send a donation directly through your bank using Zelle.
-                    </span>
+                    </button>
+
+                    <button
+                            class="donate-method-tab"
+                            type="button"
+                            role="tab"
+                            id="donate-tab-paypal"
+                            aria-selected="false"
+                            aria-controls="donate-panel-paypal"
+                            data-donate-tab="paypal"
+                    >
+                        <span class="donate-card-kicker">Direct online giving</span>
+                        <span class="donate-method-tab__title">PayPal</span>
                     </button>
                 </div>
 
                 <article class="donate-card donate-card--option donate-detail-card">
                     <div
                             class="donate-detail-panel is-active"
-                            id="donate-panel-paypal"
+                            id="donate-panel-uvafund"
                             role="tabpanel"
-                            aria-labelledby="donate-tab-paypal"
-                            data-donate-panel="paypal"
+                            aria-labelledby="donate-tab-uvafund"
+                            data-donate-panel="uvafund"
                     >
-                        <p class="donate-card-kicker">Direct online giving</p>
-                        <h3 class="donate-card-title">PayPal</h3>
+                        <p class="donate-card-kicker">University-backed giving</p>
+                        <h3 class="donate-card-title">UVA Fund</h3>
                         <p class="donate-card-text">
-                            Make a quick online donation through PayPal. This option offers a simple
-                            and flexible way for supporters to contribute directly to FISH and help fund
-                            student innovation, prototyping, and programming.
+                            Give through the University of Virginia's official, secure giving platform.
+                            Gifts are tax-deductible and are directed straight to FISH's designated fund to
+                            support student innovation, prototyping, and programming.
                         </p>
 
                         <a
                                 class="donate-btn donate-btn--accent donate-btn--full"
-                                href="https://www.paypal.com/paypalme/FrugalInnovations"
+                                href="https://www.givecampus.com/campaigns/21200/donations/new?designation=frugalinnovationsinsustainablehealthcare&"
                                 target="_blank"
                                 rel="noopener noreferrer"
                         >
-                            Donate With PayPal
+                            Donate Through UVA Fund
                         </a>
                     </div>
 
@@ -138,6 +145,32 @@
                                     alt="Zelle QR code for donating to FISH at UVA"
                             />
                         </figure>
+                    </div>
+
+                    <div
+                            class="donate-detail-panel"
+                            id="donate-panel-paypal"
+                            role="tabpanel"
+                            aria-labelledby="donate-tab-paypal"
+                            data-donate-panel="paypal"
+                            hidden
+                    >
+                        <p class="donate-card-kicker">Direct online giving</p>
+                        <h3 class="donate-card-title">PayPal</h3>
+                        <p class="donate-card-text">
+                            Make a quick online donation through PayPal. This option offers a simple
+                            and flexible way for supporters to contribute directly to FISH and help fund
+                            student innovation, prototyping, and programming.
+                        </p>
+
+                        <a
+                                class="donate-btn donate-btn--accent donate-btn--full"
+                                href="https://www.paypal.com/paypalme/FrugalInnovations"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                        >
+                            Donate With PayPal
+                        </a>
                     </div>
                 </article>
             </div>
