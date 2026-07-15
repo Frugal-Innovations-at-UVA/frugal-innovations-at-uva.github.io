@@ -2183,7 +2183,7 @@ body.has-promo .promo-banner{
     gap: 22px;
     margin-top: 32px;
     grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.3fr);
-    align-items: start;
+    align-items: stretch;
 }
 
 .donate-methods-list {
@@ -2231,16 +2231,12 @@ body.has-promo .promo-banner{
     letter-spacing: -0.02em;
 }
 
-.donate-method-tab__text {
-    display: block;
-    margin-top: 12px;
-    color: var(--muted);
-    line-height: 1.65;
-}
-
 .donate-detail-card {
     min-height: 0;
-    align-self: start;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .donate-detail-panel[hidden] {
