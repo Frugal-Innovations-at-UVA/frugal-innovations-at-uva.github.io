@@ -47,7 +47,7 @@ export async function sendStatusChangeEmail(params: {
     from: FROM_ADDRESS,
     to: params.to,
     subject: `Print update: ${params.fileName} — ${STATUS_LABEL[params.status]}`,
-    text: `Hi ${params.teamName},\n\nYour print request for "${params.fileName}" is now: ${STATUS_LABEL[params.status]}.\n\n— FISH at UVA Make-A-Thon`,
+    text: `Hi ${params.teamName},\n\nYour print request for "${params.fileName}" is now: ${STATUS_LABEL[params.status]}.\n\n— FISH at UVA Make-A-Thon Team`,
   });
 
   if (error) console.error("sendStatusChangeEmail failed:", error);
