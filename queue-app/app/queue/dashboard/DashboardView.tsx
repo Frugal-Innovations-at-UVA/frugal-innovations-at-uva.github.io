@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import type { PrintRequest, PrintStatus } from "@/lib/supabase";
-import { formatDuration } from "@/lib/gcode";
+import { formatDuration } from "@/lib/printFile";
 import {
   listRequests,
   logout,

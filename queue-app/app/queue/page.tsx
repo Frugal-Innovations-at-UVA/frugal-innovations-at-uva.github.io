@@ -93,7 +93,7 @@ export default async function QueueLandingPage() {
             <article className="queue-directory-card">
               <h3>Students</h3>
               <p>
-                Submit your sliced .gcode file along with your team info,
+                Submit your sliced .3mf file along with your team info,
                 and we&apos;ll get it in the queue.
               </p>
               <Link className="btn primary" href="/queue/request">
