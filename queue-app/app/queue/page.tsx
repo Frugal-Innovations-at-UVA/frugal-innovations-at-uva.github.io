@@ -39,7 +39,7 @@ export default async function QueueLandingPage() {
               Submit a Print
             </Link>
             <Link className="queue-btn-outline" href="/queue/dashboard">
-              TA Dashboard
+              Admin Dashboard
             </Link>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default async function QueueLandingPage() {
               </Link>
             </article>
             <article className="queue-directory-card">
-              <h3>TAs / Organizers</h3>
+              <h3>Admins / Organizers</h3>
               <p>
                 Log in to view the full queue, download files, and update
                 print status as jobs move through.
