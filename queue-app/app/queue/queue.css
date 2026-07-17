@@ -1,3 +1,19 @@
+/* ---------- Back link ---------- */
+.queue-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    color: var(--muted);
+    transition: color 120ms ease;
+}
+
+.queue-back-link:hover {
+    color: var(--accent);
+}
+
 /* ---------- Hero ---------- */
 .queue-hero {
     background: var(--panel);

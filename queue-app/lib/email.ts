@@ -7,7 +7,7 @@ function resendClient() {
   return new Resend(apiKey);
 }
 
-const FROM_ADDRESS = "FISH Print Queue <onboarding@resend.dev>";
+const FROM_ADDRESS = "FISH Print Queue <queue@mail.frugal-innovations.com>";
 
 const STATUS_LABEL: Record<PrintStatus, string> = {
   pending: "Pending",
@@ -24,12 +24,14 @@ export async function sendConfirmationEmail(params: {
   const resend = resendClient();
   if (!resend) return;
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM_ADDRESS,
     to: params.to,
     subject: `Print request received — ${params.teamName}`,
     text: `Hi ${params.teamName},\n\nWe received your print request for "${params.fileName}". You'll get another email when its status changes.\n\n— FISH at UVA Make-A-Thon`,
   });
+
+  if (error) console.error("sendConfirmationEmail failed:", error);
 }
 
 export async function sendStatusChangeEmail(params: {
@@ -41,10 +43,12 @@ export async function sendStatusChangeEmail(params: {
   const resend = resendClient();
   if (!resend) return;
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM_ADDRESS,
     to: params.to,
     subject: `Print update: ${params.fileName} — ${STATUS_LABEL[params.status]}`,
     text: `Hi ${params.teamName},\n\nYour print request for "${params.fileName}" is now: ${STATUS_LABEL[params.status]}.\n\n— FISH at UVA Make-A-Thon`,
   });
+
+  if (error) console.error("sendStatusChangeEmail failed:", error);
 }

@@ -15,7 +15,7 @@ still looks right without the Cloudflare layer in front of it.
 1. `npm install`
 2. Copy `.env.local.example` to `.env.local` and fill in:
    - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — from a Supabase project
-   - `DASHBOARD_PASSWORD` — the TA/organizer dashboard password
+   - `DASHBOARD_PASSWORD` — the admin dashboard password
    - `SESSION_SECRET` — any long random string (`openssl rand -base64 32`)
    - `RESEND_API_KEY` — from a Resend account (email notifications)
 3. Run `supabase/migration.sql` in that project's SQL editor (creates the

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { createUploadUrl, submitRequest } from "../actions";
 
@@ -73,6 +74,9 @@ export default function RequestPage() {
   return (
     <section className="queue-section">
       <div className="container queue-form-wrap">
+        <Link className="queue-back-link" href="/queue">
+          ← Back to Queue
+        </Link>
         <p className="queue-eyebrow">Submit a Print</p>
         <h1 className="title-lg">Get your file in the queue</h1>
 
@@ -165,7 +169,7 @@ export default function RequestPage() {
                   className="queue-textarea"
                   id="notes"
                   name="notes"
-                  placeholder="Infill, supports, orientation, anything the TAs should know..."
+                  placeholder="Infill, supports, orientation, anything the admins should know..."
                 />
               </div>
 

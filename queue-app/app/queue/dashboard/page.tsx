@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { hasValidSession } from "@/lib/session";
 import { listRequests } from "../actions";
 import LoginForm from "./LoginForm";
@@ -10,7 +11,10 @@ export default async function DashboardPage() {
     return (
       <section className="queue-section">
         <div className="container queue-login-wrap">
-          <p className="queue-eyebrow">TA Dashboard</p>
+          <Link className="queue-back-link" href="/queue">
+            ← Back to Queue
+          </Link>
+          <p className="queue-eyebrow">Admin Dashboard</p>
           <h1 className="title-lg">Log in</h1>
           <div className="queue-card">
             <LoginForm />

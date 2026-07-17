@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import type { PrintRequest, PrintStatus } from "@/lib/supabase";
 import { logout, updateStatus } from "../actions";
@@ -63,7 +64,10 @@ export default function DashboardView({
     <>
       <div className="queue-dashboard-header">
         <div>
-          <p className="queue-eyebrow">TA Dashboard</p>
+          <Link className="queue-back-link" href="/queue">
+            ← Back to Queue
+          </Link>
+          <p className="queue-eyebrow">Admin Dashboard</p>
           <h1 className="title-lg">Print Queue</h1>
         </div>
         <form className="queue-logout-form" action={logout}>
