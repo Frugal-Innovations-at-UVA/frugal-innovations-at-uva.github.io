@@ -2,14 +2,14 @@
 // deployment, leaving every other path to fall through to GitHub Pages.
 //
 // Setup: Cloudflare dashboard -> Workers & Pages -> Create Worker, paste this
-// in, deploy, then add a Route on the frugal-innovations.com zone:
-//   Route:  frugal-innovations.com/queue*
-//   Worker: (this worker)
-//
-// Replace VERCEL_HOST below with the real deployment domain once it exists
-// (the production domain Vercel gives the project, e.g. queue-fish.vercel.app).
+// in, deploy, then add TWO Routes on the frugal-innovations.com zone, both
+// pointing at this worker:
+//   frugal-innovations.com/queue*
+//   frugal-innovations.com/_next/*   (Next.js's own JS/CSS bundles live here,
+//                                      not under /queue, so this is required
+//                                      too or the app won't hydrate/style)
 
-const VERCEL_HOST = "queue-fish.vercel.app";
+const VERCEL_HOST = "frugal-innovations-at-uva-github-io.vercel.app";
 
 const worker = {
   async fetch(request) {

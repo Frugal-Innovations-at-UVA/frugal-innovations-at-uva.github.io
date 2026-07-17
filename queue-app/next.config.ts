@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  // The Cloudflare Worker proxies frugal-innovations.com/queue* to this app's
+  // real Vercel host, so browsers send Origin: frugal-innovations.com on
+  // Server Action requests (login, status updates, etc.) while Vercel's own
+  // Host header stays the .vercel.app domain. Without this, Next's built-in
+  // CSRF check rejects those requests since Origin != Host.
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["frugal-innovations.com", "*.vercel.app"],
+    },
+  },
   // In production, Cloudflare only routes /queue* to this app — every other
   // path (/css, /js, /assets, /partials) already hits GitHub Pages directly,
   // so no rewrite is needed there. Locally there's no Cloudflare in front of
