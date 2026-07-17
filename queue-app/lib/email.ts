@@ -28,7 +28,7 @@ export async function sendConfirmationEmail(params: {
     from: FROM_ADDRESS,
     to: params.to,
     subject: `Print request received — ${params.teamName}`,
-    text: `Hi ${params.teamName},\n\nWe received your print request for "${params.fileName}". You'll get another email when its status changes.\n\n— FISH at UVA Make-A-Thon`,
+    text: `Hi ${params.teamName},\n\nWe received your print request for "${params.fileName}". You'll get another email when its status changes.\n\n— FISH at UVA Make-A-Thon Team`,
   });
 
   if (error) console.error("sendConfirmationEmail failed:", error);
