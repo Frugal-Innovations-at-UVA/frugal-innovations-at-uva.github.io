@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { createUploadUrl, submitRequest } from "../actions";
-import { formatDuration, parseGcodeMetadata } from "@/lib/gcode";
+import { formatDuration, parsePrintFileMetadata } from "@/lib/printFile";
 
 const MAX_FILE_SIZE = 300 * 1024 * 1024; // 300MB
-const HEADER_SCAN_BYTES = 8192;
 
 interface Detected {
   estimatedSeconds: number | null;
@@ -29,8 +28,8 @@ export default function RequestPage() {
 
     if (!file) return;
 
-    if (!file.name.toLowerCase().endsWith(".gcode")) {
-      setError("File must be a .gcode file.");
+    if (!file.name.toLowerCase().endsWith(".3mf")) {
+      setError("File must be the sliced .3mf export from Bambu Studio.");
       setSelectedFile(null);
       return;
     }
@@ -43,8 +42,7 @@ export default function RequestPage() {
 
     setParsing(true);
     try {
-      const headerText = await file.slice(0, HEADER_SCAN_BYTES).text();
-      setDetected(parseGcodeMetadata(headerText));
+      setDetected(await parsePrintFileMetadata(file));
     } finally {
       setParsing(false);
     }
@@ -58,7 +56,7 @@ export default function RequestPage() {
     const formData = new FormData(form);
 
     if (!selectedFile) {
-      setError("Please attach a .gcode print file.");
+      setError("Please attach a sliced .3mf print file.");
       return;
     }
 
@@ -70,7 +68,7 @@ export default function RequestPage() {
       const uploadRes = await fetch(signedUrl, {
         method: "PUT",
         body: selectedFile,
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/octet-stream" },
       });
 
       if (!uploadRes.ok) {
@@ -177,9 +175,9 @@ export default function RequestPage() {
               <div className="queue-field">
                 <label htmlFor="file">Print file</label>
                 <div className="queue-file-drop">
-                  <input id="file" name="file" type="file" accept=".gcode" onChange={handleFileChange} required />
+                  <input id="file" name="file" type="file" accept=".3mf" onChange={handleFileChange} required />
                   <p style={{ marginTop: 8 }}>
-                    <strong>.gcode only</strong> — 300MB max
+                    <strong>Sliced .3mf export</strong> — 300MB max
                   </p>
                 </div>
               </div>
