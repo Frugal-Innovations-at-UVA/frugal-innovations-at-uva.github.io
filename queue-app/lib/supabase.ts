@@ -2,21 +2,32 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 export const PRINT_FILES_BUCKET = "print-files";
 
-export type PrintStatus = "pending" | "printing" | "done" | "cancelled";
+export type PrintStatus =
+  | "queue"
+  | "printing"
+  | "completed"
+  | "rejected"
+  | "cancelled";
 
 export interface PrintRequest {
   id: string;
   created_at: string;
   updated_at: string | null;
+  print_number: number;
   team_name: string;
   requester_name: string;
+  computing_id: string;
+  group_number: string;
   email: string;
-  material: string;
-  color: string;
   notes: string | null;
+  admin_notes: string | null;
+  finished_notes: string | null;
   file_path: string;
   file_name: string;
   status: PrintStatus;
+  estimated_seconds: number | null;
+  estimated_weight_g: number | null;
+  printing_started_at: string | null;
 }
 
 // No generated Supabase types for this short-lived project — the schema is

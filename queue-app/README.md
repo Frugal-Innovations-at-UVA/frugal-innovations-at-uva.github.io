@@ -18,8 +18,10 @@ still looks right without the Cloudflare layer in front of it.
    - `DASHBOARD_PASSWORD` — the admin dashboard password
    - `SESSION_SECRET` — any long random string (`openssl rand -base64 32`)
    - `RESEND_API_KEY` — from a Resend account (email notifications)
-3. Run `supabase/migration.sql` in that project's SQL editor (creates the
-   `print_requests` table and the private `print-files` storage bucket).
+3. Run `supabase/migration.sql`, then `supabase/migration_002_redesign.sql`, in that
+   project's SQL editor, in that order (creates the `print_requests` table and the
+   private `print-files` storage bucket, then adds print numbers, admin notes, and
+   the Queue/Printing/Completed/Rejected/Cancelled status taxonomy).
 4. `npm run dev` — visit `http://localhost:3000/queue`.
 
 ## Deploying
@@ -28,3 +30,14 @@ Create a Vercel project from this repo with **Root Directory = `queue-app`**, ad
 env vars from step 2 above, deploy. Then update `VERCEL_HOST` in `cloudflare-worker.js` to the
 resulting production domain and add it as a Cloudflare Worker with a route for
 `frugal-innovations.com/queue*`.
+
+## Before the event
+
+`print_number` is a `bigserial` — it does **not** reset when rows are deleted, only on
+`TRUNCATE ... RESTART IDENTITY` or an explicit sequence reset. After all testing/dev work is
+done and before real students start submitting, run this once in Supabase's SQL editor so the
+first real submission is #1:
+
+```sql
+ALTER SEQUENCE print_requests_print_number_seq RESTART WITH 1;
+```

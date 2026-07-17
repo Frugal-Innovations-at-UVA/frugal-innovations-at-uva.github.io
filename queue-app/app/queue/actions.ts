@@ -18,6 +18,8 @@ import { sendConfirmationEmail, sendStatusChangeEmail } from "@/lib/email";
 
 export type LoginState = { error?: string } | undefined;
 
+const FINISHED_STATUSES: PrintStatus[] = ["completed", "rejected", "cancelled"];
+
 function safeEqual(a: string, b: string) {
   const bufA = Buffer.from(a);
   const bufB = Buffer.from(b);
@@ -69,38 +71,49 @@ export async function createUploadUrl(fileName: string) {
 export interface SubmitRequestInput {
   teamName: string;
   requesterName: string;
+  computingId: string;
+  groupNumber: string;
   email: string;
-  material: string;
-  color: string;
   notes: string;
   filePath: string;
   fileName: string;
+  estimatedSeconds: number | null;
+  estimatedWeightG: number | null;
 }
 
-export async function submitRequest(input: SubmitRequestInput) {
-  const { error } = await supabaseAdmin()
+export async function submitRequest(input: SubmitRequestInput): Promise<number> {
+  const { data, error } = await supabaseAdmin()
     .from("print_requests")
     .insert({
       team_name: input.teamName,
       requester_name: input.requesterName,
+      computing_id: input.computingId,
+      group_number: input.groupNumber,
       email: input.email,
-      material: input.material,
-      color: input.color,
       notes: input.notes || null,
       file_path: input.filePath,
       file_name: input.fileName,
-      status: "pending",
-    });
+      status: "queue",
+      estimated_seconds: input.estimatedSeconds,
+      estimated_weight_g: input.estimatedWeightG,
+    })
+    .select("print_number")
+    .single();
 
-  if (error) {
-    throw new Error(error.message);
+  if (error || !data) {
+    throw new Error(error?.message ?? "Could not submit request");
   }
+
+  const printNumber = (data as { print_number: number }).print_number;
 
   await sendConfirmationEmail({
     to: input.email,
     teamName: input.teamName,
     fileName: input.fileName,
+    printNumber,
   });
+
+  return printNumber;
 }
 
 export async function listRequests(): Promise<
@@ -132,12 +145,29 @@ export async function listRequests(): Promise<
   return withUrls;
 }
 
-export async function updateStatus(id: string, status: PrintStatus) {
+export async function updateStatus(
+  id: string,
+  status: PrintStatus,
+  finishedNotes?: string
+) {
   await requireSession();
+
+  const updates: Record<string, unknown> = {
+    status,
+    updated_at: new Date().toISOString(),
+  };
+
+  if (status === "printing") {
+    updates.printing_started_at = new Date().toISOString();
+  }
+
+  if (FINISHED_STATUSES.includes(status) && finishedNotes) {
+    updates.finished_notes = finishedNotes;
+  }
 
   const { data, error } = await supabaseAdmin()
     .from("print_requests")
-    .update({ status, updated_at: new Date().toISOString() })
+    .update(updates)
     .eq("id", id)
     .select()
     .single();
@@ -153,7 +183,44 @@ export async function updateStatus(id: string, status: PrintStatus) {
     teamName: row.team_name,
     fileName: row.file_name,
     status,
+    printNumber: row.print_number,
+    finishedNotes: FINISHED_STATUSES.includes(status) ? finishedNotes : undefined,
   });
 
   revalidatePath("/queue/dashboard");
+  revalidatePath("/queue");
+}
+
+export async function updateAdminNotes(id: string, notes: string) {
+  await requireSession();
+
+  const { error } = await supabaseAdmin()
+    .from("print_requests")
+    .update({ admin_notes: notes || null })
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/queue/dashboard");
+}
+
+export interface PublicBoardEntry {
+  print_number: number;
+  status: PrintStatus;
+}
+
+export async function getPublicBoard(): Promise<PublicBoardEntry[]> {
+  const { data, error } = await supabaseAdmin()
+    .from("print_requests")
+    .select("print_number, status")
+    .in("status", ["queue", "printing", "completed"])
+    .order("print_number", { ascending: true });
+
+  if (error || !data) {
+    return [];
+  }
+
+  return data as PublicBoardEntry[];
 }
