@@ -1,16 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { createUploadUrl, submitRequest } from "../actions";
+import { formatDuration, parseGcodeMetadata } from "@/lib/gcode";
 
-const MAX_FILE_SIZE = 200 * 1024 * 1024; // 200MB
-const ACCEPTED_EXTENSIONS = [".stl", ".3mf", ".obj"];
+const MAX_FILE_SIZE = 300 * 1024 * 1024; // 300MB
+const HEADER_SCAN_BYTES = 8192;
+
+interface Detected {
+  estimatedSeconds: number | null;
+  estimatedWeightG: number | null;
+}
 
 export default function RequestPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
+  const [printNumber, setPrintNumber] = useState<number | null>(null);
+  const [detected, setDetected] = useState<Detected | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [parsing, setParsing] = useState(false);
+
+  async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+    setSelectedFile(file);
+    setDetected(null);
+    setError(null);
+
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith(".gcode")) {
+      setError("File must be a .gcode file.");
+      setSelectedFile(null);
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      setError("File is too large (300MB max).");
+      setSelectedFile(null);
+      return;
+    }
+
+    setParsing(true);
+    try {
+      const headerText = await file.slice(0, HEADER_SCAN_BYTES).text();
+      setDetected(parseGcodeMetadata(headerText));
+    } finally {
+      setParsing(false);
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,52 +56,41 @@ export default function RequestPage() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const fileInput = form.elements.namedItem("file") as HTMLInputElement;
-    const file = fileInput?.files?.[0];
 
-    if (!file) {
-      setError("Please attach a print file.");
-      return;
-    }
-
-    const lowerName = file.name.toLowerCase();
-    if (!ACCEPTED_EXTENSIONS.some((ext) => lowerName.endsWith(ext))) {
-      setError("File must be .stl, .3mf, or .obj.");
-      return;
-    }
-
-    if (file.size > MAX_FILE_SIZE) {
-      setError("File is too large (200MB max).");
+    if (!selectedFile) {
+      setError("Please attach a .gcode print file.");
       return;
     }
 
     setSubmitting(true);
 
     try {
-      const { path, signedUrl } = await createUploadUrl(file.name);
+      const { path, signedUrl } = await createUploadUrl(selectedFile.name);
 
       const uploadRes = await fetch(signedUrl, {
         method: "PUT",
-        body: file,
-        headers: { "Content-Type": file.type || "application/octet-stream" },
+        body: selectedFile,
+        headers: { "Content-Type": "text/plain" },
       });
 
       if (!uploadRes.ok) {
         throw new Error("File upload failed. Please try again.");
       }
 
-      await submitRequest({
+      const number = await submitRequest({
         teamName: String(formData.get("teamName") ?? ""),
         requesterName: String(formData.get("requesterName") ?? ""),
+        computingId: String(formData.get("computingId") ?? ""),
+        groupNumber: String(formData.get("groupNumber") ?? ""),
         email: String(formData.get("email") ?? ""),
-        material: String(formData.get("material") ?? ""),
-        color: String(formData.get("color") ?? ""),
         notes: String(formData.get("notes") ?? ""),
         filePath: path,
-        fileName: file.name,
+        fileName: selectedFile.name,
+        estimatedSeconds: detected?.estimatedSeconds ?? null,
+        estimatedWeightG: detected?.estimatedWeightG ?? null,
       });
 
-      setDone(true);
+      setPrintNumber(number);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -81,9 +108,9 @@ export default function RequestPage() {
         <h1 className="title-lg">Get your file in the queue</h1>
 
         <div className="queue-card">
-          {done ? (
+          {printNumber !== null ? (
             <div className="queue-success">
-              <h2>Request received</h2>
+              <h2>You&apos;re print #{printNumber}</h2>
               <p>
                 We&apos;ve got your file. You&apos;ll get an email confirmation,
                 and another when your print status changes.
@@ -91,6 +118,27 @@ export default function RequestPage() {
             </div>
           ) : (
             <form className="queue-form" onSubmit={handleSubmit}>
+              <div className="queue-field-row">
+                <div className="queue-field">
+                  <label htmlFor="requesterName">Student full name</label>
+                  <input
+                    className="queue-input"
+                    id="requesterName"
+                    name="requesterName"
+                    required
+                  />
+                </div>
+                <div className="queue-field">
+                  <label htmlFor="computingId">Computing ID</label>
+                  <input
+                    className="queue-input"
+                    id="computingId"
+                    name="computingId"
+                    required
+                  />
+                </div>
+              </div>
+
               <div className="queue-field-row">
                 <div className="queue-field">
                   <label htmlFor="teamName">Team name</label>
@@ -102,11 +150,11 @@ export default function RequestPage() {
                   />
                 </div>
                 <div className="queue-field">
-                  <label htmlFor="requesterName">Your name</label>
+                  <label htmlFor="groupNumber">Group number</label>
                   <input
                     className="queue-input"
-                    id="requesterName"
-                    name="requesterName"
+                    id="groupNumber"
+                    name="groupNumber"
                     required
                   />
                 </div>
@@ -126,42 +174,39 @@ export default function RequestPage() {
                 </span>
               </div>
 
-              <div className="queue-field-row">
-                <div className="queue-field">
-                  <label htmlFor="material">Material</label>
-                  <select
-                    className="queue-select"
-                    id="material"
-                    name="material"
-                    required
-                    defaultValue="PLA"
-                  >
-                    <option value="PLA">PLA</option>
-                    <option value="PETG">PETG</option>
-                    <option value="TPU">TPU</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div className="queue-field">
-                  <label htmlFor="color">Color preference</label>
-                  <input
-                    className="queue-input"
-                    id="color"
-                    name="color"
-                    placeholder="Any / White / Black..."
-                  />
-                </div>
-              </div>
-
               <div className="queue-field">
                 <label htmlFor="file">Print file</label>
                 <div className="queue-file-drop">
-                  <input id="file" name="file" type="file" accept=".stl,.3mf,.obj" required />
+                  <input id="file" name="file" type="file" accept=".gcode" onChange={handleFileChange} required />
                   <p style={{ marginTop: 8 }}>
-                    <strong>.stl, .3mf, or .obj</strong> — 200MB max
+                    <strong>.gcode only</strong> — 300MB max
                   </p>
                 </div>
               </div>
+
+              {selectedFile && (
+                <div className="queue-detected-panel">
+                  <p className="queue-detected-panel__title">Detected from file</p>
+                  {parsing ? (
+                    <p className="queue-hint">Reading file…</p>
+                  ) : (
+                    <div className="queue-detected-panel__grid">
+                      <div>
+                        <span>Estimated print time</span>
+                        {detected?.estimatedSeconds != null
+                          ? formatDuration(detected.estimatedSeconds)
+                          : "Not detected — an admin will check manually"}
+                      </div>
+                      <div>
+                        <span>Estimated filament weight</span>
+                        {detected?.estimatedWeightG != null
+                          ? `${detected.estimatedWeightG.toFixed(1)}g`
+                          : "Not detected — an admin will check manually"}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               <div className="queue-field">
                 <label htmlFor="notes">Notes (optional)</label>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { supabaseAdmin } from "@/lib/supabase";
+import { getPublicBoard } from "./actions";
+import QueueBoard from "./QueueBoard";
 
 export const dynamic = "force-dynamic";
 
@@ -12,17 +14,17 @@ async function getStats() {
     if (error || !data) throw error;
 
     const teams = new Set(data.map((r) => r.team_name)).size;
-    const pending = data.filter((r) => r.status === "pending").length;
+    const queue = data.filter((r) => r.status === "queue").length;
     const printing = data.filter((r) => r.status === "printing").length;
 
-    return { total: data.length, teams, pending, printing };
+    return { total: data.length, teams, queue, printing };
   } catch {
-    return { total: 0, teams: 0, pending: 0, printing: 0 };
+    return { total: 0, teams: 0, queue: 0, printing: 0 };
   }
 }
 
 export default async function QueueLandingPage() {
-  const stats = await getStats();
+  const [stats, board] = await Promise.all([getStats(), getPublicBoard()]);
 
   return (
     <>
@@ -47,6 +49,19 @@ export default async function QueueLandingPage() {
 
       <section className="queue-section">
         <div className="container">
+          <p className="queue-eyebrow">Live Board</p>
+          <h2 className="title-lg">Queue status</h2>
+          <div className="queue-board-legend">
+            <span><i className="queue-board-dot queue-board-dot--queue" /> Queue</span>
+            <span><i className="queue-board-dot queue-board-dot--printing" /> Printing</span>
+            <span><i className="queue-board-dot queue-board-dot--completed" /> Done</span>
+          </div>
+          <QueueBoard initialEntries={board} />
+        </div>
+      </section>
+
+      <section className="queue-section queue-section--tint">
+        <div className="container">
           <p className="queue-eyebrow">Live Status</p>
           <h2 className="title-lg">Queue at a glance</h2>
           <div className="queue-stats-grid">
@@ -59,8 +74,8 @@ export default async function QueueLandingPage() {
               <div className="queue-stat-card__label">Teams</div>
             </div>
             <div className="queue-stat-card">
-              <div className="queue-stat-card__value">{stats.pending}</div>
-              <div className="queue-stat-card__label">Pending</div>
+              <div className="queue-stat-card__value">{stats.queue}</div>
+              <div className="queue-stat-card__label">In Queue</div>
             </div>
             <div className="queue-stat-card">
               <div className="queue-stat-card__value">{stats.printing}</div>
@@ -70,7 +85,7 @@ export default async function QueueLandingPage() {
         </div>
       </section>
 
-      <section className="queue-section queue-section--tint">
+      <section className="queue-section">
         <div className="container">
           <p className="queue-eyebrow">Get Started</p>
           <h2 className="title-lg">Choose your path</h2>
@@ -78,7 +93,7 @@ export default async function QueueLandingPage() {
             <article className="queue-directory-card">
               <h3>Students</h3>
               <p>
-                Submit your STL, 3MF, or OBJ file along with your team info,
+                Submit your sliced .gcode file along with your team info,
                 and we&apos;ll get it in the queue.
               </p>
               <Link className="btn primary" href="/queue/request">
