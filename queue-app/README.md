@@ -25,6 +25,26 @@ still looks right without the Cloudflare layer in front of it.
    status taxonomy, then adds printer assignment).
 4. `npm run dev` — visit `http://localhost:3000/queue`.
 
+## How to run locally
+
+This app is a **separate server** from the main static site — running one doesn't run the
+other, and they don't talk to each other locally (only in production, via the Cloudflare
+Worker). If you're used to running the main site with `python3 -m http.server 8000` from
+the repo root, note that server has no idea `/queue` exists — visiting
+`localhost:8000/queue` will just 404.
+
+To run the queue app:
+
+```
+cd queue-app
+npm run dev
+```
+
+Then visit **`http://localhost:3000/queue`** (not `:8000`, not `/queue` on the static
+site's port). If you also want the main static site running at the same time, that's a
+second terminal, second server, second port — both can run simultaneously, they just live
+on different ports (`8000` for the static site, `3000` for this app).
+
 ## Changing the printer list
 
 The dropdown admins use to assign a printer (and the "which printers are free" summary on
