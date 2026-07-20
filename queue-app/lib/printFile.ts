@@ -48,3 +48,13 @@ export function formatDuration(totalSeconds: number): string {
   if (hours === 0) return `${minutes}m`;
   return `${hours}h ${minutes}m`;
 }
+
+// Percent of estimated print time elapsed since startedAt, clamped 0-100.
+export function progressPercent(
+  startedAt: string,
+  estimatedSeconds: number,
+  now: number
+): number {
+  const elapsedMs = now - new Date(startedAt).getTime();
+  return Math.min(100, Math.max(0, (elapsedMs / (estimatedSeconds * 1000)) * 100));
+}

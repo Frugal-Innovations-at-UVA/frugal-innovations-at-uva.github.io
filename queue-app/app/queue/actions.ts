@@ -145,10 +145,15 @@ export async function listRequests(): Promise<
   return withUrls;
 }
 
+export interface UpdateStatusOptions {
+  finishedNotes?: string;
+  printer?: string;
+}
+
 export async function updateStatus(
   id: string,
   status: PrintStatus,
-  finishedNotes?: string
+  options?: UpdateStatusOptions
 ) {
   await requireSession();
 
@@ -159,10 +164,11 @@ export async function updateStatus(
 
   if (status === "printing") {
     updates.printing_started_at = new Date().toISOString();
+    if (options?.printer) updates.printer = options.printer;
   }
 
-  if (FINISHED_STATUSES.includes(status) && finishedNotes) {
-    updates.finished_notes = finishedNotes;
+  if (FINISHED_STATUSES.includes(status) && options?.finishedNotes) {
+    updates.finished_notes = options.finishedNotes;
   }
 
   const { data, error } = await supabaseAdmin()
@@ -184,8 +190,28 @@ export async function updateStatus(
     fileName: row.file_name,
     status,
     printNumber: row.print_number,
-    finishedNotes: FINISHED_STATUSES.includes(status) ? finishedNotes : undefined,
+    finishedNotes: FINISHED_STATUSES.includes(status) ? options?.finishedNotes : undefined,
   });
+
+  revalidatePath("/queue/dashboard");
+  revalidatePath("/queue");
+}
+
+export async function restartPrintTimer(id: string) {
+  await requireSession();
+
+  const { error } = await supabaseAdmin()
+    .from("print_requests")
+    .update({
+      printing_started_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .eq("status", "printing");
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   revalidatePath("/queue/dashboard");
   revalidatePath("/queue");
@@ -209,12 +235,14 @@ export async function updateAdminNotes(id: string, notes: string) {
 export interface PublicBoardEntry {
   print_number: number;
   status: PrintStatus;
+  printing_started_at: string | null;
+  estimated_seconds: number | null;
 }
 
 export async function getPublicBoard(): Promise<PublicBoardEntry[]> {
   const { data, error } = await supabaseAdmin()
     .from("print_requests")
-    .select("print_number, status")
+    .select("print_number, status, printing_started_at, estimated_seconds")
     .in("status", ["queue", "printing", "completed"])
     .order("print_number", { ascending: true });
 

@@ -503,16 +503,39 @@
 }
 
 .queue-board-chip {
-    display: inline-flex;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 56px;
-    height: 56px;
+    min-width: 72px;
+    height: 72px;
     padding: 0 14px;
     border-radius: 18px;
     font-weight: var(--fw-extrabold);
     font-size: 16px;
+    overflow: hidden;
     transition: transform 120ms ease;
+}
+
+.queue-board-chip__number {
+    position: relative;
+    z-index: 1;
+}
+
+.queue-board-chip__bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.queue-board-chip__bar-fill {
+    height: 100%;
+    background: #8a6d00;
+    transition: width 120ms linear;
 }
 
 .queue-board-chip--queue {
@@ -638,4 +661,66 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+/* ---------- Printing progress (dashboard card) ---------- */
+.queue-printing-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.queue-progress-bar {
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(8, 52, 78, 0.08);
+    overflow: hidden;
+}
+
+.queue-progress-bar__fill {
+    height: 100%;
+    background: var(--panel);
+    border-radius: 999px;
+    transition: width 120ms linear;
+}
+
+.queue-progress-bar__fill--overdue {
+    background: var(--accent);
+}
+
+/* ---------- Printer assignment ---------- */
+.queue-printer-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(8, 52, 78, 0.08);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+}
+
+.queue-printer-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.queue-printer-summary__item {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 13px;
+    font-weight: var(--fw-semibold);
+    color: var(--muted);
+}
+
+.queue-printer-summary__item.is-busy {
+    background: rgba(230, 89, 37, 0.10);
+    border-color: rgba(230, 89, 37, 0.3);
+    color: var(--accent);
 }

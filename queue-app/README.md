@@ -18,11 +18,18 @@ still looks right without the Cloudflare layer in front of it.
    - `DASHBOARD_PASSWORD` — the admin dashboard password
    - `SESSION_SECRET` — any long random string (`openssl rand -base64 32`)
    - `RESEND_API_KEY` — from a Resend account (email notifications)
-3. Run `supabase/migration.sql`, then `supabase/migration_002_redesign.sql`, in that
-   project's SQL editor, in that order (creates the `print_requests` table and the
-   private `print-files` storage bucket, then adds print numbers, admin notes, and
-   the Queue/Printing/Completed/Rejected/Cancelled status taxonomy).
+3. Run `supabase/migration.sql`, then `supabase/migration_002_redesign.sql`, then
+   `supabase/migration_003_printers.sql`, in that project's SQL editor, in that order
+   (creates the `print_requests` table and the private `print-files` storage bucket,
+   adds print numbers/admin notes/the Queue/Printing/Completed/Rejected/Cancelled
+   status taxonomy, then adds printer assignment).
 4. `npm run dev` — visit `http://localhost:3000/queue`.
+
+## Changing the printer list
+
+The dropdown admins use to assign a printer (and the "which printers are free" summary on
+the Printing tab) both read from a single list in `lib/printers.ts`. To add, rename, or
+remove a printer, edit the `PRINTERS` array there — nothing else in the app needs to change.
 
 ## Deploying
 

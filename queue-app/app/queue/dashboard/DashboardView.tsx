@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import type { PrintRequest, PrintStatus } from "@/lib/supabase";
-import { formatDuration } from "@/lib/printFile";
+import { formatDuration, progressPercent } from "@/lib/printFile";
+import { PRINTERS } from "@/lib/printers";
 import {
   listRequests,
   logout,
+  restartPrintTimer,
   updateAdminNotes,
   updateStatus,
+  type UpdateStatusOptions,
 } from "../actions";
 
 type Row = PrintRequest & { downloadUrl: string | null };
@@ -31,26 +34,28 @@ const FINISHED_SUBTABS: { key: FinishedSubTab; label: string }[] = [
   { key: "cancelled", label: "Canceled" },
 ];
 
+type PromptType = "none" | "printer" | "notes";
+
 interface StatusAction {
   label: string;
   status: PrintStatus;
-  needsNotes: boolean;
+  prompt: PromptType;
 }
 
 const NEXT_ACTIONS: Record<PrintStatus, StatusAction[]> = {
   queue: [
-    { label: "Start Printing", status: "printing", needsNotes: false },
-    { label: "Reject", status: "rejected", needsNotes: true },
-    { label: "Cancel", status: "cancelled", needsNotes: true },
+    { label: "Start Printing", status: "printing", prompt: "printer" },
+    { label: "Reject", status: "rejected", prompt: "notes" },
+    { label: "Cancel", status: "cancelled", prompt: "notes" },
   ],
   printing: [
-    { label: "Mark Completed", status: "completed", needsNotes: true },
-    { label: "Reject", status: "rejected", needsNotes: true },
-    { label: "Cancel", status: "cancelled", needsNotes: true },
+    { label: "Mark Completed", status: "completed", prompt: "notes" },
+    { label: "Reject", status: "rejected", prompt: "notes" },
+    { label: "Cancel", status: "cancelled", prompt: "notes" },
   ],
-  completed: [{ label: "Reopen", status: "queue", needsNotes: false }],
-  rejected: [{ label: "Reopen", status: "queue", needsNotes: false }],
-  cancelled: [{ label: "Reopen", status: "queue", needsNotes: false }],
+  completed: [{ label: "Reopen", status: "queue", prompt: "none" }],
+  rejected: [{ label: "Reopen", status: "queue", prompt: "none" }],
+  cancelled: [{ label: "Reopen", status: "queue", prompt: "none" }],
 };
 
 function formatDate(value: string) {
@@ -62,34 +67,62 @@ function formatDate(value: string) {
   });
 }
 
-function Countdown({
+// toLocaleString's output for the same timestamp can differ between the
+// server's Node runtime and the browser's own Intl implementation, even
+// with the same "undefined" locale — so this can only safely render after
+// mount, client-only, same reasoning as the printing-progress timers above.
+function SubmittedAt({ value }: { value: string }) {
+  const [formatted, setFormatted] = useState<string | null>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setFormatted(formatDate(value)), 0);
+    return () => clearTimeout(t);
+  }, [value]);
+
+  return <>{formatted ?? "…"}</>;
+}
+
+function PrintingProgress({
   startedAt,
   estimatedSeconds,
 }: {
   startedAt: string;
   estimatedSeconds: number;
 }) {
-  const [now, setNow] = useState(() => Date.now());
+  // Starts null so the server-rendered HTML and the client's first render
+  // match exactly (avoids a hydration mismatch from Date.now() differing
+  // between server render time and client hydration time).
+  const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
+    const initialTick = setTimeout(() => setNow(Date.now()), 0);
     const interval = setInterval(() => setNow(Date.now()), 30_000);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(initialTick);
+      clearInterval(interval);
+    };
   }, []);
 
-  const remainingMs = new Date(startedAt).getTime() + estimatedSeconds * 1000 - now;
+  if (now === null) return null;
 
-  if (remainingMs <= 0) {
-    return (
-      <span className="queue-countdown queue-countdown--overdue">
-        Overdue by {formatDuration(Math.round(-remainingMs / 1000))}
-      </span>
-    );
-  }
+  const remainingMs = new Date(startedAt).getTime() + estimatedSeconds * 1000 - now;
+  const percent = progressPercent(startedAt, estimatedSeconds, now);
+  const overdue = remainingMs <= 0;
 
   return (
-    <span className="queue-countdown">
-      ~{formatDuration(Math.round(remainingMs / 1000))} left
-    </span>
+    <div className="queue-printing-progress">
+      <span className={`queue-countdown${overdue ? " queue-countdown--overdue" : ""}`}>
+        {overdue
+          ? `Overdue by ${formatDuration(Math.round(-remainingMs / 1000))}`
+          : `~${formatDuration(Math.round(remainingMs / 1000))} left`}
+      </span>
+      <div className="queue-progress-bar">
+        <div
+          className={`queue-progress-bar__fill${overdue ? " queue-progress-bar__fill--overdue" : ""}`}
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -132,8 +165,10 @@ export default function DashboardView({
   const [pendingAction, setPendingAction] = useState<{
     id: string;
     status: PrintStatus;
+    prompt: PromptType;
   } | null>(null);
   const [notesDraft, setNotesDraft] = useState("");
+  const [printerDraft, setPrinterDraft] = useState(PRINTERS[0]);
   const [isPending, startTransition] = useTransition();
 
   const tabFiltered = useMemo(() => {
@@ -165,6 +200,14 @@ export default function DashboardView({
     [requests]
   );
 
+  const printerAvailability = useMemo(() => {
+    const busy = new Map<string, number>();
+    for (const r of requests) {
+      if (r.status === "printing" && r.printer) busy.set(r.printer, r.print_number);
+    }
+    return PRINTERS.map((name) => ({ name, printNumber: busy.get(name) ?? null }));
+  }, [requests]);
+
   async function handleRefresh() {
     setRefreshing(true);
     try {
@@ -176,15 +219,16 @@ export default function DashboardView({
   }
 
   function handleActionClick(id: string, action: StatusAction) {
-    if (action.needsNotes) {
-      setPendingAction({ id, status: action.status });
-      setNotesDraft("");
+    if (action.prompt === "none") {
+      applyStatusChange(id, action.status);
       return;
     }
-    applyStatusChange(id, action.status);
+    setPendingAction({ id, status: action.status, prompt: action.prompt });
+    setNotesDraft("");
+    setPrinterDraft(PRINTERS[0]);
   }
 
-  function applyStatusChange(id: string, status: PrintStatus, finishedNotes?: string) {
+  function applyStatusChange(id: string, status: PrintStatus, options?: UpdateStatusOptions) {
     setRequests((prev) =>
       prev.map((r) => {
         if (r.id !== id) return r;
@@ -193,16 +237,27 @@ export default function DashboardView({
           status,
           printing_started_at:
             status === "printing" ? new Date().toISOString() : r.printing_started_at,
+          printer: status === "printing" && options?.printer ? options.printer : r.printer,
           finished_notes:
-            FINISHED_STATUSES.includes(status) && finishedNotes
-              ? finishedNotes
+            FINISHED_STATUSES.includes(status) && options?.finishedNotes
+              ? options.finishedNotes
               : r.finished_notes,
         };
       })
     );
     setPendingAction(null);
     startTransition(async () => {
-      await updateStatus(id, status, finishedNotes);
+      await updateStatus(id, status, options);
+    });
+  }
+
+  function handleRestartTimer(id: string) {
+    const now = new Date().toISOString();
+    setRequests((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, printing_started_at: now } : r))
+    );
+    startTransition(async () => {
+      await restartPrintTimer(id);
     });
   }
 
@@ -269,6 +324,19 @@ export default function DashboardView({
         </div>
       )}
 
+      {mainTab === "printing" && (
+        <div className="queue-printer-summary">
+          {printerAvailability.map((p) => (
+            <span
+              key={p.name}
+              className={`queue-printer-summary__item${p.printNumber ? " is-busy" : ""}`}
+            >
+              {p.name}: {p.printNumber ? `Busy — #${p.printNumber}` : "Free"}
+            </span>
+          ))}
+        </div>
+      )}
+
       {filtered.length === 0 ? (
         <p className="queue-empty">No requests in this view.</p>
       ) : (
@@ -281,18 +349,22 @@ export default function DashboardView({
                 <span className={`queue-status-badge queue-status-badge--${row.status}`}>
                   {row.status}
                 </span>
+                {row.printer && (
+                  <span className="queue-printer-badge">{row.printer}</span>
+                )}
                 {row.status === "queue" && row.estimated_seconds != null && (
                   <span className="queue-countdown">
                     Est. {formatDuration(row.estimated_seconds)}
                   </span>
                 )}
-                {row.status === "printing" && row.printing_started_at && row.estimated_seconds != null && (
-                  <Countdown
-                    startedAt={row.printing_started_at}
-                    estimatedSeconds={row.estimated_seconds}
-                  />
-                )}
               </div>
+
+              {row.status === "printing" && row.printing_started_at && row.estimated_seconds != null && (
+                <PrintingProgress
+                  startedAt={row.printing_started_at}
+                  estimatedSeconds={row.estimated_seconds}
+                />
+              )}
 
               <div className="queue-request-card__meta">
                 <div>
@@ -313,7 +385,7 @@ export default function DashboardView({
                 </div>
                 <div>
                   <span>Submitted</span>
-                  {formatDate(row.created_at)}
+                  <SubmittedAt value={row.created_at} />
                 </div>
                 {row.estimated_weight_g != null && (
                   <div>
@@ -337,19 +409,37 @@ export default function DashboardView({
 
               {pendingAction?.id === row.id ? (
                 <div className="queue-finish-prompt">
-                  <textarea
-                    className="queue-textarea"
-                    placeholder="Optional note to include in the email to the student..."
-                    value={notesDraft}
-                    onChange={(e) => setNotesDraft(e.target.value)}
-                  />
+                  {pendingAction.prompt === "printer" ? (
+                    <select
+                      className="queue-select"
+                      value={printerDraft}
+                      onChange={(e) => setPrinterDraft(e.target.value)}
+                    >
+                      {PRINTERS.map((name) => (
+                        <option key={name} value={name}>
+                          {name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <textarea
+                      className="queue-textarea"
+                      placeholder="Optional note to include in the email to the student..."
+                      value={notesDraft}
+                      onChange={(e) => setNotesDraft(e.target.value)}
+                    />
+                  )}
                   <div className="queue-request-card__actions">
                     <button
                       type="button"
                       className="queue-btn-accent"
                       disabled={isPending}
                       onClick={() =>
-                        applyStatusChange(row.id, pendingAction.status, notesDraft || undefined)
+                        applyStatusChange(row.id, pendingAction.status, {
+                          printer: pendingAction.prompt === "printer" ? printerDraft : undefined,
+                          finishedNotes:
+                            pendingAction.prompt === "notes" ? notesDraft || undefined : undefined,
+                        })
                       }
                     >
                       Confirm {pendingAction.status}
@@ -374,6 +464,16 @@ export default function DashboardView({
                     >
                       Download {row.file_name}
                     </a>
+                  )}
+                  {row.status === "printing" && (
+                    <button
+                      type="button"
+                      className="queue-btn-light"
+                      disabled={isPending}
+                      onClick={() => handleRestartTimer(row.id)}
+                    >
+                      Restart Timer
+                    </button>
                   )}
                   {NEXT_ACTIONS[row.status].map((action) => (
                     <button

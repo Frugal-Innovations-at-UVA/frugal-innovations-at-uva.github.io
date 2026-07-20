@@ -28,6 +28,7 @@ export interface PrintRequest {
   estimated_seconds: number | null;
   estimated_weight_g: number | null;
   printing_started_at: string | null;
+  printer: string | null;
 }
 
 // No generated Supabase types for this short-lived project — the schema is
