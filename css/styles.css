@@ -118,7 +118,9 @@ strong{ font-weight: var(--fw-extrabold); }
 }
 
 /* ---------- Buttons ---------- */
-.btn{
+.btn,
+.btn.primary,
+.btn.accent{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -127,9 +129,15 @@ strong{ font-weight: var(--fw-extrabold); }
     font-weight: var(--fw-bold);
     border: 1px solid transparent;
 }
+
 .btn.primary{
     background: var(--panel);
     color: var(--surface);
+}
+.btn.accent{
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
 }
 
 .btn:hover{
