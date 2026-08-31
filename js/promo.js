@@ -18,14 +18,16 @@ function initPromoBanner() {
 
     const announcements = [
         /* fill in with new events later
+        */
         {
-            text: "RSVP to FISH Showcase!",
+            text: "Register for our Make-a-Thon!",
             links: [
-                { label: "More Details", href: "/events/#new-events" },
-                { label: "RSVP", href: "https://www.eventbrite.com/e/fish-showcase-tickets-1986843013939" }
+                { label: "More Details", href: "/make-a-thon" },
+                { label: "Register", href: "https://forms.cloud.microsoft/pages/responsepage.aspx?id=x4A0ewc3c0iLd-IWczplrJbVbQU68PFPvOilFwfzg5hUNUNTM1hEVElZOVpaWU1XWUE5SDdQRjQxWi4u&origin=QRCode&route=shorturl" },
+                { label: "Join the Listserv", href: "https://lists.virginia.edu/sympa/subscribe/medical-device-makeathon?previous_action=info"}
             ]
         }
-        */
+        
     ];
 
     if (!announcements.length) return;
