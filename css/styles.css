@@ -329,7 +329,7 @@ body.has-promo .promo-banner{
     min-width: 0;
     flex: 1;
 
-    font-size: 15px;
+    font-size: 20px;
     line-height: 1.35;
     font-weight: var(--fw-semibold);
     color: rgba(255,255,255,0.96);
