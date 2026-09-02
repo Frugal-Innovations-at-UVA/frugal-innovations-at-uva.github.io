@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Newsletter | FISH at UVA</title>
+    <meta name="description" content="Read a past issue of the FISH at UVA newsletter." />
+    <meta property="og:site_name" content="FISH at UVA" />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" type="image/png" href="/assets/brand/fish-main.png" />
+</head>
+
+<body>
+<div data-include="/partials/site-header.html"></div>
+
+<main class="page">
+    <section class="nl-post-hero">
+        <div class="container nl-post-hero__inner">
+            <a class="nl-back" href="/newsletter/">← All issues</a>
+            <h1 class="nl-post-title" data-nl-title>Loading…</h1>
+            <p class="nl-post-meta" data-nl-meta></p>
+
+            <div class="nl-post-actions" data-nl-actions hidden>
+                <a class="nl-btn nl-btn--accent" data-nl-download target="_blank" rel="noopener noreferrer">
+                    Download PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <article class="nl-viewer">
+        <div class="container">
+            <div class="nl-doc" data-nl-doc>
+                <p class="nl-doc__status" data-nl-status>Loading newsletter…</p>
+            </div>
+
+            <div class="nl-links" data-nl-links hidden>
+                <h2 class="nl-links__heading">Links from this issue</h2>
+                <ul class="nl-links__list" data-nl-links-list></ul>
+            </div>
+        </div>
+    </article>
+</main>
+
+<div data-include="/partials/contact-strip.html"></div>
+<div data-include="/partials/site-footer.html"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="/js/nav.js" defer></script>
+<script src="/js/promo.js" defer></script>
+<script src="/js/includes.js" defer></script>
+<script src="/js/newsletter-view.js" defer></script>
+</body>
+</html>
