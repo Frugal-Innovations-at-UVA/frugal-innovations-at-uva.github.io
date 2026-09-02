@@ -127,7 +127,7 @@ strong{ font-weight: var(--fw-extrabold); }
     padding: 12px 22px;
     border-radius: 999px;
     font-weight: var(--fw-bold);
-    border: 1px solid transparent;
+    border: 3px solid transparent;
 }
 
 .btn.primary{
@@ -140,8 +140,28 @@ strong{ font-weight: var(--fw-extrabold); }
     border: 1px solid var(--accent);
 }
 
+
+
 .btn:hover{
     transform: translateY(-1px);
+}
+
+.btn + .btn {
+  margin-left: 16px; 
+}
+
+/* --- Add this Media Query for Mobile --- */
+@media (max-width: 700px) {
+  .btn {
+    display: flex;       /* Forces the inline buttons to act as block-level blocks */
+    width: 100%;         /* Optional: Makes buttons span the full width of the mobile screen */
+    text-align: center;  /* Centers the text inside the button */
+  }
+
+  .btn + .btn {
+    margin-left: 0;      /* Removes the horizontal gap on mobile */
+    margin-top: 12px;    /* Adds vertical spacing so they don't touch */
+  }
 }
 
 /* =========================================================

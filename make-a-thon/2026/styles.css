@@ -1,0 +1,428 @@
+/* =========================================================
+   MAKE-A-THON 2026 EDITION PAGE
+   Scoped to `.m26` (the <main> on /make-a-thon/2026/) so nothing
+   here affects the main /make-a-thon/ page or its `.makeathon-*`
+   classes. Customize this file freely.
+
+   Loaded AFTER /css/styles.css, so these rules win by specificity
+   (`.m26 .makeathon-hero` beats `.makeathon-hero`). Global tokens
+   (var(--accent) etc.), `.container`, `.btn`, and `.title-lg` still
+   come from /css/styles.css.
+   ========================================================= */
+
+.m26 {
+    background: var(--bg);
+}
+
+/* ---------- Section shells ---------- */
+
+.m26 .makeathon-section {
+    padding: clamp(64px, 8vw, 108px) 0;
+}
+
+.m26 .makeathon-section--tint {
+    background: rgba(8, 52, 78, 0.04);
+}
+
+.m26 .makeathon-section--dark {
+    background: var(--panel);
+    color: #fff;
+}
+
+.m26 .title-lg--light {
+    color: #fff;
+}
+
+/* ---------- Eyebrow / kicker ---------- */
+
+.m26 .makeathon-eyebrow {
+    margin: 0 0 12px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.m26 .makeathon-eyebrow--light {
+    color: rgba(255, 255, 255, 0.76);
+}
+
+/* ---------- Buttons ---------- */
+
+.m26 .makeathon-btn-accent,
+.m26 .makeathon-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: var(--fw-bold);
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.m26 .makeathon-btn-accent:hover {
+    transform: translateY(-1px);
+}
+
+.m26 .makeathon-btn-outline:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.m26 .makeathon-btn-accent {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+}
+
+.m26 .makeathon-btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+}
+
+/* ---------- Hero ---------- */
+
+.m26 .makeathon-hero {
+    background: var(--panel);
+    color: #fff;
+    text-align: center;
+    padding: clamp(40px, 40px, 40px) 0;
+}
+
+.m26 .makeathon-hero__inner {
+    /* override .container's width:min(--max,…) so the title fits on one line */
+    max-width: 1520px;
+    width: min(1520px, 100% - 2 * var(--pad));
+}
+
+.m26 .makeathon-hero__logo {
+    display: block;
+    width: auto;
+    max-width: 380px;
+    max-height: 380px;
+    margin: 0 auto 26px;
+    object-fit: contain;
+}
+
+.m26 .makeathon-hero__title {
+    margin: 0;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1.02;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+.m26 .makeathon-hero__subtitle {
+    margin: 16px auto 0;
+    max-width: 760px;
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.m26 .makeathon-hero__meta {
+    margin: 18px auto 0;
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.m26 .makeathon-hero__actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+}
+
+/* ---------- Quick facts bar ---------- */
+
+.m26 .makeathon-facts {
+    background: var(--accent);
+    color: #fff;
+}
+
+.m26 .makeathon-facts__row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 18px 0;
+    font-weight: var(--fw-extrabold);
+    text-align: center;
+}
+
+.m26 .makeathon-facts__row span:not(:last-child)::after {
+    content: "|";
+    margin-left: 18px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Overview split ---------- */
+
+.m26 .makeathon-overview {
+    padding: clamp(64px, 8vw, 108px) 0;
+}
+
+.m26 .makeathon-overview__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+}
+
+.m26 .makeathon-overview__copy p {
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+.m26 .makeathon-overview__copy p + p {
+    margin-top: 18px;
+}
+
+.m26 .makeathon-overview__media img {
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10);
+    object-fit: cover;
+}
+
+.m26 .makeathon-callout {
+    margin-top: 24px;
+    padding: 18px 20px;
+    background: rgba(8, 52, 78, 0.05);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 14px 14px 0;
+    color: var(--text);
+    font-weight: var(--fw-bold);
+    line-height: 1.6;
+}
+
+/* ---------- Problem statement ---------- */
+
+.m26 .makeathon-problem {
+    margin-top: 24px;
+    max-width: 900px;
+    padding: 32px 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 18px 18px 0;
+    box-shadow: 0 12px 28px rgba(8, 52, 78, 0.06);
+}
+
+.m26 .makeathon-problem__status {
+    margin: 0 0 10px;
+    font-size: 22px;
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+}
+
+.m26 .makeathon-problem__note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+/* ---------- People grid (keynotes / mentors / judges) ---------- */
+
+.m26 .makeathon-people {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.m26 .makeathon-person {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px 22px;
+    box-shadow: 0 12px 28px rgba(8, 52, 78, 0.06);
+}
+
+.m26 .makeathon-person__photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.m26 .makeathon-person__name {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+}
+
+.m26 .makeathon-person__role {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.m26 .makeathon-person__bio {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.m26 .makeathon-person--tba {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background: rgba(8, 52, 78, 0.04);
+    border-style: dashed;
+    box-shadow: none;
+}
+
+/* ---------- Inline split (schedule) ---------- */
+
+.m26 .makeathon-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+}
+
+.m26 .makeathon-inline__copy p {
+    color: rgba(255, 255, 255, 0.86);
+    line-height: 1.75;
+    font-size: 18px;
+}
+
+.m26 .makeathon-inline__media img {
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Partners ---------- */
+
+.m26 .makeathon-partners {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+}
+
+.m26 .makeathon-partner {
+    min-height: 240px;
+    padding: 34px 28px 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.m26 .makeathon-partner__logo-wrap {
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.m26 .makeathon-partner__logo {
+    max-width: min(280px, 85%);
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.m26 .makeathon-partner__name {
+    margin: auto 0 0;
+    font-size: 18px;
+    font-weight: var(--fw-extrabold);
+    color: #fff;
+}
+
+/* ---------- CTA band ---------- */
+
+.m26 .makeathon-cta {
+    background: var(--accent);
+    color: #fff;
+    padding: clamp(54px, 7vw, 84px) 0;
+    text-align: center;
+}
+
+.m26 .makeathon-cta__title {
+    margin: 0;
+    font-size: clamp(34px, 4vw, 58px);
+    line-height: 1.08;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.02em;
+}
+
+.m26 .makeathon-cta__actions {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1460px) {
+    .m26 .makeathon-hero__inner {
+        width: min(var(--max), 100% - 2 * var(--pad));
+    }
+
+    .m26 .makeathon-hero__title {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 1100px) {
+    .m26 .makeathon-people {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .m26 .makeathon-overview__grid,
+    .m26 .makeathon-inline {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .m26 .makeathon-partners,
+    .m26 .makeathon-people {
+        grid-template-columns: 1fr;
+    }
+
+    .m26 .makeathon-facts__row {
+        gap: 10px;
+    }
+
+    .m26 .makeathon-facts__row span:not(:last-child)::after {
+        display: none;
+    }
+
+    .m26 .makeathon-hero__actions,
+    .m26 .makeathon-cta__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
