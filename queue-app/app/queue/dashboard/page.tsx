@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { hasValidSession } from "@/lib/session";
-import { listRequests } from "../actions";
+import { getSession } from "@/lib/session";
+import { listLocations, listPrinters, listRequests } from "../actions";
 import LoginForm from "./LoginForm";
 import DashboardView from "./DashboardView";
 
 export default async function DashboardPage() {
-  const authed = await hasValidSession();
+  const session = await getSession();
 
-  if (!authed) {
+  if (!session) {
     return (
       <section className="queue-section">
         <div className="container queue-login-wrap">
@@ -24,12 +24,21 @@ export default async function DashboardPage() {
     );
   }
 
-  const requests = await listRequests();
+  const [requests, locations, printers] = await Promise.all([
+    listRequests(),
+    listLocations(),
+    listPrinters(),
+  ]);
 
   return (
     <section className="queue-section">
       <div className="container">
-        <DashboardView initialRequests={requests} />
+        <DashboardView
+          initialRequests={requests}
+          initialLocations={locations}
+          initialPrinters={printers}
+          initialAdminName={session.name}
+        />
       </div>
     </section>
   );

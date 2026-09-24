@@ -15,12 +15,14 @@
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "resend": "^6.17.2"
+    "resend": "^6.17.2",
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.170.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "typescript": "^5"
