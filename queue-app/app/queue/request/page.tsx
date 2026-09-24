@@ -3,40 +3,36 @@
 import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { createUploadUrl, submitRequest } from "../actions";
-import { formatDuration, parsePrintFileMetadata } from "@/lib/printFile";
+import { extractThumbnail, formatDuration, parsePrintFileMetadata, type PrintFileMetadata } from "@/lib/printFile";
 
 const MAX_FILE_SIZE = 300 * 1024 * 1024; // 300MB
-
-interface Detected {
-  estimatedSeconds: number | null;
-  estimatedWeightG: number | null;
-}
 
 export default function RequestPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [printNumber, setPrintNumber] = useState<number | null>(null);
-  const [detected, setDetected] = useState<Detected | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [detected, setDetected] = useState<PrintFileMetadata | null>(null);
+  const [slicedFile, setSlicedFile] = useState<File | null>(null);
+  const [originalFile, setOriginalFile] = useState<File | null>(null);
   const [parsing, setParsing] = useState(false);
 
-  async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+  async function handleSlicedFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0] ?? null;
-    setSelectedFile(file);
+    setSlicedFile(file);
     setDetected(null);
     setError(null);
 
     if (!file) return;
 
     if (!file.name.toLowerCase().endsWith(".3mf")) {
-      setError("File must be the sliced .3mf export from Bambu Studio.");
-      setSelectedFile(null);
+      setError("Sliced print file must be the .3mf export from Bambu Studio.");
+      setSlicedFile(null);
       return;
     }
 
     if (file.size > MAX_FILE_SIZE) {
       setError("File is too large (300MB max).");
-      setSelectedFile(null);
+      setSlicedFile(null);
       return;
     }
 
@@ -48,6 +44,31 @@ export default function RequestPage() {
     }
   }
 
+  function handleOriginalFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+    setError(null);
+
+    if (!file) {
+      setOriginalFile(null);
+      return;
+    }
+
+    const lower = file.name.toLowerCase();
+    if (!lower.endsWith(".stl") && !lower.endsWith(".3mf")) {
+      setError("Original design file must be a .stl or .3mf file.");
+      setOriginalFile(null);
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      setError("File is too large (300MB max).");
+      setOriginalFile(null);
+      return;
+    }
+
+    setOriginalFile(file);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
@@ -55,37 +76,83 @@ export default function RequestPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    if (!selectedFile) {
-      setError("Please attach a sliced .3mf print file.");
+    if (!slicedFile) {
+      setError("Please attach the sliced .3mf print file.");
       return;
     }
+    if (!originalFile) {
+      setError("Please attach your original design file (.stl or .3mf).");
+      return;
+    }
+
+    const teamNumberRaw = String(formData.get("teamNumber") ?? "").trim();
+    const teamNumber = teamNumberRaw ? parseInt(teamNumberRaw, 10) : null;
 
     setSubmitting(true);
 
     try {
-      const { path, signedUrl } = await createUploadUrl(selectedFile.name);
+      const [slicedUpload, originalUpload] = await Promise.all([
+        createUploadUrl(slicedFile.name),
+        createUploadUrl(originalFile.name),
+      ]);
 
-      const uploadRes = await fetch(signedUrl, {
-        method: "PUT",
-        body: selectedFile,
-        headers: { "Content-Type": "application/octet-stream" },
-      });
+      const [slicedUploadRes, originalUploadRes] = await Promise.all([
+        fetch(slicedUpload.signedUrl, {
+          method: "PUT",
+          body: slicedFile,
+          headers: { "Content-Type": "application/octet-stream" },
+        }),
+        fetch(originalUpload.signedUrl, {
+          method: "PUT",
+          body: originalFile,
+          headers: { "Content-Type": "application/octet-stream" },
+        }),
+      ]);
 
-      if (!uploadRes.ok) {
+      if (!slicedUploadRes.ok || !originalUploadRes.ok) {
         throw new Error("File upload failed. Please try again.");
       }
 
+      let previewThumbnailPath: string | null = null;
+      const thumbnail = await extractThumbnail(slicedFile);
+      if (thumbnail) {
+        const thumbUpload = await createUploadUrl(`preview.${thumbnail.ext}`);
+        const thumbUploadRes = await fetch(thumbUpload.signedUrl, {
+          method: "PUT",
+          body: thumbnail.blob,
+          headers: { "Content-Type": `image/${thumbnail.ext}` },
+        });
+        if (thumbUploadRes.ok) previewThumbnailPath = thumbUpload.path;
+      }
+
+      const sliceMetadata = detected
+        ? {
+            bedType: detected.bedType,
+            filamentType: detected.filamentType,
+            nozzleDiameterMm: detected.nozzleDiameterMm,
+            infillDensityPercent: detected.infillDensityPercent,
+            infillPattern: detected.infillPattern,
+            supportType: detected.supportType,
+            printerModel: detected.printerModel,
+          }
+        : null;
+
       const number = await submitRequest({
         teamName: String(formData.get("teamName") ?? ""),
+        teamNumber: teamNumber != null && Number.isFinite(teamNumber) ? teamNumber : null,
         requesterName: String(formData.get("requesterName") ?? ""),
         computingId: String(formData.get("computingId") ?? ""),
         groupNumber: String(formData.get("groupNumber") ?? ""),
         email: String(formData.get("email") ?? ""),
         notes: String(formData.get("notes") ?? ""),
-        filePath: path,
-        fileName: selectedFile.name,
+        filePath: slicedUpload.path,
+        fileName: slicedFile.name,
+        originalFilePath: originalUpload.path,
+        originalFileName: originalFile.name,
+        previewThumbnailPath,
         estimatedSeconds: detected?.estimatedSeconds ?? null,
         estimatedWeightG: detected?.estimatedWeightG ?? null,
+        sliceMetadata,
       });
 
       setPrintNumber(number);
@@ -110,7 +177,7 @@ export default function RequestPage() {
             <div className="queue-success">
               <h2>You&apos;re print #{printNumber}</h2>
               <p>
-                We&apos;ve got your file. You&apos;ll get an email confirmation,
+                We&apos;ve got your files. You&apos;ll get an email confirmation,
                 and another when your print status changes.
               </p>
             </div>
@@ -148,14 +215,29 @@ export default function RequestPage() {
                   />
                 </div>
                 <div className="queue-field">
-                  <label htmlFor="groupNumber">Group number</label>
+                  <label htmlFor="teamNumber">Team number</label>
                   <input
                     className="queue-input"
-                    id="groupNumber"
-                    name="groupNumber"
+                    id="teamNumber"
+                    name="teamNumber"
+                    type="number"
+                    min={1}
                     required
                   />
+                  <span className="queue-hint">
+                    Used to route your print to the right farm — ask your organizer if you&apos;re unsure.
+                  </span>
                 </div>
+              </div>
+
+              <div className="queue-field">
+                <label htmlFor="groupNumber">Group number</label>
+                <input
+                  className="queue-input"
+                  id="groupNumber"
+                  name="groupNumber"
+                  required
+                />
               </div>
 
               <div className="queue-field">
@@ -173,16 +255,40 @@ export default function RequestPage() {
               </div>
 
               <div className="queue-field">
-                <label htmlFor="file">Print file</label>
+                <label htmlFor="originalFile">Original design file</label>
                 <div className="queue-file-drop">
-                  <input id="file" name="file" type="file" accept=".3mf" onChange={handleFileChange} required />
+                  <input
+                    id="originalFile"
+                    name="originalFile"
+                    type="file"
+                    accept=".stl,.3mf"
+                    onChange={handleOriginalFileChange}
+                    required
+                  />
                   <p style={{ marginTop: 8 }}>
-                    <strong>Sliced .3mf export</strong> — 300MB max
+                    <strong>Unsliced .stl or .3mf</strong> — your original CAD export, 300MB max
                   </p>
                 </div>
               </div>
 
-              {selectedFile && (
+              <div className="queue-field">
+                <label htmlFor="slicedFile">Sliced print file</label>
+                <div className="queue-file-drop">
+                  <input
+                    id="slicedFile"
+                    name="slicedFile"
+                    type="file"
+                    accept=".3mf"
+                    onChange={handleSlicedFileChange}
+                    required
+                  />
+                  <p style={{ marginTop: 8 }}>
+                    <strong>Sliced .3mf export</strong> from Bambu Studio — 300MB max
+                  </p>
+                </div>
+              </div>
+
+              {slicedFile && (
                 <div className="queue-detected-panel">
                   <p className="queue-detected-panel__title">Detected from file</p>
                   {parsing ? (

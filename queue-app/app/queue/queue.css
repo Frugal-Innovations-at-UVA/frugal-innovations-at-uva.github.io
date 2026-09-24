@@ -724,3 +724,516 @@
     border-color: rgba(230, 89, 37, 0.3);
     color: var(--accent);
 }
+
+/* ---------- Location switcher ---------- */
+.queue-location-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* ---------- Printer grid (read-only: dashboard cards, picker modal) ---------- */
+.queue-printer-grid {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(8, 52, 78, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    max-height: 360px;
+    overflow: auto;
+}
+
+.queue-printer-square {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 64px;
+    min-height: 64px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 120ms ease, border-color 120ms ease;
+}
+
+.queue-printer-square:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.queue-printer-square:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+.queue-printer-square--ready {
+    background: rgba(34, 139, 34, 0.14);
+    color: #1e7a34;
+}
+
+.queue-printer-square--printing {
+    background: rgba(230, 184, 0, 0.2);
+    color: #8a6d00;
+}
+
+.queue-printer-square--offline {
+    background: rgba(8, 52, 78, 0.08);
+    color: var(--muted2);
+}
+
+.queue-printer-square.is-selected {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(230, 89, 37, 0.2);
+}
+
+.queue-printer-square.is-dragging {
+    cursor: grabbing;
+    opacity: 0.85;
+    z-index: 2;
+    box-shadow: 0 8px 18px rgba(8, 52, 78, 0.18);
+}
+
+.queue-printer-square__name {
+    line-height: 1.2;
+}
+
+.queue-printer-square__badge {
+    font-size: 11px;
+    font-weight: var(--fw-extrabold);
+    opacity: 0.85;
+}
+
+/* ---------- Modal overlay (Move to Printer) ---------- */
+.queue-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 52, 78, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+}
+
+.queue-modal {
+    background: var(--surface);
+    border-radius: 18px;
+    padding: clamp(20px, 4vw, 32px);
+    max-width: 640px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: 0 24px 60px rgba(8, 52, 78, 0.25);
+}
+
+.queue-modal__title {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: var(--fw-extrabold);
+}
+
+.queue-modal__subtitle {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.queue-modal__locations {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.queue-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* ---------- Config page ---------- */
+.queue-config {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.queue-config-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.queue-config-tab-rename {
+    width: 160px;
+}
+
+.queue-config-tab {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 6px 4px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.queue-config-tab.is-active {
+    background: var(--panel);
+    border-color: var(--panel);
+}
+
+.queue-config-tab.is-active .queue-config-tab__name {
+    color: #fff;
+}
+
+.queue-config-tab.is-active .queue-config-tab__icon-btn {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.queue-config-tab.is-active .queue-config-tab__icon-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+}
+
+.queue-config-tab.is-active .queue-config-tab__icon-btn--danger:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ff9d9d;
+}
+
+.queue-config-tab__name {
+    background: none;
+    border: none;
+    padding: 0;
+    font-weight: var(--fw-bold);
+    font-size: 14px;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.queue-config-tab__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--muted2);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.queue-config-tab__icon-btn:hover {
+    background: rgba(8, 52, 78, 0.08);
+    color: var(--text);
+}
+
+.queue-config-tab__icon-btn--danger:hover {
+    background: rgba(200, 40, 40, 0.12);
+    color: #b02a2a;
+}
+
+.queue-config-add-location {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.queue-config-add-location .queue-input {
+    width: 180px;
+}
+
+.queue-config-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 980px) {
+    .queue-config-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.queue-config-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 12px 28px rgba(8, 52, 78, 0.06);
+}
+
+.queue-config-panel h2 {
+    margin: 0 0 6px;
+}
+
+.queue-draggable-grid {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(8, 52, 78, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    min-height: 320px;
+    touch-action: none;
+    user-select: none;
+}
+
+.queue-draggable-grid__cell {
+    border-radius: 8px;
+    border: 1px dashed rgba(8, 52, 78, 0.08);
+}
+
+.queue-draggable-grid__cell.is-preview {
+    background: rgba(230, 89, 37, 0.12);
+    border-color: var(--accent);
+}
+
+.queue-config-add-printer {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.queue-config-status-chips {
+    margin-bottom: 16px;
+}
+
+.queue-config-printer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.queue-config-printer-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.queue-config-printer-row__name {
+    font-weight: var(--fw-bold);
+    flex: 1;
+}
+
+.queue-config-printer-row__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.queue-config-rule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.queue-config-rule-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.queue-config-rule-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.queue-config-rule-form .queue-input {
+    width: 130px;
+}
+
+.queue-config-rule-form .queue-select {
+    width: auto;
+    min-width: 160px;
+}
+
+/* ---------- Expandable request card content ---------- */
+.queue-request-card__expand-btn {
+    min-height: 32px;
+    padding: 6px 14px;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.queue-request-card__expanded {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 16px;
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(8, 52, 78, 0.03);
+    border: 1px solid var(--border);
+}
+
+/* ---------- Preview / 3D Model / Metadata tabs ---------- */
+.queue-preview-tabs__nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.queue-preview-tabs__tab {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 13px;
+    font-weight: var(--fw-bold);
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.queue-preview-tabs__tab.is-active {
+    background: var(--panel);
+    color: #fff;
+    border-color: var(--panel);
+}
+
+.queue-preview-tabs__body {
+    min-height: 120px;
+}
+
+.queue-preview-tabs__image {
+    max-width: 100%;
+    max-height: 360px;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+}
+
+.queue-model-viewer {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f3f3f1;
+}
+
+.queue-model-viewer__canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.queue-model-viewer__canvas canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.queue-model-viewer__status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    background: rgba(243, 243, 241, 0.85);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.queue-properties-display {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    font-size: 14px;
+}
+
+.queue-prop-key {
+    color: var(--muted2);
+    font-weight: var(--fw-bold);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.queue-prop-value {
+    color: var(--text);
+}
+
+/* ---------- Activity log ---------- */
+.queue-activity-log__title {
+    margin: 0 0 12px;
+    font-size: 16px;
+}
+
+.queue-activity-log__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.queue-activity-log__entry {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.queue-activity-log__entry-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.queue-activity-log__entry-title {
+    font-weight: var(--fw-bold);
+    font-size: 13px;
+}
+
+.queue-activity-log__entry-time {
+    font-size: 12px;
+    color: var(--muted2);
+}
+
+.queue-activity-log__entry-message {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.queue-activity-log__entry-admin {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--muted2);
+    font-style: italic;
+}
+
+.queue-activity-log__form {
+    display: flex;
+    gap: 8px;
+}
