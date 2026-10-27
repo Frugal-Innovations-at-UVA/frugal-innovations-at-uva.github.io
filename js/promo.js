@@ -23,8 +23,15 @@ function initPromoBanner() {
             text: "Register for our Make-A-Thon!",
             links: [
                 { label: "More Details", href: "/make-a-thon" },
-                { label: "Register", href: "https://forms.cloud.microsoft/pages/responsepage.aspx?id=x4A0ewc3c0iLd-IWczplrJbVbQU68PFPvOilFwfzg5hUNUNTM1hEVElZOVpaWU1XWUE5SDdQRjQxWi4u&origin=QRCode&route=shorturl" },
+                { label: "Register", href: "https://forms.cloud.microsoft/pages/responsepage.aspx?id=x4A0ewc3c0iLd-IWczplrGGHzSz_Vy5PuityBB4HN61UN0YxMVFSNjFYN0w4S1M0U1ZKVlpTRTRDQi4u&route=shorturl" },
                 { label: "Join the Listserv", href: "https://lists.virginia.edu/sympa/subscribe/medical-device-makeathon?previous_action=info"}
+            ]
+        },
+        {
+            text: "Development Team Application!",
+            links: [
+                { label: "Apply Now", href: "https://forms.cloud.microsoft/pages/responsepage.aspx?id=x4A0ewc3c0iLd-IWczplrCGilhGSctZCjwIxuTAI6hdUNzJFUFZBUEw1OVE1UzBFSVlKOE9EM1Q3QS4u&route=shorturl" },
+                { label: "Previous Projects", href: "/projects" }
             ]
         }
         
