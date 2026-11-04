@@ -1,0 +1,141 @@
+/* Safety & Tools page. All rules scoped under .safety. */
+
+.safety .safety-intro {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+.safety .safety-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.safety .safety-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px 22px;
+    box-shadow: 0 12px 28px rgba(8, 52, 78, 0.06);
+}
+
+.safety .safety-panel--wide {
+    margin-top: 24px;
+    max-width: 900px;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 18px 18px 0;
+}
+
+.safety .safety-panel h3 {
+    margin: 0 0 14px;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+}
+
+.safety .safety-rules {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.safety .safety-rules li + li {
+    margin-top: 8px;
+}
+
+.safety .safety-resources {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.safety .safety-resource {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(8, 52, 78, 0.04);
+}
+
+.safety .safety-resource__link,
+.safety .safety-resource--pending {
+    display: grid;
+    gap: 2px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-md);
+    transition: transform 120ms ease, background 120ms ease;
+}
+
+.safety .safety-resource__link:hover {
+    background: rgba(8, 52, 78, 0.08);
+    transform: translateY(-1px);
+}
+
+.safety .safety-resource__kind {
+    font-size: 12px;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.safety .safety-resource__title {
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+}
+
+.safety .safety-resource__desc,
+.safety .safety-resource__status {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.safety .safety-resource--pending .safety-resource__desc {
+    display: none;
+}
+
+.safety .safety-jump {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.safety .safety-jump a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.safety .safety-jump a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.safety [id] {
+    scroll-margin-top: 90px;
+}
+
+@media (max-width: 900px) {
+    .safety .safety-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { hasValidSession } from "@/lib/session";
-import { listLocations, listPrinters, listRoutingRules } from "../../actions";
+import { listLocations, listMaterialRules, listPrinters, listRoutingRules } from "../../actions";
 import ConfigView from "./ConfigView";
 
 export default async function ConfigPage() {
   const authed = await hasValidSession();
   if (!authed) redirect("/queue/dashboard");
 
-  const [locations, printers, routingRules] = await Promise.all([
+  const [locations, printers, routingRules, materialRules] = await Promise.all([
     listLocations(),
     listPrinters(),
     listRoutingRules(),
+    listMaterialRules(),
   ]);
 
   return (
@@ -26,6 +27,7 @@ export default async function ConfigPage() {
           initialLocations={locations}
           initialPrinters={printers}
           initialRoutingRules={routingRules}
+          initialMaterialRules={materialRules}
         />
       </div>
     </section>

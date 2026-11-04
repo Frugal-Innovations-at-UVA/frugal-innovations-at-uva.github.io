@@ -6,6 +6,8 @@ export type PrintStatus =
   | "queue"
   | "printing"
   | "completed"
+  | "ready_for_pickup"
+  | "picked_up"
   | "rejected"
   | "cancelled";
 
@@ -36,6 +38,13 @@ export interface TeamRoutingRule {
   created_at: string;
 }
 
+export interface MaterialRoutingRule {
+  id: string;
+  material: string;
+  location_id: string;
+  created_at: string;
+}
+
 export type ActivityEventType = "submitted" | "status_change" | "note";
 
 export interface ActivityLogEntry {
@@ -55,7 +64,6 @@ export interface PrintRequest {
   team_name: string;
   requester_name: string;
   computing_id: string;
-  group_number: string;
   team_number: number | null;
   email: string;
   notes: string | null;

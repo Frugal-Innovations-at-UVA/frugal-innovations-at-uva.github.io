@@ -54,7 +54,9 @@ export default async function QueueLandingPage() {
           <div className="queue-board-legend">
             <span><i className="queue-board-dot queue-board-dot--queue" /> Queue</span>
             <span><i className="queue-board-dot queue-board-dot--printing" /> Printing</span>
-            <span><i className="queue-board-dot queue-board-dot--completed" /> Done</span>
+            <span><i className="queue-board-dot queue-board-dot--completed" /> Complete</span>
+            <span><i className="queue-board-dot queue-board-dot--ready_for_pickup" /> Ready for pickup</span>
+            <span><i className="queue-board-dot queue-board-dot--picked_up" /> Picked up</span>
           </div>
           <QueueBoard initialEntries={board} />
         </div>

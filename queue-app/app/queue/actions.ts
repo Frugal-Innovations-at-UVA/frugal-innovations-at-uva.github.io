@@ -18,15 +18,22 @@ import {
   type PrinterStatus,
   type PrintRequest,
   type PrintStatus,
+  type MaterialRoutingRule,
   type TeamRoutingRule,
 } from "@/lib/supabase";
 import { sendConfirmationEmail, sendStatusChangeEmail } from "@/lib/email";
-import { resolveLocationId } from "@/lib/routing";
+import { resolveRequestLocationId } from "@/lib/routing";
 import { logActivity } from "@/lib/activity";
 
 export type LoginState = { error?: string } | undefined;
 
-const FINISHED_STATUSES: PrintStatus[] = ["completed", "rejected", "cancelled"];
+const FINISHED_STATUSES: PrintStatus[] = [
+  "completed",
+  "ready_for_pickup",
+  "picked_up",
+  "rejected",
+  "cancelled",
+];
 
 function safeEqual(a: string, b: string) {
   const bufA = Buffer.from(a);
@@ -88,7 +95,6 @@ export interface SubmitRequestInput {
   teamNumber: number | null;
   requesterName: string;
   computingId: string;
-  groupNumber: string;
   email: string;
   notes: string;
   filePath: string;
@@ -102,8 +108,20 @@ export interface SubmitRequestInput {
 }
 
 export async function submitRequest(input: SubmitRequestInput): Promise<number> {
-  const { data: rules } = await supabaseAdmin().from("team_routing_rules").select("*");
-  const locationId = resolveLocationId(input.teamNumber, (rules as TeamRoutingRule[]) ?? []);
+  const [{ data: rules }, { data: materialRules }] = await Promise.all([
+    supabaseAdmin().from("team_routing_rules").select("*"),
+    supabaseAdmin().from("material_routing_rules").select("*"),
+  ]);
+  const rawFilaments = input.sliceMetadata?.filamentTypes;
+  const filamentTypes = Array.isArray(rawFilaments)
+    ? rawFilaments.filter((f): f is string => typeof f === "string")
+    : [];
+  const locationId = resolveRequestLocationId(
+    input.teamNumber,
+    (rules as TeamRoutingRule[]) ?? [],
+    (materialRules as MaterialRoutingRule[]) ?? [],
+    filamentTypes
+  );
 
   const { data, error } = await supabaseAdmin()
     .from("print_requests")
@@ -112,7 +130,6 @@ export async function submitRequest(input: SubmitRequestInput): Promise<number> 
       team_number: input.teamNumber,
       requester_name: input.requesterName,
       computing_id: input.computingId,
-      group_number: input.groupNumber,
       email: input.email,
       notes: input.notes || null,
       file_path: input.filePath,
@@ -203,7 +220,9 @@ export interface UpdateStatusOptions {
 const STATUS_LABEL: Record<PrintStatus, string> = {
   queue: "Moved back to queue",
   printing: "Started printing",
-  completed: "Marked completed",
+  completed: "Marked complete",
+  ready_for_pickup: "Marked ready for pickup",
+  picked_up: "Marked picked up",
   rejected: "Rejected",
   cancelled: "Cancelled",
 };
@@ -397,7 +416,7 @@ export async function getPublicBoard(): Promise<PublicBoardEntry[]> {
   const { data, error } = await supabaseAdmin()
     .from("print_requests")
     .select("print_number, status, printing_started_at, estimated_seconds")
-    .in("status", ["queue", "printing", "completed"])
+    .in("status", ["queue", "printing", "completed", "ready_for_pickup", "picked_up"])
     .order("print_number", { ascending: true });
 
   if (error || !data) {
@@ -630,6 +649,54 @@ export async function deleteRoutingRule(id: string): Promise<void> {
   await requireSession();
 
   const { error } = await supabaseAdmin().from("team_routing_rules").delete().eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/queue/dashboard/config");
+}
+
+export async function listMaterialRules(): Promise<MaterialRoutingRule[]> {
+  await requireSession();
+
+  const { data, error } = await supabaseAdmin()
+    .from("material_routing_rules")
+    .select("*")
+    .order("created_at", { ascending: true });
+
+  if (error || !data) {
+    throw new Error(error?.message ?? "Could not load material routing rules");
+  }
+
+  return data as MaterialRoutingRule[];
+}
+
+export async function createMaterialRule(
+  material: string,
+  locationId: string
+): Promise<MaterialRoutingRule> {
+  await requireSession();
+
+  const trimmed = material.trim();
+  if (!trimmed) throw new Error("Enter a material, e.g. TPU");
+
+  const { data, error } = await supabaseAdmin()
+    .from("material_routing_rules")
+    .insert({ material: trimmed, location_id: locationId })
+    .select()
+    .single();
+
+  if (error || !data) {
+    throw new Error(error?.message ?? "Could not create material rule");
+  }
+
+  revalidatePath("/queue/dashboard/config");
+  return data as MaterialRoutingRule;
+}
+
+export async function deleteMaterialRule(id: string): Promise<void> {
+  await requireSession();
+
+  const { error } = await supabaseAdmin().from("material_routing_rules").delete().eq("id", id);
 
   if (error) throw new Error(error.message);
 

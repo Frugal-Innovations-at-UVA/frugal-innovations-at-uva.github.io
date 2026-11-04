@@ -6,6 +6,7 @@ import type { Location, Printer, PrintStatus } from "@/lib/supabase";
 import type { RequestWithUrls } from "../actions";
 import { formatDuration, progressPercent } from "@/lib/printFile";
 import { printerDisplayLabel } from "@/lib/printerDisplay";
+import { STATUS_DISPLAY_LABEL } from "@/lib/statusLabels";
 import {
   assignLocation,
   listPrinters,
@@ -24,10 +25,22 @@ import PrinterPickerModal from "./PrinterPickerModal";
 
 type Row = RequestWithUrls;
 
-const FINISHED_STATUSES: PrintStatus[] = ["completed", "rejected", "cancelled"];
+const FINISHED_STATUSES: PrintStatus[] = [
+  "completed",
+  "ready_for_pickup",
+  "picked_up",
+  "rejected",
+  "cancelled",
+];
 
 type MainTab = "queue" | "printing" | "finished";
-type FinishedSubTab = "all" | "completed" | "rejected" | "cancelled";
+type FinishedSubTab =
+  | "all"
+  | "completed"
+  | "ready_for_pickup"
+  | "picked_up"
+  | "rejected"
+  | "cancelled";
 
 const MAIN_TABS: { key: MainTab; label: string }[] = [
   { key: "queue", label: "Queue" },
@@ -37,7 +50,9 @@ const MAIN_TABS: { key: MainTab; label: string }[] = [
 
 const FINISHED_SUBTABS: { key: FinishedSubTab; label: string }[] = [
   { key: "all", label: "All" },
-  { key: "completed", label: "Completed" },
+  { key: "completed", label: "Complete" },
+  { key: "ready_for_pickup", label: "Ready for Pickup" },
+  { key: "picked_up", label: "Picked Up" },
   { key: "rejected", label: "Rejected" },
   { key: "cancelled", label: "Canceled" },
 ];
@@ -56,11 +71,19 @@ const NEXT_ACTIONS: Record<PrintStatus, StatusAction[]> = {
     { label: "Cancel", status: "cancelled", prompt: "notes" },
   ],
   printing: [
-    { label: "Mark Completed", status: "completed", prompt: "notes" },
+    { label: "Complete", status: "completed", prompt: "notes" },
     { label: "Reject", status: "rejected", prompt: "notes" },
     { label: "Cancel", status: "cancelled", prompt: "notes" },
   ],
-  completed: [{ label: "Reopen", status: "queue", prompt: "none" }],
+  completed: [
+    { label: "Ready for Pickup", status: "ready_for_pickup", prompt: "notes" },
+    { label: "Reopen", status: "queue", prompt: "none" },
+  ],
+  ready_for_pickup: [
+    { label: "Picked Up", status: "picked_up", prompt: "none" },
+    { label: "Reopen", status: "queue", prompt: "none" },
+  ],
+  picked_up: [{ label: "Reopen", status: "queue", prompt: "none" }],
   rejected: [{ label: "Reopen", status: "queue", prompt: "none" }],
   cancelled: [{ label: "Reopen", status: "queue", prompt: "none" }],
 };
@@ -435,7 +458,7 @@ export default function DashboardView({
                   <span className="queue-number-badge">#{row.print_number}</span>
                   <span className="queue-request-card__team">{row.team_name}</span>
                   <span className={`queue-status-badge queue-status-badge--${row.status}`}>
-                    {row.status}
+                    {STATUS_DISPLAY_LABEL[row.status]}
                   </span>
                   {printerLabel && (
                     <span className="queue-printer-badge">{printerLabel}</span>
@@ -469,10 +492,6 @@ export default function DashboardView({
                   <div>
                     <span>Computing ID</span>
                     {row.computing_id}
-                  </div>
-                  <div>
-                    <span>Group</span>
-                    {row.group_number}
                   </div>
                   <div>
                     <span>Email</span>
@@ -528,7 +547,7 @@ export default function DashboardView({
                           })
                         }
                       >
-                        Confirm {pendingAction.status}
+                        Confirm {STATUS_DISPLAY_LABEL[pendingAction.status]}
                       </button>
                       <button
                         type="button"
