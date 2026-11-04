@@ -27,6 +27,12 @@ still looks right without the Cloudflare layer in front of it.
    4. `migration_004_locations_and_printers.sql` — adds multi-location ("farm") support:
       real `locations`/`printers` tables (replacing the old static printer list) and
       `team_routing_rules` for auto-assigning a request to a location by team number.
+   5. `migration_005_dual_upload_and_metadata.sql` — original design file + slice metadata.
+   6. `migration_006_activity_log.sql` — per-request activity log.
+   7. `migration_007_pickup_statuses.sql` — adds the `ready_for_pickup` and `picked_up`
+      statuses (Complete → Ready for Pickup → Picked Up).
+   8. `migration_008_material_routing.sql` — adds material routing rules (e.g. TPU →
+      a specific location), checked before team-number ranges.
 4. `npm run dev` — visit `http://localhost:3000/queue`.
 
 ## How to run locally

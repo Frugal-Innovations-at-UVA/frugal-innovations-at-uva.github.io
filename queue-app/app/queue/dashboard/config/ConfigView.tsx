@@ -1,13 +1,21 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Location, Printer, PrinterStatus, TeamRoutingRule } from "@/lib/supabase";
+import type {
+  Location,
+  MaterialRoutingRule,
+  Printer,
+  PrinterStatus,
+  TeamRoutingRule,
+} from "@/lib/supabase";
 import {
   createLocation,
   createPrinter,
+  createMaterialRule,
   createRoutingRule,
   deleteLocation,
   deletePrinter,
+  deleteMaterialRule,
   deleteRoutingRule,
   renameLocation,
   updatePrinterStatus,
@@ -27,14 +35,19 @@ export default function ConfigView({
   initialLocations,
   initialPrinters,
   initialRoutingRules,
+  initialMaterialRules,
 }: {
   initialLocations: Location[];
   initialPrinters: Printer[];
   initialRoutingRules: TeamRoutingRule[];
+  initialMaterialRules: MaterialRoutingRule[];
 }) {
   const [locations, setLocations] = useState(initialLocations);
   const [printers, setPrinters] = useState(initialPrinters);
   const [routingRules, setRoutingRules] = useState(initialRoutingRules);
+  const [materialRules, setMaterialRules] = useState(initialMaterialRules);
+  const [materialDraft, setMaterialDraft] = useState("TPU");
+  const [materialLocationId, setMaterialLocationId] = useState<string>(initialLocations[0]?.id ?? "");
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(
     initialLocations[0]?.id ?? null
   );
@@ -115,6 +128,7 @@ export default function ConfigView({
       await deleteLocation(location.id);
       setLocations((prev) => prev.filter((l) => l.id !== location.id));
       setRoutingRules((prev) => prev.filter((r) => r.location_id !== location.id));
+      setMaterialRules((prev) => prev.filter((r) => r.location_id !== location.id));
       setSelectedLocationId((prev) =>
         prev === location.id ? (locations.find((l) => l.id !== location.id)?.id ?? null) : prev
       );
@@ -182,6 +196,25 @@ export default function ConfigView({
     runAction(async () => {
       await deleteRoutingRule(id);
       setRoutingRules((prev) => prev.filter((r) => r.id !== id));
+    });
+  }
+
+  function handleCreateMaterialRule() {
+    if (!materialDraft.trim() || !materialLocationId) {
+      setError("Enter a material (e.g. TPU) and pick a location.");
+      return;
+    }
+    runAction(async () => {
+      const created = await createMaterialRule(materialDraft, materialLocationId);
+      setMaterialRules((prev) => [...prev, created]);
+      setMaterialDraft("");
+    });
+  }
+
+  function handleDeleteMaterialRule(id: string) {
+    runAction(async () => {
+      await deleteMaterialRule(id);
+      setMaterialRules((prev) => prev.filter((r) => r.id !== id));
     });
   }
 
@@ -400,6 +433,60 @@ export default function ConfigView({
             ))}
           </select>
           <button type="button" className="queue-btn-accent" onClick={handleCreateRule}>
+            Add Rule
+          </button>
+        </div>
+      </div>
+
+      <div className="queue-config-panel">
+        <h2 className="title-lg">Material → Location Routing</h2>
+        <p className="queue-hint">
+          If a sliced file uses one of these filament types (read from the .3mf, e.g. TPU), the
+          request goes to the location below no matter what its team number is. Material rules
+          are checked before the team ranges above. If the filament can&apos;t be read from the
+          file, the team range applies instead.
+        </p>
+
+        <div className="queue-config-rule-list">
+          {materialRules.length === 0 ? (
+            <p className="queue-empty">No material rules yet.</p>
+          ) : (
+            materialRules.map((rule) => (
+              <div key={rule.id} className="queue-config-rule-row">
+                <span>
+                  <strong>{rule.material}</strong> prints → <strong>{locationName(rule.location_id)}</strong>
+                </span>
+                <button
+                  type="button"
+                  className="queue-btn-light"
+                  onClick={() => handleDeleteMaterialRule(rule.id)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+
+        <div className="queue-config-rule-form">
+          <input
+            className="queue-input"
+            placeholder="Material, e.g. TPU"
+            value={materialDraft}
+            onChange={(e) => setMaterialDraft(e.target.value)}
+          />
+          <select
+            className="queue-select"
+            value={materialLocationId}
+            onChange={(e) => setMaterialLocationId(e.target.value)}
+          >
+            {locations.map((l) => (
+              <option key={l.id} value={l.id}>
+                {l.name}
+              </option>
+            ))}
+          </select>
+          <button type="button" className="queue-btn-accent" onClick={handleCreateMaterialRule}>
             Add Rule
           </button>
         </div>

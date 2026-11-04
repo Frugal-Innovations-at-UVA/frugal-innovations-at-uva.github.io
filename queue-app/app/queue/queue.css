@@ -394,6 +394,16 @@
     color: #1e7a34;
 }
 
+.queue-status-badge--ready_for_pickup {
+    background: var(--panel);
+    color: #fff;
+}
+
+.queue-status-badge--picked_up {
+    background: rgba(107, 79, 160, 0.14);
+    color: #5b3f8f;
+}
+
 .queue-status-badge--rejected {
     background: rgba(200, 40, 40, 0.12);
     color: #b02a2a;
@@ -496,6 +506,14 @@
     background: #1e7a34;
 }
 
+.queue-board-dot--ready_for_pickup {
+    background: var(--panel);
+}
+
+.queue-board-dot--picked_up {
+    background: #6b4fa0;
+}
+
 .queue-board-grid {
     display: flex;
     flex-wrap: wrap;
@@ -551,6 +569,16 @@
 .queue-board-chip--completed {
     background: rgba(34, 139, 34, 0.15);
     color: #1e7a34;
+}
+
+.queue-board-chip--ready_for_pickup {
+    background: var(--panel);
+    color: #fff;
+}
+
+.queue-board-chip--picked_up {
+    background: rgba(107, 79, 160, 0.14);
+    color: #5b3f8f;
 }
 
 /* ---------- Detected-from-file panel ---------- */

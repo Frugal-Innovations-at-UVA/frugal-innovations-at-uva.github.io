@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import type { PrintStatus } from "./supabase";
+import { STATUS_DISPLAY_LABEL as STATUS_LABEL } from "./statusLabels";
 
 function resendClient() {
   const apiKey = process.env.RESEND_API_KEY;
@@ -8,14 +9,6 @@ function resendClient() {
 }
 
 const FROM_ADDRESS = "FISH Print Queue <queue@mail.frugal-innovations.com>";
-
-const STATUS_LABEL: Record<PrintStatus, string> = {
-  queue: "In Queue",
-  printing: "Printing",
-  completed: "Completed",
-  rejected: "Rejected",
-  cancelled: "Cancelled",
-};
 
 export async function sendConfirmationEmail(params: {
   to: string;

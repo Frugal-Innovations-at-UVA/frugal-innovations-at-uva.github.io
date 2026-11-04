@@ -10,6 +10,9 @@ export interface PrintFileMetadata {
   // from this event if any of them come back empty in practice.
   bedType: string | null;
   filamentType: string | null;
+  // Every filament in the slice (multi-material prints list several), used
+  // for material-based routing. filamentType above is just the first one.
+  filamentTypes: string[];
   nozzleDiameterMm: string | null;
   infillDensityPercent: string | null;
   infillPattern: string | null;
@@ -57,6 +60,7 @@ export async function parsePrintFileMetadata(file: File): Promise<PrintFileMetad
     estimatedWeightG: null,
     bedType: null,
     filamentType: null,
+    filamentTypes: [],
     nozzleDiameterMm: null,
     infillDensityPercent: null,
     infillPattern: null,
@@ -94,6 +98,9 @@ export async function parsePrintFileMetadata(file: File): Promise<PrintFileMetad
         result.raw = raw;
         result.bedType = firstArrayOrString(raw.bed_type ?? raw.curr_bed_type);
         result.filamentType = firstArrayOrString(raw.filament_type);
+        result.filamentTypes = (Array.isArray(raw.filament_type) ? raw.filament_type : [raw.filament_type])
+          .filter((v): v is string => typeof v === "string" && v.trim() !== "")
+          .map((v) => v.trim());
         result.nozzleDiameterMm = firstArrayOrString(raw.nozzle_diameter);
         result.infillDensityPercent = firstArrayOrString(raw.sparse_infill_density ?? raw.fill_density);
         result.infillPattern = firstArrayOrString(raw.sparse_infill_pattern ?? raw.fill_pattern);

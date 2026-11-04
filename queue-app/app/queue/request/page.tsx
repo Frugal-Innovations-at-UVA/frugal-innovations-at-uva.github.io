@@ -129,6 +129,7 @@ export default function RequestPage() {
         ? {
             bedType: detected.bedType,
             filamentType: detected.filamentType,
+            filamentTypes: detected.filamentTypes,
             nozzleDiameterMm: detected.nozzleDiameterMm,
             infillDensityPercent: detected.infillDensityPercent,
             infillPattern: detected.infillPattern,
@@ -142,7 +143,6 @@ export default function RequestPage() {
         teamNumber: teamNumber != null && Number.isFinite(teamNumber) ? teamNumber : null,
         requesterName: String(formData.get("requesterName") ?? ""),
         computingId: String(formData.get("computingId") ?? ""),
-        groupNumber: String(formData.get("groupNumber") ?? ""),
         email: String(formData.get("email") ?? ""),
         notes: String(formData.get("notes") ?? ""),
         filePath: slicedUpload.path,
@@ -228,16 +228,6 @@ export default function RequestPage() {
                     Used to route your print to the right farm — ask your organizer if you&apos;re unsure.
                   </span>
                 </div>
-              </div>
-
-              <div className="queue-field">
-                <label htmlFor="groupNumber">Group number</label>
-                <input
-                  className="queue-input"
-                  id="groupNumber"
-                  name="groupNumber"
-                  required
-                />
               </div>
 
               <div className="queue-field">

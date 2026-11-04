@@ -1,4 +1,4 @@
-import type { TeamRoutingRule } from "./supabase";
+import type { MaterialRoutingRule, TeamRoutingRule } from "./supabase";
 
 // Matches a submitted team number against the admin-configured routing
 // ranges (managed from /queue/dashboard/config) and returns the location a
@@ -16,4 +16,22 @@ export function resolveLocationId(
   );
 
   return match?.location_id ?? null;
+}
+
+// Full routing for a new request: a material rule (e.g. TPU → Stacey) wins
+// over the team-number ranges, so a TPU print from any team lands at the
+// location that can print it. Falls back to resolveLocationId when no
+// filament was detected or no material rule matches.
+export function resolveRequestLocationId(
+  teamNumber: number | null,
+  teamRules: TeamRoutingRule[],
+  materialRules: MaterialRoutingRule[],
+  filamentTypes: string[]
+): string | null {
+  const present = new Set(filamentTypes.map((f) => f.trim().toLowerCase()));
+  const materialMatch = materialRules.find((rule) =>
+    present.has(rule.material.trim().toLowerCase())
+  );
+
+  return materialMatch?.location_id ?? resolveLocationId(teamNumber, teamRules);
 }

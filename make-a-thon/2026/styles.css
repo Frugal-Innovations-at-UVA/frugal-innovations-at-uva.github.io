@@ -279,6 +279,13 @@
     line-height: 1.7;
 }
 
+.m26 .makeathon-person__detail {
+    margin: 12px 0 0;
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+}
+
 .m26 .makeathon-person--tba {
     display: flex;
     flex-direction: column;
@@ -289,7 +296,117 @@
     box-shadow: none;
 }
 
-/* ---------- Inline split (schedule) ---------- */
+/* ---------- Schedule ---------- */
+
+.m26 .m26-schedule__intro {
+    max-width: 760px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: 18px;
+}
+
+.m26 .m26-schedule {
+    margin-top: 28px;
+}
+
+.m26 .m26-schedule__tabs {
+    display: none;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.m26 .m26-schedule--tabs .m26-schedule__tabs {
+    display: flex;
+}
+
+.m26 .m26-schedule__tab {
+    appearance: none;
+    cursor: pointer;
+    font: inherit;
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    min-height: 46px;
+    padding: 8px 22px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.m26 .m26-schedule__tab:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.m26 .m26-schedule__tab span {
+    font-size: 13px;
+    font-weight: var(--fw-semibold);
+    opacity: 0.8;
+}
+
+.m26 .m26-schedule__tab[aria-selected="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.m26 .m26-schedule__tab:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.m26 .m26-schedule__day + .m26-schedule__day {
+    margin-top: 32px;
+}
+
+.m26 .m26-schedule__day[hidden] {
+    display: none;
+}
+
+.m26 .m26-schedule--tabs .m26-schedule__day-title {
+    display: none;
+}
+
+.m26 .m26-schedule__day-title {
+    margin: 0 0 12px;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+}
+
+.m26 .m26-schedule__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border);
+}
+
+.m26 .m26-schedule__list li {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.8fr) 2fr minmax(160px, 1fr);
+    gap: 8px 24px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.m26 .m26-schedule__time {
+    font-weight: var(--fw-extrabold);
+}
+
+.m26 .m26-schedule__room {
+    color: var(--muted);
+}
+
+/* ---------- Inline split ---------- */
 
 .m26 .makeathon-inline {
     display: grid;
@@ -406,7 +523,30 @@
     }
 }
 
+@media (max-width: 900px) {
+    .m26 .m26-schedule__list li {
+        grid-template-columns: minmax(130px, 0.8fr) 2fr;
+    }
+
+    .m26 .m26-schedule__room {
+        grid-column: 2;
+    }
+}
+
 @media (max-width: 700px) {
+    .m26 .m26-schedule__list li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .m26 .m26-schedule__room {
+        grid-column: auto;
+    }
+
+    .m26 .m26-schedule__room:empty {
+        display: none;
+    }
+
     .m26 .makeathon-partners,
     .m26 .makeathon-people {
         grid-template-columns: 1fr;
