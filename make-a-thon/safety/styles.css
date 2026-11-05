@@ -45,6 +45,11 @@
     font-size: 16px;
 }
 
+.safety .safety-rules a {
+    color: var(--accent);
+    font-weight: var(--fw-semibold);
+}
+
 .safety .safety-rules li + li {
     margin-top: 8px;
 }
@@ -55,6 +60,12 @@
     padding: 0;
     display: grid;
     gap: 12px;
+}
+
+.safety .safety-resources--row {
+    margin-top: 24px;
+    max-width: 900px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .safety .safety-resource {
@@ -135,6 +146,10 @@
 }
 
 @media (max-width: 900px) {
+    .safety .safety-resources--row {
+        grid-template-columns: 1fr;
+    }
+
     .safety .safety-grid {
         grid-template-columns: 1fr;
     }
