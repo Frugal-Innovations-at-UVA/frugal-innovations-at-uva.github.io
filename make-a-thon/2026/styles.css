@@ -208,7 +208,6 @@
 
 .m26 .makeathon-problem {
     margin-top: 24px;
-    max-width: 900px;
     padding: 32px 30px;
     background: var(--surface);
     border: 1px solid var(--border);
@@ -229,6 +228,36 @@
     color: var(--muted);
     font-size: 17px;
     line-height: 1.75;
+}
+
+.m26 .makeathon-problem__note + .makeathon-problem__note {
+    margin-top: 12px;
+}
+
+.m26 .makeathon-problem__heading {
+    margin: 28px 0 10px;
+    font-size: 18px;
+    font-weight: var(--fw-extrabold);
+    color: var(--text);
+}
+
+.m26 .makeathon-problem__list {
+    margin: 0;
+    padding-left: 22px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.m26 .makeathon-problem__note + .makeathon-problem__list {
+    margin-top: 10px;
+}
+
+.m26 .makeathon-problem__formula {
+    margin: 0 0 12px;
+    font-size: 19px;
+    font-weight: var(--fw-bold);
+    color: var(--text);
 }
 
 /* ---------- People grid (keynotes / mentors / judges) ---------- */
@@ -564,5 +593,36 @@
     .m26 .makeathon-cta__actions {
         flex-direction: column;
         align-items: stretch;
+    }
+}
+
+/* ---------- Problem statement detail cards ---------- */
+
+.m26 .makeathon-cases {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.m26 .makeathon-case {
+    padding: 28px 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(8, 52, 78, 0.06);
+}
+
+.m26 .makeathon-case--wide {
+    grid-column: 1 / -1;
+}
+
+.m26 .makeathon-case .makeathon-problem__heading {
+    margin-top: 0;
+}
+
+@media (max-width: 800px) {
+    .m26 .makeathon-cases {
+        grid-template-columns: 1fr;
     }
 }
