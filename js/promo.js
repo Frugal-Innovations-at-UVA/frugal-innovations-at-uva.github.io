@@ -20,9 +20,9 @@ function initPromoBanner() {
         /* fill in with new events later
         */
         {
-            text: "Get Ready for our Make-A-Thon!",
+            text: "Join us for Final Presentations!",
             links: [
-                { label: "More Details", href: "/make-a-thon/2026" }
+                { label: "Link to Livestream", href: "https://virginia.zoom.us/j/95305231214?pwd=N0rhP9a6QJFylnu2puaBeR0vTSgNX2.1" }
             ]
         }
         
