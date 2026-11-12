@@ -19,12 +19,7 @@ function initPromoBanner() {
     const announcements = [
         /* fill in with new events later
         */
-        {
-            text: "Join us for Final Presentations!",
-            links: [
-                { label: "Link to Livestream", href: "https://virginia.zoom.us/j/95305231214?pwd=N0rhP9a6QJFylnu2puaBeR0vTSgNX2.1" }
-            ]
-        }
+        
         
     ];
 
