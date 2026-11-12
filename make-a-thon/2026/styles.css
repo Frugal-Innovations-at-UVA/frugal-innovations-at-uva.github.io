@@ -460,14 +460,19 @@
 
 .m26 .makeathon-partners {
     margin-top: 36px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centers the short last row */
+    gap: 28px;
+}
+
+.m26 .makeathon-partners .makeathon-partner {
+    flex: 0 0 calc((100% - 3 * 28px) / 4); /* 4 per row */
 }
 
 .m26 .makeathon-partner {
     min-height: 240px;
-    padding: 34px 28px 28px;
+    padding: 34px 20px 28px;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.22);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -624,5 +629,245 @@
 @media (max-width: 800px) {
     .m26 .makeathon-cases {
         grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   RESULTS PAGE (/make-a-thon/2026/results/)
+   ========================================================= */
+
+/* ---------- Ceremony video (lite YouTube embed) ---------- */
+
+.m26 .m26-video {
+    position: relative;
+    width: min(960px, 100%);
+    margin: 32px auto 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--panel);
+    box-shadow: 0 18px 40px rgba(8, 52, 78, 0.22);
+}
+
+.m26 .m26-video__play,
+.m26 .m26-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.m26 .m26-video__play {
+    padding: 0;
+    cursor: pointer;
+    background: var(--panel) center / cover no-repeat;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m26 .m26-video__icon {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 120ms ease;
+}
+
+.m26 .m26-video__play:hover .m26-video__icon,
+.m26 .m26-video__play:focus-visible .m26-video__icon {
+    transform: scale(1.08);
+}
+
+.m26 .m26-video__icon::before {
+    content: "";
+    margin-left: 6px;
+    border-style: solid;
+    border-width: 14px 0 14px 24px;
+    border-color: transparent transparent transparent #fff;
+}
+
+.m26 .m26-video__placeholder {
+    margin: 0;
+    padding: 24px;
+    font-weight: var(--fw-bold);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+/* ---------- Top 3 team cards ---------- */
+
+.m26 .m26-teams {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+}
+
+.m26 .m26-team {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(8, 52, 78, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(8, 52, 78, 0.08);
+}
+
+.m26 .m26-team__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: rgba(8, 52, 78, 0.08);
+}
+
+.m26 .m26-team__body {
+    padding: 22px 22px 26px;
+}
+
+.m26 .m26-team__badge {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.m26 .m26-team__name {
+    margin: 0 0 10px;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: var(--fw-extrabold);
+}
+
+.m26 .m26-team__project {
+    margin: 0 0 12px;
+    font-weight: var(--fw-bold);
+    color: var(--accent);
+}
+
+.m26 .m26-team__summary {
+    margin: 0 0 12px;
+    line-height: 1.6;
+}
+
+.m26 .m26-team__members {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+/* ---------- Photo gallery ---------- */
+
+.m26 .m26-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.m26 .m26-gallery__item {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: zoom-in;
+    background: rgba(8, 52, 78, 0.08);
+    aspect-ratio: 3 / 2;
+}
+
+.m26 .m26-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 200ms ease;
+}
+
+.m26 .m26-gallery__item:hover img {
+    transform: scale(1.04);
+}
+
+.m26 .m26-gallery__empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 40px 0;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.m26 .m26-gallery__more {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.m26 .m26-lightbox {
+    width: min(1200px, 94vw);
+    max-height: 94vh;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    overflow: visible;
+}
+
+.m26 .m26-lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.82);
+}
+
+.m26 .m26-lightbox img {
+    display: block;
+    max-width: 100%;
+    max-height: 86vh;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.m26 .m26-lightbox__close {
+    display: block;
+    margin: 0 0 10px auto;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--panel);
+    font-weight: var(--fw-bold);
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .m26 .m26-teams {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1100px) {
+    .m26 .makeathon-partners .makeathon-partner {
+        flex-basis: calc((100% - 2 * 28px) / 3); /* 3 per row */
+    }
+}
+
+@media (max-width: 900px) {
+    .m26 .makeathon-partners .makeathon-partner {
+        flex-basis: calc((100% - 28px) / 2); /* 2 per row */
+    }
+}
+
+@media (max-width: 700px) {
+    .m26 .makeathon-partners .makeathon-partner {
+        flex-basis: 100%;
     }
 }
